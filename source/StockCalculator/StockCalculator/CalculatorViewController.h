@@ -15,9 +15,11 @@ UITableViewDataSource,
 UITextFieldDelegate
 >
 @property(nonatomic, weak) IBOutlet UITableView* layout;
-@property(nonatomic, strong) NSArray* titles;
+@property(nonatomic, strong) NSArray* all;
+@property(nonatomic, strong) NSMutableArray* cur;
 @property(nonatomic, strong) UIButton* keyBoardBackground;
 @property(nonatomic, assign) CGPoint layoutOriginContentOffset;
+@property(nonatomic, assign) BOOL kindOfTrade;
 - (IBAction)changeTradeType:(id)sender;
 
 @end

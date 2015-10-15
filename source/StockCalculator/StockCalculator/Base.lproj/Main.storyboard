@@ -84,8 +84,8 @@
                                 <rect key="frame" x="20" y="28" width="560" height="29"/>
                                 <animations/>
                                 <segments>
-                                    <segment title="Sell"/>
-                                    <segment title="Buy"/>
+                                    <segment title="损益计算"/>
+                                    <segment title="保本价格"/>
                                 </segments>
                                 <connections>
                                     <action selector="changeTradeType:" destination="8rJ-Kc-sve" eventType="valueChanged" id="3Sa-hQ-BCh"/>

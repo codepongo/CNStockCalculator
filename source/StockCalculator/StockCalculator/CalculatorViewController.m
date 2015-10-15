@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.kindOfTrade = YES;
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
@@ -27,17 +28,37 @@
     UINib* nib =[UINib nibWithNibName:@"InputCell" bundle:nil];
     [self.layout registerNib:nib forCellReuseIdentifier:@"InputCell"];
     
-    self.titles = [NSArray arrayWithObjects:
-                   [NSArray arrayWithObjects: @"股票代码名称",
-                    @"市场",
-                    @"买入价格",
-                    @"买入数量",
-                    @"卖出价格",
-                    @"卖出数量",
-                    @"券商佣金比率",
-                    @"印花税税率",
-                    @"过户费费率",
-                    nil],
+    self.all = @[
+                    @[
+                        @{
+                            @"title":@"股票代码"
+                            ,@"placeholder":@"代码／名称"
+                        },@{
+                            @"title":@"股票类型"
+                        },@{
+                            @"title":@"买入价格"
+                            ,@"placeholder":@"0.00"
+                        },@{
+                            @"title":@"买入数量"
+                            ,@"placeholder":@"0"
+                            
+                        },@{
+                            @"title":@"卖出价格"
+                            ,@"placeholder":@"0.00"
+                        },@{
+                            @"title":@"卖出数量"
+                            ,@"placeholder":@"0"
+                        },@{
+                            @"title":@"券商佣金比率"
+                            ,@"placeholder":@"0"
+                        },@{
+                            @"title":@"印花税税率"
+                            ,@"placeholder":@"0"
+                        },@{
+                            @"title":@"过户费费率"
+                            ,@"placeholder":@"0"
+                        }
+                    ],
                    [NSArray arrayWithObjects:
                     @"过户费",
                     @"印花税",
@@ -45,7 +66,13 @@
                     @"税费合计",
                     @"投资损益",
                     nil],
-                   nil];
+                ];
+    self.cur = [NSMutableArray array];
+
+    for (id a in self.all) {
+        [self.cur addObject:[NSMutableArray arrayWithArray:a]];
+        
+    }
     
 }
 
@@ -167,7 +194,7 @@
 #pragma mark Table View Data Source Methods
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.titles.count;
+    return self.cur.count;
 }
 
 - (NSString * _Nullable)tableView:(UITableView * _Nonnull)tableView
@@ -177,10 +204,10 @@
 
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return [self.titles[section] count];
+    return [self.cur[section] count];
 }
 
-- (NSArray<NSString *>*)sectionIndexTitlesForTableView:(UITableView * _Nonnull)tableView {
+- (NSArray<NSString *>*)sectionIndexcurForTableView:(UITableView * _Nonnull)tableView {
     return nil;
 }
 
@@ -189,23 +216,53 @@
     
     
     InputCell* c = [tableView dequeueReusableCellWithIdentifier:@"InputCell"];
-    c.title.text = self.titles[indexPath.section][indexPath.row];//[NSString stringWithFormat:@"%",indexPath.section, indexPath.row];
-    //if (nil == c) {
-        //c = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:id];
-        //NSBundle* b = [NSBundle mainBundle];
-        
-        //NSArray* n = [[NSBundle mainBundle] loadNibNamed:@"InputCell" owner:self options:nil];
-        //c = nil;
-        //c = (InputCell*) [[[NSBundle mainBundle] loadNibNamed:@"InputCell" owner:self options:nil] lastObject];
-        //c.text = [NSString stringWithFormat:@"%ld - %ld", indexPath.section, indexPath.row];
-    //}
-    c.input.placeholder = @"...";
     c.input.delegate = self;
+    
+    if (indexPath.section == 1) {
+        c.input.placeholder = @"...";
+        c.title.text = self.cur[indexPath.section][indexPath.row];
+    }
+    else {
+        NSDictionary* item = self.cur[indexPath.section][indexPath.row];
+        if ([item objectForKey:@"placeholder"] != nil) {
+            c.input.placeholder = item[@"placeholder"];
+        }
+        else {
+            
+        }
+        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+
+    }
     return c;
 }
 
 #pragma mark -
+#pragma mark Text Field Delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
+    if (self.cur[path.section][path.row][@"placeholder"] == nil) {
+        return NO;
+    }
+    
+    return YES;
+    
+}
+
+#pragma mark -
 #pragma mark Table View Delegate
+
+
 - (IBAction)changeTradeType:(id)sender {
+    self.kindOfTrade = !self.kindOfTrade;
+    if (!self.kindOfTrade) {
+        [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
+    }
+    else {
+        [self.cur[0] insertObject:self.all[0][3] atIndex:4];
+        [self.cur[0] insertObject:self.all[0][3] atIndex:5];
+    }
+    [self.layout reloadData];
+
 }
 @end
