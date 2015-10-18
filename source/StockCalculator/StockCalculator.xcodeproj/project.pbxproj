@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA2A9A7D1BD15A1F00FCC8A5 /* CalculateFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */; settings = {ASSET_TAGS = (); }; };
+		FA2A9A831BD3D79F00FCC8A5 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */; settings = {ASSET_TAGS = (); }; };
+		FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */; settings = {ASSET_TAGS = (); }; };
 		FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71F91BCEA7D20086F0EB /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -19,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculateFooter.xib; sourceTree = "<group>"; };
+		FA2A9A811BD3D79F00FCC8A5 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		FA2A9A841BD3DE4700FCC8A5 /* CalculateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateFooter.h; sourceTree = "<group>"; };
+		FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateFooter.m; sourceTree = "<group>"; };
 		FACE71DB1BCEA75C0086F0EB /* StockCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACE71F81BCEA7D20086F0EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACE71F91BCEA7D20086F0EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -66,6 +74,9 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FA2A9A841BD3DE4700FCC8A5 /* CalculateFooter.h */,
+				FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */,
+				FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */,
 				FACE721D1BCF33610086F0EB /* InputCell.xib */,
 				FACE72181BCF31110086F0EB /* InputCell.h */,
 				FACE72191BCF31110086F0EB /* InputCell.m */,
@@ -80,6 +91,8 @@
 				FACE72021BCEA7D20086F0EB /* main.m */,
 				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
 				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
+				FA2A9A811BD3D79F00FCC8A5 /* TabBarController.h */,
+				FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */,
 			);
 			path = StockCalculator;
 			sourceTree = "<group>";
@@ -145,6 +158,7 @@
 				FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */,
 				FACE72131BCEA7F40086F0EB /* Main.storyboard in Resources */,
 				FACE721E1BCF33610086F0EB /* InputCell.xib in Resources */,
+				FA2A9A7D1BD15A1F00FCC8A5 /* CalculateFooter.xib in Resources */,
 				FACE72121BCEA7F40086F0EB /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,8 +170,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA2A9A831BD3D79F00FCC8A5 /* TabBarController.m in Sources */,
 				FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */,
 				FACE720C1BCEA7D20086F0EB /* main.m in Sources */,
+				FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */,
 				FACE721B1BCF31110086F0EB /* InputCell.m in Sources */,
 				FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */,
 				FACE720D1BCEA7D20086F0EB /* RecordViewController.m in Sources */,

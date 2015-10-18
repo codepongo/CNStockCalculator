@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "InputCell.h"
+#import "CalculateFooter.h"
 
 @interface CalculatorViewController ()
 
@@ -18,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.kindOfTrade = YES;
+     self.kindOfTrade = YES;
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
@@ -28,6 +29,8 @@
     UINib* nib =[UINib nibWithNibName:@"InputCell" bundle:nil];
     [self.layout registerNib:nib forCellReuseIdentifier:@"InputCell"];
     
+    
+    [self.layout registerNib:[UINib nibWithNibName:@"CalculateFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"CalculateFooter"];
     self.all = @[
                     @[
                         @{
@@ -68,11 +71,7 @@
                     nil],
                 ];
     self.cur = [NSMutableArray array];
-
-    for (id a in self.all) {
-        [self.cur addObject:[NSMutableArray arrayWithArray:a]];
-        
-    }
+    [self.cur addObject:[NSMutableArray arrayWithArray:[self.all objectAtIndex:0]]];
     
 }
 
@@ -236,6 +235,52 @@
     return c;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    //if (section == 2) {
+        return 0.01;
+    //}
+    //return tableView.sectionHeaderHeight;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CalculateFooter"].frame.size.height;
+}
+
+-(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        CalculateFooter* footer = (CalculateFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CalculateFooter"];
+        //[cell.reset.layer setMasksToBounds:YES];
+        footer.reset.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
+        footer.reset.layer.borderWidth = 1.0; //边框宽度
+        footer.reset.layer.borderColor = footer.reset.titleLabel.textColor.CGColor;
+        [footer.reset addTarget:self action:@selector(reset:) forControlEvents:UIControlEventTouchUpInside];
+        footer.calculate.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
+        footer.calculate.layer.borderWidth = 1.0; //边框宽度
+        footer.calculate.layer.borderColor = footer.calculate.backgroundColor.CGColor;
+        [footer.calculate addTarget:self action:@selector(calculate:) forControlEvents:UIControlEventTouchUpInside];
+        
+        return (UIView*)footer;
+    }
+    return tableView.tableFooterView;
+}
+
+-(void) calculate:(id)sender{
+    [self.cur addObject:[self.all objectAtIndex:1]];
+    [self.layout reloadData];
+    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
+    [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
+}
+
+-(void) reset:(id)sender {
+    //for (UITableViewCell* c in [self.layout ])
+    if (self.cur.count == 2) {
+        [self.cur removeObjectAtIndex:1];
+    }
+    [self.layout reloadData];
+    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
+}
 #pragma mark -
 #pragma mark Text Field Delegate
 
