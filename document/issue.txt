@@ -1,0 +1,45 @@
+[o] sell改为损益计算
+[o] buy改为保本价格
+[o] segment 切换 界面随之改变
+[o] 股票代码名称 改为 股票代码
+[o] placeholder为 名称/代码
+[o] 市场 改为 股票类型 
+[o] textfield 改为 readonly
+[o] 加入"计算"按钮
+[o] viewForFooterInSection
+[] * debug NSIndexPath
+[ ] + po indexPath.length
+[ ] + po indexPath[0] 
+[ ] + po indexPath[1] 
+[] 点击计算结果列崩溃
+[] 尝试修改默认样式达到效果，如不行则使用自定义模板
+[ ] 修改默认样式 
+    textLabel, detailTextLabel
+    .font = [UIFont systemFontOfSize:50];
+    .textAlignment = UITextAlignmentRight;
+    .textColor = [UIColor blackColor];
+
+[] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
+[] 股票类型默认值
+[] * 点击股票类型呼出picker
+[]  + 增加ButtonCell模板
+[]  + 修改股票类型textfield为button
+[]  + 修改button样式
+[]  + addTarget:action:forControlEvents:
+[]  + 实现带"确定", "取消"的picker
+[]  + 选中更新股票类型button文字
+[] * 输入项 加入单位
+[]  + 买卖价格数量 加入单位 元 股
+[]  + 比率 加入单位 百分之
+
+
+[] 加入disclosure indicator 
+[] 多语言
+[ ] 输入代码显示名称 效果参考招商证券买入模块
+[ ] keyboard 完善相关
+[ ] https://github.com/SimonBS/BSKeyboardControls
+[ ]https://github.com/wannabegeek/PickerTableViewCell
+[ ]https://github.com/danielamitay/DAKeyboardControl
+[ ]https://github.com/backslash112/static-cells-uitableview-in-uiviewcontroller
+
+

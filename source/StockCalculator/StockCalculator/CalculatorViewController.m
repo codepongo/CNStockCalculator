@@ -34,32 +34,47 @@
     self.all = @[
                     @[
                         @{
-                            @"title":@"股票代码"
+                            @"cellReuseIdentifier":@"InputCell"
+                            ,@"title":@"股票代码"
                             ,@"placeholder":@"代码／名称"
                         },@{
-                            @"title":@"股票类型"
+                            @"cellReuseIdentifier":@"InputCell"
+                            ,@"title":@"股票类型"
                         },@{
-                            @"title":@"买入价格"
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
+                            ,@"title":@"买入价格"
                             ,@"placeholder":@"0.00"
+                            ,@"unit":@"元"
                         },@{
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
                             @"title":@"买入数量"
                             ,@"placeholder":@"0"
-                            
+                            ,@"unit":@"股"
                         },@{
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
                             @"title":@"卖出价格"
                             ,@"placeholder":@"0.00"
+                            ,@"unit":@"元"
                         },@{
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
                             @"title":@"卖出数量"
                             ,@"placeholder":@"0"
+                            ,@"unit":@"股"
                         },@{
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
                             @"title":@"券商佣金比率"
                             ,@"placeholder":@"0"
+                            ,@"unit":@"%"
                         },@{
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
                             @"title":@"印花税税率"
                             ,@"placeholder":@"0"
+                            ,@"unit":@"%"
                         },@{
+                            @"cellReuseIdentifier":@"InputCellWithUnit"
                             @"title":@"过户费费率"
                             ,@"placeholder":@"0"
+                            ,@"unit":@"%"
                         }
                     ],
                    [NSArray arrayWithObjects:
@@ -74,6 +89,10 @@
     [self.cur addObject:[NSMutableArray arrayWithArray:[self.all objectAtIndex:0]]];
     
 }
+
+
+#pragma mark -
+#pragma mark KeyBoard
 
 -(void)hideKeyBoard:(id)sender {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
@@ -92,8 +111,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-#define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
-
 -(void) keyboardWillShow:(NSNotification *)note
 {
     if (self.keyBoardBackground.hidden == NO) {
@@ -102,6 +119,7 @@
     [self.view addSubview:self.keyBoardBackground];
     self.keyBoardBackground.hidden = NO;
 
+#define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
     CGRect keyboardRect = [self.view convertRect:[[[note userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil];
     if (CGRectIsEmpty(keyboardRect)) {
         return;
@@ -212,6 +230,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //static NSString * id = @"id";
+    //if self.cur[indexPath.section][indexPath.row][@'
     
     
     InputCell* c = [tableView dequeueReusableCellWithIdentifier:@"InputCell"];

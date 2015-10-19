@@ -1,0 +1,100 @@
+txtfield点击出现pickerview
+
+if (txtField.tag == 301)
+    {
+        [txtField resignFirstResponder];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+                                                                 delegate:self
+                                                        cancelButtonTitle:nil
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:nil, nil];
+        self.m_actionSheet = actionSheet;
+        [actionSheet release];
+         
+        UIToolbar   *pickerDateToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        pickerDateToolbar.barStyle = UIBarStyleBlackOpaque;
+        [pickerDateToolbar sizeToFit];
+         
+        NSMutableArray *barItems = [[NSMutableArray alloc] init];
+         
+        //
+        UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleBordered target:self action:@selector(toolBarCanelClick)];
+        [barItems addObject:cancelBtn];
+        [cancelBtn release];
+         
+        //
+        UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        [barItems addObject:flexSpace];
+        [flexSpace release];
+         
+        //
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(toolBarDoneClick)];
+        [barItems addObject:doneBtn];
+        [doneBtn release];
+         
+        [pickerDateToolbar setItems:barItems animated:YES];
+        [m_actionSheet addSubview:pickerDateToolbar];
+         
+        UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 0, 0)];
+        pickerView.showsSelectionIndicator = YES;
+        pickerView.dataSource = self;
+        pickerView.delegate = self;
+         
+        [pickerView selectRow:1 inComponent:0 animated:YES];
+        [m_actionSheet addSubview:pickerView];
+        [pickerView release];
+        [m_actionSheet showInView:self.view];
+        [m_actionSheet setBounds:CGRectMake(0,0,320, 500)];
+    }
+
+点击完成可以获取picker选中值
+-(void)toolBarCanelClick{
+    [m_actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+}
+-(void)toolBarDoneClick{
+    [m_actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+//    UIDatePicker *datePicker=(UIDatePicker*)[datePickerSheet viewWithTag:DATE_PICKER_TAG];
+//    birthdayField.text=[UIUtils convertUIDate:datePicker.date];
+}
+
+下边的就pickerview的delegate了，自己定义就行
+#pragma mark pickview delegate
+//组件数
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+ 
+//每个组件的行数
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [m_mutArrIntervalTime count]*50;
+}
+ 
+//初始化每个组件每一行数据
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [m_mutArrIntervalTime objectAtIndex:(row%[m_mutArrIntervalTime count])];
+}
+ 
+//选中picker cell,save ArrayIndex
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSUInteger max = 0;
+    NSUInteger base10 = 0;
+    if(component == 0)
+    {
+        max = [m_mutArrIntervalTime count]*50;
+        base10 = (max/2)-(max/2)%[m_mutArrIntervalTime count];
+        [pickerView selectRow:[pickerView selectedRowInComponent:component]%[m_mutArrIntervalTime count]+base10 inComponent:component animated:false];
+    }
+}
+ 
+//替换text居中
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(12.0f, 0.0f, [pickerView rowSizeForComponent:component].width-12, [pickerView rowSizeForComponent:component].height)];
+     
+    label.text = [m_mutArrIntervalTime objectAtIndex:(row%[m_mutArrIntervalTime count])];//[m_mutArrSensorList objectAtIndex:row-1];
+    label.textAlignment = UITextAlignmentCenter;
+    return [label autorelease];
+}

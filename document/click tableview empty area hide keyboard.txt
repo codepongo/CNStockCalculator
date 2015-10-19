@@ -1,0 +1,3 @@
+UITapGestureRecognizer *tap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)] autorelease];
+
+    [self.tableView.backgroundView addGestureRecognizer:tap];
