@@ -29,7 +29,6 @@
     UINib* nib =[UINib nibWithNibName:@"InputCell" bundle:nil];
     [self.layout registerNib:nib forCellReuseIdentifier:@"InputCell"];
     
-    
     [self.layout registerNib:[UINib nibWithNibName:@"CalculateFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"CalculateFooter"];
     self.all = @[
                     @[
@@ -47,32 +46,32 @@
                             ,@"unit":@"元"
                         },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
-                            @"title":@"买入数量"
+                            ,@"title":@"买入数量"
                             ,@"placeholder":@"0"
                             ,@"unit":@"股"
                         },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
-                            @"title":@"卖出价格"
+                            ,@"title":@"卖出价格"
                             ,@"placeholder":@"0.00"
                             ,@"unit":@"元"
                         },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
-                            @"title":@"卖出数量"
+                            ,@"title":@"卖出数量"
                             ,@"placeholder":@"0"
                             ,@"unit":@"股"
                         },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
-                            @"title":@"券商佣金比率"
+                            ,@"title":@"券商佣金比率"
                             ,@"placeholder":@"0"
                             ,@"unit":@"%"
                         },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
-                            @"title":@"印花税税率"
+                            ,@"title":@"印花税税率"
                             ,@"placeholder":@"0"
                             ,@"unit":@"%"
                         },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
-                            @"title":@"过户费费率"
+                            ,@"title":@"过户费费率"
                             ,@"placeholder":@"0"
                             ,@"unit":@"%"
                         }
@@ -229,29 +228,44 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //static NSString * id = @"id";
-    //if self.cur[indexPath.section][indexPath.row][@'
-    
-    
-    InputCell* c = [tableView dequeueReusableCellWithIdentifier:@"InputCell"];
-    c.input.delegate = self;
-    
-    if (indexPath.section == 1) {
-        c.input.placeholder = @"...";
-        c.title.text = self.cur[indexPath.section][indexPath.row];
-    }
-    else {
-        NSDictionary* item = self.cur[indexPath.section][indexPath.row];
-        if ([item objectForKey:@"placeholder"] != nil) {
-            c.input.placeholder = item[@"placeholder"];
+    id cell = nil;
+    switch (indexPath.section) {
+        case 0:{
+            InputCell* c = [tableView dequeueReusableCellWithIdentifier:@"InputCell"];
+            c.input.delegate = self;
+            NSDictionary* item = self.cur[indexPath.section][indexPath.row];
+            if ([item objectForKey:@"placeholder"] != nil) {
+                c.input.placeholder = item[@"placeholder"];
+            }
+            else {
+                
+            }
+            c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+            cell = c;
+            break;
         }
-        else {
-            
+        case 1:{
+            static NSString* value1Id = @"value1identifier";
+            UITableViewCell* c = [tableView dequeueReusableCellWithIdentifier:value1Id];
+            if (nil == c)
+            {
+                UITableViewCell* c = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:value1Id];
+                c.textLabel.font = [UIFont systemFontOfSize:14];
+                c.textLabel.textAlignment = NSTextAlignmentCenter;
+                c.detailTextLabel.font = [UIFont systemFontOfSize:14];
+                c.detailTextLabel.textColor = [UIColor blackColor];
+                c.textLabel.text = self.cur[indexPath.section][indexPath.row];
+                c.detailTextLabel.textAlignment = NSTextAlignmentCenter;
+                
+                c.detailTextLabel.text = @"0.00";
+                cell = c;
+                break;
+            }
         }
-        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-
+        default:
+            break;
     }
-    return c;
+    return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

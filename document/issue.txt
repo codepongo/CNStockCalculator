@@ -7,10 +7,10 @@
 [o] textfield 改为 readonly
 [o] 加入"计算"按钮
 [o] viewForFooterInSection
-[] * debug NSIndexPath
-[ ] + po indexPath.length
-[ ] + po indexPath[0] 
-[ ] + po indexPath[1] 
+[o] * debug NSIndexPath
+[o] + po indexPath.length
+[o] + po indexPath[0] 
+[o] + po indexPath[1] 
 [] 点击计算结果列崩溃
 [] 尝试修改默认样式达到效果，如不行则使用自定义模板
 [ ] 修改默认样式 
@@ -18,6 +18,7 @@
     .font = [UIFont systemFontOfSize:50];
     .textAlignment = UITextAlignmentRight;
     .textColor = [UIColor blackColor];
+[ ] Setting the background color on UITableViewHeaderFooterView has been deprecated. Please use contentView.backgroundColor instead.
 
 [] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
 [] 股票类型默认值
