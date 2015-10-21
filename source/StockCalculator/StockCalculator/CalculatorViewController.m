@@ -256,8 +256,9 @@
                 c.detailTextLabel.textColor = [UIColor blackColor];
                 c.textLabel.text = self.cur[indexPath.section][indexPath.row];
                 c.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-                
                 c.detailTextLabel.text = @"0.00";
+                c.textLabel.backgroudColor = [UIColor redColor];
+                c.detailTextLabel.backgroudColor = [UIColor greenColor];
                 cell = c;
                 break;
             }

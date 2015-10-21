@@ -7,18 +7,31 @@
 [o] textfield 改为 readonly
 [o] 加入"计算"按钮
 [o] viewForFooterInSection
-[o] * debug NSIndexPath
-[o] + po indexPath.length
-[o] + po indexPath[0] 
-[o] + po indexPath[1] 
 [] 点击计算结果列崩溃
-[] 尝试修改默认样式达到效果，如不行则使用自定义模板
-[ ] 修改默认样式 
+[] 横屏 计算 重置 位置不正确
+[x] 尝试修改标准样式达到效果，如不行则使用自定义模板
+[ ] 修改默认样式
+tableView:willDisplayCell:forRowAtIndexPath:
     textLabel, detailTextLabel
-    .font = [UIFont systemFontOfSize:50];
+    [o] .font = [UIFont systemFontOfSize:50];
     .textAlignment = UITextAlignmentRight;
-    .textColor = [UIColor blackColor];
+    [o] .textColor = [UIColor blackColor];
+    .backgroudColor = [UIColor redColor]
 [ ] Setting the background color on UITableViewHeaderFooterView has been deprecated. Please use contentView.backgroundColor instead.
+http://stackoverflow.com/questions/18800743/uitableviewheaderfooterview-cant-change-custom-background-when-loading-from-nib
+Did you set the "Background Color" attribute on the footer view in your nib? If so, set that to "Default".
+Also you may want to consider doing
+[ ] 试验table header view
+CGRect titleRect = CGRectMake(0, 0, 300, 40);
+UILabel *tableTitle = [[UILabel alloc] initWithFrame:titleRect];
+tableTitle.textColor = [UIColor blueColor];
+tableTitle.backgroundColor = [self.tableView backgroundColor];
+tableTitle.opaque = YES;
+tableTitle.font = [UIFont boldSystemFontOfSize:18];
+tableTitle.text = [curTrail objectForKey:@"Name"];
+self.tableView.tableHeaderView = tableTitle;
+[self.tableView reloadData];
+
 
 [] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
 [] 股票类型默认值
@@ -44,3 +57,7 @@
 [ ]https://github.com/backslash112/static-cells-uitableview-in-uiviewcontroller
 
 
+[ ] * NSIndexPath addiction in UIKit实现方式
+[ ] + po indexPath.length = 2
+[ ] + po indexPath indexAtPosition] 
+[ ] + po indexPath[1] 
