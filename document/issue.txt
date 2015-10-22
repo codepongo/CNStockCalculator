@@ -1,3 +1,8 @@
+Record
+Calculator
+Setting
+
+## Require ##
 [o] sell改为损益计算
 [o] buy改为保本价格
 [o] segment 切换 界面随之改变
@@ -7,21 +12,48 @@
 [o] textfield 改为 readonly
 [o] 加入"计算"按钮
 [o] viewForFooterInSection
-[] 点击计算结果列崩溃
-[] 横屏 计算 重置 位置不正确
-[x] 尝试修改标准样式达到效果，如不行则使用自定义模板
-[ ] 修改默认样式
+[ ] 点击两次计算 程序崩溃
+[ ] * 横屏 计算 重置 位置不正确
+[ ]  + 取消横屏设置
+you’re on the General tab.  Among the options available in the summary, you should see a section called Deployment Info and, within that, a section called Device Orientation (see Figure 5-2) with a list of checkboxes.
+[ ]  + 用模拟器测试SectionFooterView 在iPhone6下的表现 
+[ ] * 点击结果列崩溃
+[x]  + 尝试修改标准样式达到效果
 tableView:willDisplayCell:forRowAtIndexPath:
-    textLabel, detailTextLabel
-    [o] .font = [UIFont systemFontOfSize:50];
-    .textAlignment = UITextAlignmentRight;
-    [o] .textColor = [UIColor blackColor];
-    .backgroudColor = [UIColor redColor]
-[ ] Setting the background color on UITableViewHeaderFooterView has been deprecated. Please use contentView.backgroundColor instead.
-http://stackoverflow.com/questions/18800743/uitableviewheaderfooterview-cant-change-custom-background-when-loading-from-nib
-Did you set the "Background Color" attribute on the footer view in your nib? If so, set that to "Default".
-Also you may want to consider doing
-[ ] 试验table header view
+textLabel, detailTextLabel
+.font = [UIFont systemFontOfSize:50];
+.textAlignment = UITextAlignmentRight;
+.textColor = [UIColor blackColor];
+.backgroudColor = [UIColor redColor]
+[ ] * 使用自定义模板
+[] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
+[] 股票类型默认值
+[] * 点击股票类型呼出picker
+[]  + 增加ButtonCell模板
+[]  + 修改股票类型textfield为button
+[]  + 修改button样式 - interfacebuilder 修改
+[]  + addTarget:action:forControlEvents:
+[]  + 实现带"确定", "取消"的picker
+http://m.blog.csdn.net/blog/LVXIANGAN/46340171
+http://stackoverflow.com/questions/1958920/how-to-add-uipickerview-in-uiactionsheet
+http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview-into-uialertcontroller-alert-or-actionshee
+[]  + 选中更新股票类型button文字
+[] * 输入项 加入单位
+[]  + 买卖价格数量 加入单位 元 股
+[]  + 比率 加入单位 百分之
+[ ] * 计算
+[ ]  + 数据保存CalculateBrain
+[ ]  + 计算
+[ ]  + 结果展示
+
+
+## Option ##
+[ ] * 批量注释 command+/
+[ ] * 代码缩进 control + i http://blog.csdn.net/mars2639/article/details/7587824
+[ ] * Setting the background color on UITableViewHeaderFooterView has been deprecated. Please use contentView.backgroundColor instead.
+[ ]  + http://blog.csdn.net/weisubao/article/details/40663299
+[ ] * UISegment 移动至TableViewHeaderView
+[ ]  + 试验table header view
 CGRect titleRect = CGRectMake(0, 0, 300, 40);
 UILabel *tableTitle = [[UILabel alloc] initWithFrame:titleRect];
 tableTitle.textColor = [UIColor blueColor];
@@ -31,22 +63,6 @@ tableTitle.font = [UIFont boldSystemFontOfSize:18];
 tableTitle.text = [curTrail objectForKey:@"Name"];
 self.tableView.tableHeaderView = tableTitle;
 [self.tableView reloadData];
-
-
-[] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
-[] 股票类型默认值
-[] * 点击股票类型呼出picker
-[]  + 增加ButtonCell模板
-[]  + 修改股票类型textfield为button
-[]  + 修改button样式
-[]  + addTarget:action:forControlEvents:
-[]  + 实现带"确定", "取消"的picker
-[]  + 选中更新股票类型button文字
-[] * 输入项 加入单位
-[]  + 买卖价格数量 加入单位 元 股
-[]  + 比率 加入单位 百分之
-
-
 [] 加入disclosure indicator 
 [] 多语言
 [ ] 输入代码显示名称 效果参考招商证券买入模块
@@ -55,8 +71,6 @@ self.tableView.tableHeaderView = tableTitle;
 [ ]https://github.com/wannabegeek/PickerTableViewCell
 [ ]https://github.com/danielamitay/DAKeyboardControl
 [ ]https://github.com/backslash112/static-cells-uitableview-in-uiviewcontroller
-
-
 [ ] * NSIndexPath addiction in UIKit实现方式
 [ ] + po indexPath.length = 2
 [ ] + po indexPath indexAtPosition] 

@@ -1,22 +1,47 @@
-@interface Rate:NSObject
-@property (nonatomic, assgin) commission; 
+#import <Foundation/Foundation.h>
+#pragma mark -
+#pragma mark Rate
+@interface Rate:NSObject {
+@property (nonatomic, assign)CGFloat commission;
+@property (nonatomic, assign) CGFloat stamp;
+@property (nonatomic, assign) CGFloat transfer;
+}
 @end
-@interface Calculator:NSObject 
-@property (nonatomic, assgin) Rate* rate;
-//yong jin - Broker
-- (float)commission:(float)total;
-//yin hua shui - Country 
-- (float)stamp:(float)total;
-//guo hu fei - Shanghai Stock Exchange
-- (float)transfer:(float)total;
-//buying stock trading
-- buy:(
+@implementation Rate
+@synthesize commission, stamp, transfer;
+@end
+
+#pragma mark -
+#pragma mark Trade
+@interface Trade:NSObject
+@property (nonatomic, assign) CGFloat price;
+@property (nonatomic, assign) CGInterger quantity;
+@property (nonatomic, readonly, assign) CGFloat amount;
+@end
+@implementation Trade
+@synthesize price, quantity, amount;
+@end
+
+#pragma mark -
+#pragma mark CalculateBrain
+@interface CalculateBrain:NSObject
+@property (nonatomic, copy) NSString* code; 
+@property (nonatomic, assign) BOOL inSZ;
+@property (nonatomic, copy) CGFloat rate;
+@property (nonatomic, copy) Trade buy;
+@property (nonatomic, copy) Trade sell;
+@property (nonatomic, assign)CGFloat commission;
+@property (nonatomic, assign) CGFloat stamp;
+@property (nonatomic, assign) CGFloat transfer;
+- (CGFloat)commission:(CGFloat)amount;
+- (CGFloat)stamp:(CGFloat)amount;
+- (CGFloat)transfer:(CGFloat)amount;
+@end
+
+@implementation CalculateBrain
+@synthesize code, inSZ, rate, buy, sell, commission, stamp, transfer
 @end
 /*
-import sys
-import rate
-import decimal
-from util import *
 
 def commission(total):
     total = int(total)

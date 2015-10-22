@@ -8,10 +8,17 @@
 
 #import "CalculatorViewController.h"
 #import "InputCell.h"
+#import "OutputCell.h"
 #import "CalculateFooter.h"
+#import "SimulateActionSheet.h"
 
 @interface CalculatorViewController ()
-
+ NSArray* all;
+ NSMutableArray* cur;
+ NSArray* pickerData;
+ SimulateActionSheet *sheet;
+ CalculateBrain* brain;
+ id value;
 @end
 
 @implementation CalculatorViewController
@@ -19,70 +26,118 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.kindOfTrade = YES;
+    self.brain = [[CalculateBrain alloc] init];
+    self.brain.inSZ = NO;
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
     [self.keyBoardBackground addTarget:self action:@selector(hideKeyBoard:) forControlEvents:UIControlEventTouchDown];
     self.keyBoardBackground.hidden = YES;
     
-    UINib* nib =[UINib nibWithNibName:@"InputCell" bundle:nil];
-    [self.layout registerNib:nib forCellReuseIdentifier:@"InputCell"];
-    
+    [self.layout registerNib:[UINib nibWithNibName:@"InputCell"] forCellReuseIdentifier:@"InputCell"];
+    [self.layout registerNib:[UINib nibWithNibName:@"InputCellWithUnit"] forCellReuseIdentifier:@"InputCellWithUnit"];
+    [self.layout registerNib:[UINib nibWithNibName:@"OutputCell"] forCellReuseIdentifier:@"OutputCell"];
+    [self.layout registerNib:[UINib nibWithNibName:@"ButtonCell"] forCellReuseIdentifier:@"ButtonCell"];
     [self.layout registerNib:[UINib nibWithNibName:@"CalculateFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"CalculateFooter"];
+    [self.layout registerNib:[UINib nibWithNibName:@"SaveFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"SaveFooter"];
+    self.pickerData = @[@"上海A股", @"深圳A股"];
     self.all = @[
                     @[
                         @{
                             @"cellReuseIdentifier":@"InputCell"
                             ,@"title":@"股票代码"
                             ,@"placeholder":@"代码／名称"
-                        },@{
+                            ,@"keyboardtype":UIKeyboardTypeDefault
+                            ,@"key":"code"
+                        }
+                        ,@{
                             @"cellReuseIdentifier":@"InputCell"
                             ,@"title":@"股票类型"
-                        },@{
+                            ,@"inputtype":"Picker"
+                            ,@"value":"inSZ"
+                        }
+                        ,@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"买入价格"
                             ,@"placeholder":@"0.00"
                             ,@"unit":@"元"
-                        },@{
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.buy.price
+                        }
+                       ,@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"买入数量"
                             ,@"placeholder":@"0"
                             ,@"unit":@"股"
-                        },@{
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.buy.quantity
+                       }
+                       ,@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"卖出价格"
                             ,@"placeholder":@"0.00"
                             ,@"unit":@"元"
-                        },@{
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.sell.price
+                       }
+                       ,@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"卖出数量"
                             ,@"placeholder":@"0"
                             ,@"unit":@"股"
-                        },@{
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.sell.quantity
+                       },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"券商佣金比率"
                             ,@"placeholder":@"0"
                             ,@"unit":@"%"
-                        },@{
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.rate.commission
+                       },@{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"印花税税率"
                             ,@"placeholder":@"0"
                             ,@"unit":@"%"
-                        },@{
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.rate.stamp
+                       },
+                       @{
                             @"cellReuseIdentifier":@"InputCellWithUnit"
                             ,@"title":@"过户费费率"
                             ,@"placeholder":@"0"
                             ,@"unit":@"%"
+                            ,@"inputtype":UIKeyboardTypeDecimalPad
+                            ,@"value":self.brain.rate.transfer
                         }
-                    ],
-                   [NSArray arrayWithObjects:
-                    @"过户费",
-                    @"印花税",
-                    @"券商佣金",
-                    @"税费合计",
-                    @"投资损益",
-                    nil],
+                    ]
+                    ,@[
+                    @{
+                            @"title", @"过户费"
+                            ,@"value", @"0.00"
+                            ,@"value":self.brain.transfer
+                    }
+                    ,@{
+                            @"title", @"印花税"
+                            ,@"value", @"0.00"
+                            ,@"value":self.brain.stamp
+                    }
+                    ,@{
+                            @"title", @"券商佣金"
+                            ,@"value", @"0.00"
+                            ,@"value":self.brain.commission
+                    }
+                    ,@{
+                            @"title", @"税费合计"
+                            ,@"value", @"0.00"
+                            ,@"value":self.brain.cost
+                    }
+                    ,@{
+                            @"title", @"投资损益"
+                            ,@"value", @"0.00"
+                            ,@"value":self.brain.
+                    }
+                   ]
                 ];
     self.cur = [NSMutableArray array];
     [self.cur addObject:[NSMutableArray arrayWithArray:[self.all objectAtIndex:0]]];
@@ -228,45 +283,41 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell = nil;
-    switch (indexPath.section) {
-        case 0:{
-            InputCell* c = [tableView dequeueReusableCellWithIdentifier:@"InputCell"];
-            c.input.delegate = self;
-            NSDictionary* item = self.cur[indexPath.section][indexPath.row];
-            if ([item objectForKey:@"placeholder"] != nil) {
-                c.input.placeholder = item[@"placeholder"];
-            }
-            else {
-                
-            }
-            c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-            cell = c;
-            break;
-        }
-        case 1:{
-            static NSString* value1Id = @"value1identifier";
-            UITableViewCell* c = [tableView dequeueReusableCellWithIdentifier:value1Id];
-            if (nil == c)
-            {
-                UITableViewCell* c = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:value1Id];
-                c.textLabel.font = [UIFont systemFontOfSize:14];
-                c.textLabel.textAlignment = NSTextAlignmentCenter;
-                c.detailTextLabel.font = [UIFont systemFontOfSize:14];
-                c.detailTextLabel.textColor = [UIColor blackColor];
-                c.textLabel.text = self.cur[indexPath.section][indexPath.row];
-                c.detailTextLabel.textAlignment = NSTextAlignmentCenter;
-                c.detailTextLabel.text = @"0.00";
-                c.textLabel.backgroudColor = [UIColor redColor];
-                c.detailTextLabel.backgroudColor = [UIColor greenColor];
-                cell = c;
-                break;
-            }
-        }
-        default:
-            break;
+    NSDictionary* item = self.cur[indexPath.section][indexPath.row];
+    NSString* cellId = item["CellReusableIdentifier"];
+    if (cellId == nil) {
+        return nil;
     }
-    return cell;
+    if (cellId == @"InputCell") {
+        InputCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
+        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        c.input.delegate = self;
+        self.value = item["value"];
+        c.input.placeholder = item[@"placeholder"];
+        c.input.keyboardType = item[@"keyboardtype"];
+        return c;
+    }
+    if (cellId == @"InputCellWithUnit") {
+        InputCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
+        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        c.input.delegate = self;
+        c.input.placeholder = item[@"placeholder"];
+        c.input.keyboardType = item[@"keyboardtype"];
+        c.unit.text = item[@"unit"];
+        return c;
+    if (cellId == @"ButtonCell") {
+        ButtonCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
+        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        [c.button addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
+        return c;
+    }
+    if (cellId == @"OutputCell") {
+        OutputCell* c = [tableView dequeueReusableCellWithIdentifier:@"OutputCell"];
+        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        c.value.text = self.cur[indexPath.section][indexPath.row][@"value"];
+        return c;
+    }
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -294,15 +345,40 @@
         
         return (UIView*)footer;
     }
+   if (section == 1) {
+        SaveFooter* save = (CalculateFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SaveFooter"];
+        save.save.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
+        save.save.layer.borderWidth = 1.0; //边框宽度
+        save.save.layer.borderColor = footer.reset.titleLabel.textColor.CGColor;
+        [save.save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+        return (UIView*)footer;
+   }
     return tableView.tableFooterView;
 }
 
+-(void) select:(id)sender{
+    sheet = [SimulateActionSheet styleDefault];
+    sheet.delegate = self;
+    //必须在设置delegate之后调用，否则无法选中指定的行
+    if (sender.labelText == self.pickerData objectAtIndex(0)) {
+        [sheet selectRow:0 inComponent:0 animated:YES];
+    }
+    else {
+        [sheet selectRow:1 inComponent:0 animated:YES];
+    }
+   
+    [sheet show:self];
+    [sender.labelText = self.pickerData objectAtIndex:self.type];
+}
+
 -(void) calculate:(id)sender{
-    [self.cur addObject:[self.all objectAtIndex:1]];
+    if (self.cur.length == 1) { 
+        [self.cur addObject:[self.all objectAtIndex:1]];
+    }
+    //brain calculates.
     [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
-
 }
 
 -(void) reset:(id)sender {
@@ -313,6 +389,9 @@
     [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+-(void) save:(id)sender{
 
 }
 #pragma mark -
@@ -328,13 +407,17 @@
     
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.value = textField.text 
+}
+
 #pragma mark -
 #pragma mark Table View Delegate
 
 
 - (IBAction)changeTradeType:(id)sender {
-    self.kindOfTrade = !self.kindOfTrade;
-    if (!self.kindOfTrade) {
+    self.brain.inSZ = !self.brain.inSZ;
+    if (!self.brain.inSZ) {
         [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
     }
     else {
@@ -344,4 +427,31 @@
     [self.layout reloadData];
 
 }
+
+-(void)actionCancle{
+    [sheet dismiss:self];
+}
+
+-(void)actionDone{
+    [sheet dismiss:self];
+    
+    NSUInteger index = [sheet selectedRowInComponent:0];
+    self.type = index;
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return self.pickerData;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.pickerData.count;
+}
+
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.pickerData objectAtIndex:row];
+}
+
 @end

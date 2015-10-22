@@ -8,19 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CalculatorViewController : UIViewController
-<
-UITableViewDelegate,
-UITableViewDataSource,
-UITextFieldDelegate
->
+@interface CalculatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SimulateActionSheetDelegate, UIPickerViewDataSource>
 @property(nonatomic, weak) IBOutlet UITableView* layout;
-@property(nonatomic, strong) NSArray* all;
-@property(nonatomic, strong) NSMutableArray* cur;
 @property(nonatomic, strong) UIButton* keyBoardBackground;
 @property(nonatomic, assign) CGPoint layoutOriginContentOffset;
-@property(nonatomic, assign) BOOL kindOfTrade;
 - (IBAction)changeTradeType:(id)sender;
-
 @end
 
