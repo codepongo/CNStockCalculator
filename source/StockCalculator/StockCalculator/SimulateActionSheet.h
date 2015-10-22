@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
-#import <Foundation.h>
-@protocol SimulateActionSheetDelegate:UIPickerViewDelegate
+//ß#import <Foundation.h>
+@protocol SimulateActionSheetDelegate <UIPickerViewDelegate>
 @required
 -(void)actionDone;
 @required
@@ -11,7 +11,7 @@
 +(instancetype)styleDefault;
 -(instancetype)initWithFrame:(CGRect)frame;
 -(void)setupInitPostion:(UIViewController *)controller;
--(void)show:(UIViewController *)controller;
+-(void)show:(UIViewController *)controlßler;
 -(void)dismiss:(UIViewController *)controller;
 -(UIView *)actionToolBar;
 -(UIPickerView *)actionPicker;
@@ -21,6 +21,6 @@
 -(void)actionCancle;
 -(void)setDelegate:(id<SimulateActionSheetDelegate>)delegate;
 @property(nonatomic, weak) id<SimulateActionSheetDelegate> _delegate;
-@property(nonatomic, strong) UIPickerView _pickerView;
+@property(nonatomic, strong) UIPickerView* _pickerView;
 @end
 

@@ -15,4 +15,8 @@
 @implementation CalculateFooter
 @synthesize calculate;
 @synthesize reset;
+-(void) layoutSubviews {
+    [self.contentView setFrame:CGRectMake(0, 0, self.frame.size.width, self.contentView.frame.size.height)];
+}
+
 @end

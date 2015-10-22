@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="33" id="YIe-he-n4a" customClass="InputCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="33" id="YIe-he-n4a" customClass="ButtonCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YIe-he-n4a" id="ZAZ-Lb-YSg">
@@ -24,28 +24,31 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agV-US-o6X">
-                        <rect key="frame" x="131" y="0.0" width="189" height="32"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aa2-VL-fht">
+                        <rect key="frame" x="131" y="0.0" width="189" height="30"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                    </textField>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <animations/>
+                <color key="backgroundColor" red="0.086274509799999996" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="agV-US-o6X" firstAttribute="top" secondItem="RN7-HM-SHl" secondAttribute="top" id="2wL-AY-T80"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="leading" secondItem="ZAZ-Lb-YSg" secondAttribute="leadingMargin" id="DEE-By-u0q"/>
-                    <constraint firstAttribute="trailing" secondItem="agV-US-o6X" secondAttribute="trailing" id="EfQ-kO-aXY"/>
-                    <constraint firstItem="agV-US-o6X" firstAttribute="bottom" secondItem="RN7-HM-SHl" secondAttribute="bottom" id="csh-GA-TYp"/>
-                    <constraint firstItem="agV-US-o6X" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="8" symbolic="YES" id="i08-XX-1yf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Aa2-VL-fht" secondAttribute="trailing" constant="-8" id="LiA-kY-BnQ" userLabel="trailingMargin = Button.trailing"/>
+                    <constraint firstItem="Aa2-VL-fht" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="8" id="Rac-Bm-Wo1" userLabel="Button.leading = Title.trailing"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="top" id="rHE-rM-MCT"/>
+                    <constraint firstItem="Aa2-VL-fht" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="topMargin" constant="-8" id="uPN-2R-cH8" userLabel="Button.top = topMargin"/>
                     <constraint firstAttribute="bottom" secondItem="RN7-HM-SHl" secondAttribute="bottom" id="y9X-GU-9lj"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Aa2-VL-fht" secondAttribute="bottom" constant="-6" id="yy3-uq-GUB" userLabel="bottomMargin = Button.bottom"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="input" destination="agV-US-o6X" id="IVe-Sf-0IC"/>
-                <outlet property="title" destination="RN7-HM-SHl" id="eVT-QG-s4I"/>
+                <outlet property="button" destination="Aa2-VL-fht" id="FDd-1F-3WR"/>
+                <outlet property="title" destination="RN7-HM-SHl" id="hms-el-efC"/>
             </connections>
             <point key="canvasLocation" x="397" y="240.5"/>
         </tableViewCell>
