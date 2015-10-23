@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CalculatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource>
+#import "SimulateActionSheetDelegate.h"
+@interface CalculatorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIPickerViewDataSource, SimulateActionSheetDelegate>
 @property(nonatomic, weak) IBOutlet UITableView* layout;
 @property(nonatomic, strong) UIButton* keyBoardBackground;
 @property(nonatomic, assign) CGPoint layoutOriginContentOffset;

@@ -1,12 +1,4 @@
 #import <UIKit/UIKit.h>
-//ß#import <Foundation.h>
-@protocol SimulateActionSheetDelegate <UIPickerViewDelegate>
-@required
--(void)actionDone;
-@required
--(void)actionCancle;
-
-@end
 @interface SimulateActionSheet : UIView
 +(instancetype)styleDefault;
 -(instancetype)initWithFrame:(CGRect)frame;

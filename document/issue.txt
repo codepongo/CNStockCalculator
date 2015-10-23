@@ -12,12 +12,12 @@ Setting
 [o] textfield 改为 readonly
 [o] 加入"计算"按钮
 [o] viewForFooterInSection
-[ ] 点击两次计算 程序崩溃
-[ ] * 横屏 计算 重置 位置不正确
-[ ]  + 取消横屏设置
+[o] 点击两次计算 程序崩溃
+[o] * 横屏 计算 重置 位置不正确
+[x]  + 用模拟器测试SectionFooterView 在iPhone6下的表现 footer布局依然有问题
 you’re on the General tab.  Among the options available in the summary, you should see a section called Deployment Info and, within that, a section called Device Orientation (see Figure 5-2) with a list of checkboxes.
-[ ]  + 用模拟器测试SectionFooterView 在iPhone6下的表现 
-[ ] * 点击结果列崩溃
+[o]  + xib中用collectionReusableView替换tableviewCell 解决问题
+[o] * 点击结果列崩溃
 [x]  + 尝试修改标准样式达到效果
 tableView:willDisplayCell:forRowAtIndexPath:
 textLabel, detailTextLabel
@@ -25,12 +25,12 @@ textLabel, detailTextLabel
 .textAlignment = UITextAlignmentRight;
 .textColor = [UIColor blackColor];
 .backgroudColor = [UIColor redColor]
-[ ] * 使用自定义模板
-[] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
+[o] * 使用自定义模板
+[o] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
 [] 股票类型默认值
 [] * 点击股票类型呼出picker
-[]  + 增加ButtonCell模板
-[]  + 修改股票类型textfield为button
+[o]  + 增加ButtonCell模板
+[o]  + 修改股票类型textfield为button
 []  + 修改button样式 - interfacebuilder 修改
 []  + addTarget:action:forControlEvents:
 []  + 实现带"确定", "取消"的picker
@@ -38,20 +38,21 @@ http://m.blog.csdn.net/blog/LVXIANGAN/46340171
 http://stackoverflow.com/questions/1958920/how-to-add-uipickerview-in-uiactionsheet
 http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview-into-uialertcontroller-alert-or-actionshee
 []  + 选中更新股票类型button文字
-[] * 输入项 加入单位
-[]  + 买卖价格数量 加入单位 元 股
-[]  + 比率 加入单位 百分之
-[ ] * 计算
+[o] * 输入项 加入单位
+[o]  + 买卖价格数量 加入单位 元 股
+[o]  + 比率 加入单位 百分之
+[o] * 计算
 [ ]  + 数据保存CalculateBrain
 [ ]  + 计算
 [ ]  + 结果展示
-
+[ ] * 计算类型选择失效
 
 ## Option ##
-[ ] * 批量注释 command+/
+[o] * 批量注释 command+/
 [ ] * 代码缩进 control + i http://blog.csdn.net/mars2639/article/details/7587824
-[ ] * Setting the background color on UITableViewHeaderFooterView has been deprecated. Please use contentView.backgroundColor instead.
-[ ]  + http://blog.csdn.net/weisubao/article/details/40663299
+[o] * Setting the background color on UITableViewHeaderFooterView has been deprecated. Please use contentView.backgroundColor instead.
+xib中使用collectionReusableView
+[x]  + http://blog.csdn.net/weisubao/article/details/40663299
 [ ] * UISegment 移动至TableViewHeaderView
 [ ]  + 试验table header view
 CGRect titleRect = CGRectMake(0, 0, 300, 40);

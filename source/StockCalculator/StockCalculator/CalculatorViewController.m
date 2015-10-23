@@ -315,7 +315,8 @@
     if ([cellId  isEqual: @"ButtonCell"]) {
         ButtonCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-        [c.button addTarget:self action:@selector(select:) forControlEvents:UIControlEventTouchUpInside];
+        [c.button addTarget:self action:@selector(selectMarketOfStock:) forControlEvents:UIControlEventTouchUpInside];
+        c.button.labelText = self.pickerData[1];
         return c;
     }
     if ([cellId  isEqual: @"OutputCell"]) {
@@ -356,29 +357,31 @@
         return (UIView*)footer;
     }
    if (section == 1) {
-//        SaveFooter* save = (CalculateFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SaveFooter"];
-//        save.save.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
-//        save.save.layer.borderWidth = 1.0; //边框宽度
-//        save.save.layer.borderColor = footer.reset.titleLabel.textColor.CGColor;
-//        [save.save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
-//        return (UIView*)footer;
+        SaveFooter* save = (SaveFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SaveFooter"];
+        save.save.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
+        save.save.layer.borderWidth = 1.0; //边框宽度
+        save.save.layer.borderColor = save.save.titleLabel.textColor.CGColor;
+        save.save.titleLabel.textColor = save.save.backgroundColor; 
+        save.save.backgroundColor = [UIColor colorWithCGColor: save.save.layer.borderColor];
+        [save.save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+        return (UIView*)footer;
    }
     return tableView.tableFooterView;
 }
 
--(void) select:(id)sender{
-//    sheet = [SimulateActionSheet styleDefault];
-//    sheet.delegate = self;
+-(void) selectMarketOfStock:(id)sender{
+    sheet = [SimulateActionSheet styleDefault];
+    sheet.delegate = self;
 //    //必须在设置delegate之后调用，否则无法选中指定的行
-//    if (sender.labelText == self.pickerData objectAtIndex(0)) {
-//        [sheet selectRow:0 inComponent:0 animated:YES];
-//    }
-//    else {
-//        [sheet selectRow:1 inComponent:0 animated:YES];
-//    }
-//   
-//    [sheet show:self];
-//    [sender.labelText = self.pickerData objectAtIndex:self.type];
+    if (sender.labelText == self.pickerData objectAtIndex(0)) {
+        [sheet selectRow:0 inComponent:0 animated:YES];
+    }
+    else {
+        [sheet selectRow:1 inComponent:0 animated:YES];
+    }
+   
+    [sheet show:self];
+    [sender.labelText = self.pickerData objectAtIndex:self.type];
 }
 
 -(void) calculate:(id)sender{
@@ -424,17 +427,16 @@
 #pragma mark -
 #pragma mark Table View Delegate
 
-
-- (IBAction)changeTradeType:(id)sender {
-//    self.brain.inSZ = !self.brain.inSZ;
-//    if (!self.brain.inSZ) {
-//        [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
-//    }
-//    else {
-//        [self.cur[0] insertObject:self.all[0][3] atIndex:4];
-//        [self.cur[0] insertObject:self.all[0][3] atIndex:5];
-//    }
-//    [self.layout reloadData];
+_ (IBAction)selectCalculateType:(id)sender {
+    self.brain.calculateType = !self.brain.calculateType;
+    if (!self.brain.calculateType) {
+        [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
+    }
+    else {
+        [self.cur[0] insertObject:self.all[0][3] atIndex:4];
+        [self.cur[0] insertObject:self.all[0][3] atIndex:5];
+    }
+    [self.layout reloadData];
 
 }
 
@@ -449,9 +451,12 @@
     //self.type = index;
 }
 
+
+#pragma mark -
+#pragma mark Picker Data Source
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return self.pickerData.count;
+    return 1;
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -459,6 +464,8 @@
     return self.pickerData.count;
 }
 
+#pragma mark -
+#pragma mark Picker Delegate
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [self.pickerData objectAtIndex:row];
