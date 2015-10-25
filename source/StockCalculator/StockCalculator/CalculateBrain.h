@@ -33,5 +33,5 @@
 -(float)commissionOfTrade;
 -(float)stampOfTrade;
 -(float)transferOfTrade;
--(float)taxesAndDuties;
+-(float)taxesAndDutiesOfTrade;
 @end

@@ -46,9 +46,9 @@
 #pragma mark CalculateBrain
 
 @interface CalculateBrain()
--(float)commission;
--(float)stamp;
--(float)transfer;
+-(float)commission:(float)amount;
+-(float)stamp:(float)amount;
+-(float)transfer:(float)quantity;
 @end
 
 @implementation CalculateBrain
