@@ -15,16 +15,15 @@
 #import "SimulateActionSheet.h"
 #import "SaveFooter.h"
 #import "SimulateActionSheet.h"
+#import "CalculateBrain.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
 @property NSMutableArray* cur;
 @property NSArray* pickerData;
 @property(nonatomic, strong) SimulateActionSheet *sheet;
-//CalculateBrain* brain;
+@property(nonatomic, strong) CalculateBrain* brain;
 @property id value;
-@property BOOL calculateType;
-@property BOOL inSZ;
 @property (nonatomic, weak) UIButton* marketOfStock;
 @end
 
@@ -37,9 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    self.brain = [[CalculateBrain alloc] init];
-    self/*.brain*/.calculateType = NO;
-    self/*.brain*/.inSZ = NO;
+    self.brain = [[CalculateBrain alloc] init];
+    self.brain.calculateForGainOrLost = NO;
+    self.brain.inSZ = NO;
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
@@ -70,7 +69,7 @@
                          @"cellReuseIdentifier":@"InputCellWithUnit"
                          ,@"title":@"买入价格"
                          ,@"placeholder":@"0.00"
-                         ,@"unit":@"元"
+                         ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"brain.buy.price"
                          }
@@ -86,7 +85,7 @@
                          @"cellReuseIdentifier":@"InputCellWithUnit"
                          ,@"title":@"卖出价格"
                          ,@"placeholder":@"0.00"
-                         ,@"unit":@"元"
+                         ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"brain.sell.price"
                          }
@@ -105,6 +104,7 @@
                          ,@"unit":@"%"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"brain.rate.commission"
+                         ,@"detail":@"（不足5元，按5元收取）"
                          },@{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
                          ,@"title":@"印花税税率"
@@ -112,14 +112,16 @@
                          ,@"unit":@"%"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"brain.rate.stamp"
+                         ,@"detail":@"（仅在卖出征收）"
                          },
                      @{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
                          ,@"title":@"过户费费率"
                          ,@"placeholder":@"0"
-                         ,@"unit":@"%"
+                         ,@"unit":@"元／千股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"brain.rate.transfer"
+                         ,@"detail":@"（最低1元收取）"
                          }
                      ]
                  ,@[
@@ -342,7 +344,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     //if (section == 2) {
-    return 0.01;
+    return 0.001;
     //}
     //return tableView.sectionHeaderHeight;
 }
@@ -384,7 +386,6 @@
     if (self.sheet == nil) {
         self.sheet = [SimulateActionSheet styleDefault];
     }
-    NSLog(@"%@", self.sheet);
     
     self.sheet.delegate = self;
     //    //必须在设置delegate之后调用，否则无法选中指定的行
@@ -441,8 +442,8 @@
 #pragma mark Table View Delegate
 
 - (IBAction)selectCalculateType:(id)sender {
-    self/*.brain*/.calculateType = !self./*brain.*/calculateType;
-    if (self./*brain.*/calculateType) {
+    self.brain.calculateForGainOrLost = !self.brain.calculateForGainOrLost;
+    if (self.brain.calculateForGainOrLost) {
         [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
     }
     else {
@@ -462,7 +463,7 @@
     
     NSUInteger index = [sheet selectedRowInComponent:0];
     
-    self.inSZ = index == 0 ? NO:YES;
+    self.brain.inSZ = index == 0 ? NO:YES;
     [self.marketOfStock setTitle:self.pickerData[index] forState:UIControlStateNormal];
 }
 

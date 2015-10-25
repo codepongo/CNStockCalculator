@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,28 +15,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RN7-HM-SHl">
-                        <rect key="frame" x="8" y="0.0" width="115" height="32"/>
+                        <rect key="frame" x="8" y="0.0" width="90" height="32"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="115" id="mLQ-p4-5Qw"/>
+                            <constraint firstAttribute="width" constant="90" id="mLQ-p4-5Qw"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agV-US-o6X">
-                        <rect key="frame" x="131" y="0.0" width="141" height="32"/>
+                        <rect key="frame" x="106" y="0.0" width="138" height="32"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peY-p2-0VC">
-                        <rect key="frame" x="280" y="0.0" width="42" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元／千股" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peY-p2-0VC">
+                        <rect key="frame" x="252" y="0.0" width="58" height="32"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="IIF-iO-bHM"/>
+                            <constraint firstAttribute="width" constant="58" id="IIF-iO-bHM"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,10 +46,10 @@
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="leading" secondItem="ZAZ-Lb-YSg" secondAttribute="leadingMargin" id="DEE-By-u0q"/>
                     <constraint firstAttribute="trailing" secondItem="agV-US-o6X" secondAttribute="trailing" id="EfQ-kO-aXY"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="top" secondItem="peY-p2-0VC" secondAttribute="top" id="FBK-pq-hdY"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="peY-p2-0VC" secondAttribute="trailing" constant="-10" id="GMT-Ld-N1Y" userLabel="trailingMargin = Label.trailing"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="peY-p2-0VC" secondAttribute="trailing" constant="2" id="GMT-Ld-N1Y" userLabel="trailingMargin = Label.trailing"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="bottom" secondItem="peY-p2-0VC" secondAttribute="bottom" id="K8e-l2-EbH"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="8" symbolic="YES" id="PdX-Y0-vWg"/>
-                    <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="8" symbolic="YES" id="VpI-nl-6as"/>
+                    <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="8" id="VpI-nl-6as"/>
                     <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="8" id="XYA-BN-cPc" userLabel="Label.leading = Input.trailing"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="top" secondItem="RN7-HM-SHl" secondAttribute="top" id="dC7-bC-5X9"/>
                     <constraint firstAttribute="trailingMargin" secondItem="peY-p2-0VC" secondAttribute="trailing" constant="-10" id="i0W-jf-Sqb" userLabel="trailingMargin = Label.trailing"/>

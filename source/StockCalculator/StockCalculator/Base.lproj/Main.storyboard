@@ -88,7 +88,7 @@
                                     <segment title="保本价格"/>
                                 </segments>
                                 <connections>
-                                    <action selector="selectCalculateType:" destination="8rJ-Kc-sve" eventType="valueChanged" id="bTa-E6-n5n"/>
+                                    <action selector="selectCalculateType:" destination="8rJ-Kc-sve" eventType="valueChanged" id="4Bp-LU-dcW"/>
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZV-5N-vGf">

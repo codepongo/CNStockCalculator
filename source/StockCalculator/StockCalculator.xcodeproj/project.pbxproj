@@ -10,6 +10,7 @@
 		FA2323551BDB3CDC004EE7E8 /* SaveFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2323531BDB3CDC004EE7E8 /* SaveFooter.m */; };
 		FA2323561BDB3CDC004EE7E8 /* SaveFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2323541BDB3CDC004EE7E8 /* SaveFooter.xib */; };
 		FA23235B1BDB402C004EE7E8 /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2323591BDB402C004EE7E8 /* SimulateActionSheet.m */; };
+		FA2323641BDCB23E004EE7E8 /* CalculateBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2323631BDCB23E004EE7E8 /* CalculateBrain.m */; };
 		FA2A9A7D1BD15A1F00FCC8A5 /* CalculateFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */; };
 		FA2A9A831BD3D79F00FCC8A5 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */; };
 		FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */; };
@@ -37,6 +38,8 @@
 		FA2323581BDB402C004EE7E8 /* SimulateActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimulateActionSheet.h; path = StockCalculator/SimulateActionSheet.h; sourceTree = "<group>"; };
 		FA2323591BDB402C004EE7E8 /* SimulateActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimulateActionSheet.m; path = StockCalculator/SimulateActionSheet.m; sourceTree = "<group>"; };
 		FA23235A1BDB402C004EE7E8 /* SimulateActionSheetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimulateActionSheetDelegate.h; path = StockCalculator/SimulateActionSheetDelegate.h; sourceTree = "<group>"; };
+		FA2323621BDCB23E004EE7E8 /* CalculateBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculateBrain.h; sourceTree = "<group>"; };
+		FA2323631BDCB23E004EE7E8 /* CalculateBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculateBrain.m; sourceTree = "<group>"; };
 		FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculateFooter.xib; sourceTree = "<group>"; };
 		FA2A9A811BD3D79F00FCC8A5 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -120,6 +123,25 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FA2323651BDCB24F004EE7E8 /* CalculateBrain */ = {
+			isa = PBXGroup;
+			children = (
+				FA2323621BDCB23E004EE7E8 /* CalculateBrain.h */,
+				FA2323631BDCB23E004EE7E8 /* CalculateBrain.m */,
+			);
+			name = CalculateBrain;
+			sourceTree = "<group>";
+		};
+		FA2323661BDD1D19004EE7E8 /* InputCell */ = {
+			isa = PBXGroup;
+			children = (
+				FACE721D1BCF33610086F0EB /* InputCell.xib */,
+				FACE72181BCF31110086F0EB /* InputCell.h */,
+				FACE72191BCF31110086F0EB /* InputCell.m */,
+			);
+			name = InputCell;
+			sourceTree = "<group>";
+		};
 		FA2A9A981BD9898D00FCC8A5 /* ButtonCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,19 +171,18 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
 				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
 				FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */,
 				FA23235C1BDB4031004EE7E8 /* SimulateActionSheet */,
 				FA2323571BDB3CE3004EE7E8 /* SaveFooter */,
+				FA2323661BDD1D19004EE7E8 /* InputCell */,
+				FA2A9A981BD9898D00FCC8A5 /* ButtonCell */,
 				FA2323511BDB3C9B004EE7E8 /* InputCellWithUnit */,
 				FA2323501BDB3C7C004EE7E8 /* OutputCell */,
-				FA2A9A981BD9898D00FCC8A5 /* ButtonCell */,
 				FA2A9A841BD3DE4700FCC8A5 /* CalculateFooter.h */,
 				FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */,
 				FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */,
-				FACE721D1BCF33610086F0EB /* InputCell.xib */,
-				FACE72181BCF31110086F0EB /* InputCell.h */,
-				FACE72191BCF31110086F0EB /* InputCell.m */,
 				FACE720E1BCEA7F40086F0EB /* LaunchScreen.storyboard */,
 				FACE72101BCEA7F40086F0EB /* Main.storyboard */,
 				FACE71F81BCEA7D20086F0EB /* AppDelegate.h */,
@@ -263,6 +284,7 @@
 				FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */,
 				FA2323551BDB3CDC004EE7E8 /* SaveFooter.m in Sources */,
 				FA2A9A911BD91FA400FCC8A5 /* InputCellWithUnit.m in Sources */,
+				FA2323641BDCB23E004EE7E8 /* CalculateBrain.m in Sources */,
 				FACE721B1BCF31110086F0EB /* InputCell.m in Sources */,
 				FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */,
 				FACE720D1BCEA7D20086F0EB /* RecordViewController.m in Sources */,
