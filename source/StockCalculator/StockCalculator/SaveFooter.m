@@ -6,14 +6,12 @@
 //  Copyright © 2015年 zuohaitao. All rights reserved.
 //
 
-#import "CalculateFooter.h"
+#import "SaveFooter.h"
 
-@interface CalculateFooter ()
+@interface SaveFooter ()
 
 @end
 
-@implementation CalculateFooter
-@synthesize calculate;
-@synthesize reset;
+@implementation SaveFooter
 
 @end

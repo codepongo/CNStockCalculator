@@ -7,10 +7,12 @@
     UIColor *textColorPressed;
     UIColor *pickerBgColor;
 }
+@property (nonatomic, strong) UIToolbar* toolBar;
 @end
 
 @implementation SimulateActionSheet
 +(instancetype)styleDefault{
+    NSLog(@"%s", __FUNCTION__);
     SimulateActionSheet* sheet = [[SimulateActionSheet alloc]initWithFrame:CGRectMake(
                                                                                      0,
                                                                                      0,
@@ -18,7 +20,7 @@
                                                                                      UIScreen.mainScreen.bounds.size.height)];
     
     [sheet setBackgroundColor:[UIColor clearColor]];
-    sheet.toolBar = [sheet actionToolBar];
+    sheet.toolBar = (UIToolbar*)[sheet actionToolBar];
     sheet.pickerView = [sheet actionPicker];
     [sheet addSubview:sheet.toolBar];
     [sheet addSubview:sheet.pickerView];
@@ -53,6 +55,7 @@
                                       self.toolBar.frame.size.height)];
 }
 -(void)show:(UIViewController *)controller{
+    NSLog(@"%s", __FUNCTION__);
     [self setupInitPostion:controller];
     
     CGFloat toolBarYposition = UIScreen.mainScreen.bounds.size.height -
@@ -101,7 +104,8 @@
     UIView *tools = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
     tools.backgroundColor = toolBarColor;
     UIButton *cancle = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [cancle setTitle:@"取消" forState:UIControlStateNormal];
+    
+    [cancle setTitle:@"鍙栨秷" forState:UIControlStateNormal];
     [cancle setTitleColor:textColorPressed forState:UIControlStateHighlighted];
     [cancle setTitleColor:textColorNormal forState:UIControlStateNormal];
     [cancle addTarget:self action:@selector(actionCancle) forControlEvents:UIControlEventTouchUpInside];
@@ -115,7 +119,7 @@
     [tools addConstraint:cancleConstrainY];
     
     UIButton *ok = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [ok setTitle:@"确定" forState:UIControlStateNormal];
+    [ok setTitle:@"纭畾" forState:UIControlStateNormal];
     [ok setTitleColor:textColorNormal forState:UIControlStateNormal];
     [ok setTitleColor:textColorPressed forState:UIControlStateHighlighted];
     [ok addTarget:self action:@selector(actionDone) forControlEvents:UIControlEventTouchUpInside];

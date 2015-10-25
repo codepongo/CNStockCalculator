@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@protocol SimulateActionSheetDelegate:UIPickerViewDelegate
+@protocol SimulateActionSheetDelegate<UIPickerViewDelegate>
 @required
 -(void)actionDone;
 @required

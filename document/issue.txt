@@ -27,17 +27,17 @@ textLabel, detailTextLabel
 .backgroudColor = [UIColor redColor]
 [o] * 使用自定义模板
 [o] 股票代码输入框键盘类型.keyboardType = UIKeyboardTypeDefault
-[] 股票类型默认值
-[] * 点击股票类型呼出picker
+[o] 股票类型默认值
+[o] * 点击股票类型呼出picker
 [o]  + 增加ButtonCell模板
 [o]  + 修改股票类型textfield为button
-[]  + 修改button样式 - interfacebuilder 修改
-[]  + addTarget:action:forControlEvents:
-[]  + 实现带"确定", "取消"的picker
+[x]  + 修改button样式 - interfacebuilder 修改
+[o]  + addTarget:action:forControlEvents:
+[o]  + 实现带"确定", "取消"的picker
 http://m.blog.csdn.net/blog/LVXIANGAN/46340171
 http://stackoverflow.com/questions/1958920/how-to-add-uipickerview-in-uiactionsheet
 http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview-into-uialertcontroller-alert-or-actionshee
-[]  + 选中更新股票类型button文字
+[o]  + 选中更新股票类型button文字
 [o] * 输入项 加入单位
 [o]  + 买卖价格数量 加入单位 元 股
 [o]  + 比率 加入单位 百分之

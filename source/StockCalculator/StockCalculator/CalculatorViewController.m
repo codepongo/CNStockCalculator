@@ -13,23 +13,33 @@
 #import "ButtonCell.h"
 #import "CalculateFooter.h"
 #import "SimulateActionSheet.h"
+#import "SaveFooter.h"
+#import "SimulateActionSheet.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
 @property NSMutableArray* cur;
 @property NSArray* pickerData;
-@property SimulateActionSheet *sheet;
- //CalculateBrain* brain;
+@property(nonatomic, strong) SimulateActionSheet *sheet;
+//CalculateBrain* brain;
 @property id value;
+@property BOOL calculateType;
+@property BOOL inSZ;
+@property (nonatomic, weak) UIButton* marketOfStock;
 @end
 
 @implementation CalculatorViewController
+@synthesize sheet;
 
+- (void)dealloc {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.brain = [[CalculateBrain alloc] init];
-//    self.brain.inSZ = NO;
+    //    self.brain = [[CalculateBrain alloc] init];
+    self/*.brain*/.calculateType = NO;
+    self/*.brain*/.inSZ = NO;
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
@@ -43,108 +53,108 @@
     [self.layout registerNib:[UINib nibWithNibName:@"SaveFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"SaveFooter"];
     self.pickerData = @[@"上海A股", @"深圳A股"];
     self.all = @[
-                    @[
-                        @{
-                            @"cellReuseIdentifier":@"InputCell"
-                            ,@"title":@"股票代码"
-                            ,@"placeholder":@"代码／名称"
-                            ,@"keyboardtype":[NSNumber numberWithInt:UIKeyboardTypeDefault]
-                            ,@"key":@"code"
-                        }
-                        ,@{
-                            @"cellReuseIdentifier":@"InputCell"
-                            ,@"title":@"股票类型"
-                            ,@"value":@"inSZ"
-                        }
-                        ,@{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"买入价格"
-                            ,@"placeholder":@"0.00"
-                            ,@"unit":@"元"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.buy.price"
-                        }
-                       ,@{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"买入数量"
-                            ,@"placeholder":@"0"
-                            ,@"unit":@"股"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.buy.quantity"
-                       }
-                       ,@{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"卖出价格"
-                            ,@"placeholder":@"0.00"
-                            ,@"unit":@"元"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.sell.price"
-                       }
-                       ,@{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"卖出数量"
-                            ,@"placeholder":@"0"
-                            ,@"unit":@"股"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.sell.quantity"
-                       }
-                       ,@{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"券商佣金比率"
-                            ,@"placeholder":@"0"
-                            ,@"unit":@"%"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.rate.commission"
-                       },@{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"印花税税率"
-                            ,@"placeholder":@"0"
-                            ,@"unit":@"%"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.rate.stamp"
-                       },
-                       @{
-                            @"cellReuseIdentifier":@"InputCellWithUnit"
-                            ,@"title":@"过户费费率"
-                            ,@"placeholder":@"0"
-                            ,@"unit":@"%"
-                            ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                            ,@"value":@"brain.rate.transfer"
-                        }
-                    ]
-                    ,@[
-                    @{
-                            @"cellReuseIdentifier":@"OutputCell"
-                            ,@"title": @"过户费"
-                            ,@"value": @"0.00"
-                            ,@"value":@"brain.transfer"
-                    }
-                    ,@{
-                        @"cellReuseIdentifier":@"OutputCell"
-                        ,@"title": @"印花税"
-                            ,@"value": @"0.00"
-                            ,@"value":@"brain.stamp"
-                    }
-                    ,@{
-                        @"cellReuseIdentifier":@"OutputCell"
-                        ,@"title": @"券商佣金"
-                            ,@"value": @"0.00"
-                            ,@"value":@"brain.commission"
-                    }
-                    ,@{
-                        @"cellReuseIdentifier":@"OutputCell"
-                        ,@"title": @"税费合计"
-                            ,@"value": @"0.00"
-                            ,@"value":@"brain.cost"
-                    }
-                    ,@{
-                        @"cellReuseIdentifier":@"OutputCell"
-                        ,@"title": @"投资损益"
-                            ,@"value": @"0.00"
-                            ,@"value":@"brain."
-                    }
-                   ]
-                ];
+                 @[
+                     @{
+                         @"cellReuseIdentifier":@"InputCell"
+                         ,@"title":@"股票代码"
+                         ,@"placeholder":@"代码／名称"
+                         ,@"keyboardtype":[NSNumber numberWithInt:UIKeyboardTypeDefault]
+                         ,@"key":@"code"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"ButtonCell"
+                         ,@"title":@"股票类型"
+                         ,@"value":@"inSZ"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"买入价格"
+                         ,@"placeholder":@"0.00"
+                         ,@"unit":@"元"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.buy.price"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"买入数量"
+                         ,@"placeholder":@"0"
+                         ,@"unit":@"股"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.buy.quantity"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"卖出价格"
+                         ,@"placeholder":@"0.00"
+                         ,@"unit":@"元"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.sell.price"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"卖出数量"
+                         ,@"placeholder":@"0"
+                         ,@"unit":@"股"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.sell.quantity"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"券商佣金比率"
+                         ,@"placeholder":@"0"
+                         ,@"unit":@"%"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.rate.commission"
+                         },@{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"印花税税率"
+                         ,@"placeholder":@"0"
+                         ,@"unit":@"%"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.rate.stamp"
+                         },
+                     @{
+                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         ,@"title":@"过户费费率"
+                         ,@"placeholder":@"0"
+                         ,@"unit":@"%"
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"value":@"brain.rate.transfer"
+                         }
+                     ]
+                 ,@[
+                     @{
+                         @"cellReuseIdentifier":@"OutputCell"
+                         ,@"title": @"过户费"
+                         ,@"value": @"0.00"
+                         ,@"value":@"brain.transfer"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"OutputCell"
+                         ,@"title": @"印花税"
+                         ,@"value": @"0.00"
+                         ,@"value":@"brain.stamp"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"OutputCell"
+                         ,@"title": @"券商佣金"
+                         ,@"value": @"0.00"
+                         ,@"value":@"brain.commission"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"OutputCell"
+                         ,@"title": @"税费合计"
+                         ,@"value": @"0.00"
+                         ,@"value":@"brain.cost"
+                         }
+                     ,@{
+                         @"cellReuseIdentifier":@"OutputCell"
+                         ,@"title": @"投资损益"
+                         ,@"value": @"0.00"
+                         ,@"value":@"brain."
+                         }
+                     ]
+                 ];
     self.cur = [NSMutableArray array];
     [self.cur addObject:[NSMutableArray arrayWithArray:[self.all objectAtIndex:0]]];
     
@@ -178,7 +188,7 @@
     }
     [self.view addSubview:self.keyBoardBackground];
     self.keyBoardBackground.hidden = NO;
-
+    
 #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
     CGRect keyboardRect = [self.view convertRect:[[[note userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil];
     if (CGRectIsEmpty(keyboardRect)) {
@@ -202,8 +212,8 @@
     }
     self.keyBoardBackground.hidden = YES;
     [self.keyBoardBackground removeFromSuperview];
-
-
+    
+    
     NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval interval;
     [duration getValue:&interval];
@@ -213,48 +223,48 @@
     self.layout.contentOffset = self.layoutOriginContentOffset;
 }
 /*
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.currentTextField = textField;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) [self.tableView viewWithTag:self.currentTextField.tag]];
-    UITableViewCell *cell = (UITableViewCell *) [textField superview];
-    indexPath = [self.tableView indexPathForCell:cell];
-    //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    //int currentIndex = textField.tag;
-    CGRect frame = textField.frame;
-    CGFloat rowHeight = self.tableView.rowHeight;
-    //下面的代码只是为了判断是哪一个textField,可以根据自己的情况进行修改，我为了测试加了7个
-    if (indexPath.row == 0) {
-        frame.origin.y += rowHeight * 0;
-    } else if (indexPath.row==1) {
-        frame.origin.y += rowHeight * 1;
-    } else if (indexPath.row == 2) {
-        frame.origin.y += rowHeight * 2;
-    } else if (indexPath.row ==3){
-        frame.origin.y += rowHeight * 3;
-    }else if(indexPath.row==4)
-    {
-        frame.origin.y +=rowHeight *4;
-    } else if(indexPath.row==5)
-    {
-        frame.origin.y +=rowHeight *5;
-    } else if(indexPath.row==6)
-    {
-        frame.origin.y +=rowHeight *6;
-    }
-    CGFloat viewHeight = self.tableView.frame.size.height;
-    CGFloat halfHeight = viewHeight / 2;
-    CGFloat halfh= frame.origin.y +(textField.frame.size.height / 2);
-    if(halfh<halfHeight){
-        frame.origin.y = 0;
-        frame.size.height =halfh;
-    }else{
-        frame.origin.y =halfh;
-        frame.size.height =halfh;
-    }
-    [self.tableView scrollRectToVisible:frame animated:YES ];
-}
-*/
+ - (void)textFieldDidBeginEditing:(UITextField *)textField
+ {
+ self.currentTextField = textField;
+ NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) [self.tableView viewWithTag:self.currentTextField.tag]];
+ UITableViewCell *cell = (UITableViewCell *) [textField superview];
+ indexPath = [self.tableView indexPathForCell:cell];
+ //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+ //int currentIndex = textField.tag;
+ CGRect frame = textField.frame;
+ CGFloat rowHeight = self.tableView.rowHeight;
+ //下面的代码只是为了判断是哪一个textField,可以根据自己的情况进行修改，我为了测试加了7个
+ if (indexPath.row == 0) {
+ frame.origin.y += rowHeight * 0;
+ } else if (indexPath.row==1) {
+ frame.origin.y += rowHeight * 1;
+ } else if (indexPath.row == 2) {
+ frame.origin.y += rowHeight * 2;
+ } else if (indexPath.row ==3){
+ frame.origin.y += rowHeight * 3;
+ }else if(indexPath.row==4)
+ {
+ frame.origin.y +=rowHeight *4;
+ } else if(indexPath.row==5)
+ {
+ frame.origin.y +=rowHeight *5;
+ } else if(indexPath.row==6)
+ {
+ frame.origin.y +=rowHeight *6;
+ }
+ CGFloat viewHeight = self.tableView.frame.size.height;
+ CGFloat halfHeight = viewHeight / 2;
+ CGFloat halfh= frame.origin.y +(textField.frame.size.height / 2);
+ if(halfh<halfHeight){
+ frame.origin.y = 0;
+ frame.size.height =halfh;
+ }else{
+ frame.origin.y =halfh;
+ frame.size.height =halfh;
+ }
+ [self.tableView scrollRectToVisible:frame animated:YES ];
+ }
+ */
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -300,7 +310,7 @@
         c.input.delegate = self;
         self.value = item[@"value"];
         c.input.placeholder = item[@"placeholder"];
-        c.input.keyboardType = [item[@"keyboardtype"] integerValue];
+        c.input.keyboardType = [item[@"inputtype"] integerValue];
         return c;
     }
     if ([cellId  isEqual: @"InputCellWithUnit"]) {
@@ -308,15 +318,17 @@
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
         c.input.delegate = self;
         c.input.placeholder = item[@"placeholder"];
-        c.input.keyboardType = [item[@"keyboardtype"] integerValue];
+        c.input.keyboardType = [item[@"inputtype"] integerValue];
         c.unit.text = item[@"unit"];
         return c;
     }
     if ([cellId  isEqual: @"ButtonCell"]) {
         ButtonCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        self.marketOfStock = c.button;
         [c.button addTarget:self action:@selector(selectMarketOfStock:) forControlEvents:UIControlEventTouchUpInside];
-        c.button.labelText = self.pickerData[1];
+        [c.button setTitle:self.pickerData[1] forState:UIControlStateNormal];
+        
         return c;
     }
     if ([cellId  isEqual: @"OutputCell"]) {
@@ -330,11 +342,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     //if (section == 2) {
-        return 0.01;
+    return 0.01;
     //}
     //return tableView.sectionHeaderHeight;
 }
-    
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CalculateFooter"].frame.size.height;
 }
@@ -343,7 +355,7 @@
     if (section == 0) {
         CalculateFooter* footer = (CalculateFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CalculateFooter"];
         [footer.contentView setFrame:CGRectMake(0, 0, footer.frame.size.width, 44)];
-         
+        
         //[cell.reset.layer setMasksToBounds:YES];
         footer.reset.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
         footer.reset.layer.borderWidth = 1.0; //边框宽度
@@ -356,32 +368,33 @@
         
         return (UIView*)footer;
     }
-   if (section == 1) {
-        SaveFooter* save = (SaveFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SaveFooter"];
-        save.save.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
-        save.save.layer.borderWidth = 1.0; //边框宽度
-        save.save.layer.borderColor = save.save.titleLabel.textColor.CGColor;
-        save.save.titleLabel.textColor = save.save.backgroundColor; 
-        save.save.backgroundColor = [UIColor colorWithCGColor: save.save.layer.borderColor];
-        [save.save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    if (section == 1) {
+        SaveFooter* footer = (SaveFooter*)[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SaveFooter"];
+        footer.save.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
+        footer.save.layer.borderWidth = 1.0; //边框宽度
+        footer.save.layer.borderColor = footer.save.backgroundColor.CGColor;
+        [footer.save addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
         return (UIView*)footer;
-   }
+    }
     return tableView.tableFooterView;
 }
 
 -(void) selectMarketOfStock:(id)sender{
-    sheet = [SimulateActionSheet styleDefault];
-    sheet.delegate = self;
-//    //必须在设置delegate之后调用，否则无法选中指定的行
-    if (sender.labelText == self.pickerData objectAtIndex(0)) {
-        [sheet selectRow:0 inComponent:0 animated:YES];
+    UIButton* button = sender;
+    if (self.sheet == nil) {
+        self.sheet = [SimulateActionSheet styleDefault];
+    }
+    NSLog(@"%@", self.sheet);
+    
+    self.sheet.delegate = self;
+    //    //必须在设置delegate之后调用，否则无法选中指定的行
+    if (button.currentTitle == [self.pickerData objectAtIndex:0]) {
+        [self.sheet selectRow:0 inComponent:0 animated:YES];
     }
     else {
-        [sheet selectRow:1 inComponent:0 animated:YES];
+        [self.sheet selectRow:1 inComponent:0 animated:YES];
     }
-   
-    [sheet show:self];
-    [sender.labelText = self.pickerData objectAtIndex:self.type];
+    [self.sheet show:self];
 }
 
 -(void) calculate:(id)sender{
@@ -405,7 +418,7 @@
 }
 
 -(void) save:(id)sender{
-
+    
 }
 #pragma mark -
 #pragma mark Text Field Delegate
@@ -427,28 +440,30 @@
 #pragma mark -
 #pragma mark Table View Delegate
 
-_ (IBAction)selectCalculateType:(id)sender {
-    self.brain.calculateType = !self.brain.calculateType;
-    if (!self.brain.calculateType) {
+- (IBAction)selectCalculateType:(id)sender {
+    self/*.brain*/.calculateType = !self./*brain.*/calculateType;
+    if (self./*brain.*/calculateType) {
         [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
     }
     else {
-        [self.cur[0] insertObject:self.all[0][3] atIndex:4];
-        [self.cur[0] insertObject:self.all[0][3] atIndex:5];
+        [self.cur[0] insertObject:self.all[0][4] atIndex:4];
+        [self.cur[0] insertObject:self.all[0][5] atIndex:5];
     }
     [self.layout reloadData];
-
+    
 }
 
 -(void)actionCancle{
-    //[sheet dismiss:self];
+    [sheet dismiss:self];
 }
 
 -(void)actionDone{
-    //[sheet dismiss:self];
+    [sheet dismiss:self];
     
-    //NSUInteger index = [sheet selectedRowInComponent:0];
-    //self.type = index;
+    NSUInteger index = [sheet selectedRowInComponent:0];
+    
+    self.inSZ = index == 0 ? NO:YES;
+    [self.marketOfStock setTitle:self.pickerData[index] forState:UIControlStateNormal];
 }
 
 

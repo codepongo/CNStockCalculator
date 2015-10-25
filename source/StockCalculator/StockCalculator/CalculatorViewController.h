@@ -12,5 +12,5 @@
 @property(nonatomic, weak) IBOutlet UITableView* layout;
 @property(nonatomic, strong) UIButton* keyBoardBackground;
 @property(nonatomic, assign) CGPoint layoutOriginContentOffset;
-- (IBAction)changeTradeType:(id)sender;
+- (IBAction)selectCalculateType:(id)sender;
 @end
