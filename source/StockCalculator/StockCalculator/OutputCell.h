@@ -13,4 +13,5 @@
 
 @property(nonatomic, weak) IBOutlet UILabel* title;
 @property(weak, nonatomic) IBOutlet UILabel *result;
+@property(weak, nonatomic) IBOutlet UILabel* unit;
 @end

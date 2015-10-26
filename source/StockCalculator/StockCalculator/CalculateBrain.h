@@ -16,6 +16,7 @@
 
 @interface Trade:NSObject {
     float _amount;
+    float _price;
 }
 @property (nonatomic) float price;
 @property (nonatomic) NSInteger quantity;

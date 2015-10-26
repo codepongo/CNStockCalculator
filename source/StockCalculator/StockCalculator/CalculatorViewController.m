@@ -60,7 +60,7 @@
                          }
                      ,@{
                          @"cellReuseIdentifier":@"ButtonCell"
-                         ,@"title":@"股票类型"
+                         ,@"title":@"股票类型⌵"
                          ,@"value":@"inSZ"
                          }
                      ,@{
@@ -116,45 +116,45 @@
                          @"cellReuseIdentifier":@"InputCellWithUnit"
                          ,@"title":@"过户费费率"
                          ,@"placeholder":@"0"
-                         ,@"unit":@"元／千股"
+                         ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.transfer"
                          ,@"detail":@"（最低1元收取）"
                          }
                      ]
                  ,@[
-                     @{
+                     [NSMutableDictionary dictionaryWithDictionary:@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"过户费"
                          ,@"value": @"0.00"
                          ,@"unit":@"元"
-                         }
-                     ,@{
+                         }]
+                     ,[NSMutableDictionary dictionaryWithDictionary:@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"印花税"
                          ,@"value": @"0.00"
                          ,@"unit":@"元"
-                         }
-                     ,@{
+                         }]
+                     ,[NSMutableDictionary dictionaryWithDictionary:@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"券商佣金"
                          ,@"value": @"0.00"
                          ,@"unit":@"元"
-                         }
-                     ,@{
+                         }]
+                     ,[NSMutableDictionary dictionaryWithDictionary:@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"税费合计"
                          ,@"value": @"0.00"
                          ,@"unit":@"元"
-                         }
-                     ,@{
+                         }]
+                     ,[NSMutableDictionary dictionaryWithDictionary:@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"titleForGainOrLoss": @"投资损益"
                          ,@"titleForBreakevenPrice": @"保本价格"
                          ,@"value": @"0.00"
                          ,@"unitForGainOrLoss":@"元"
                          ,@"unitForBreakevenPrice": @"元／千股"
-                         }
+                         }]
                      ]
                  ];
     self.cur = [NSMutableArray array];
@@ -288,14 +288,22 @@
     }
     if ([cellId  isEqual: @"OutputCell"]) {
         OutputCell* c = [tableView dequeueReusableCellWithIdentifier:@"OutputCell"];
-        if (nil == self.cur[indexPath.section][indexPath.row][@"title"]) {
+        NSString* title = self.cur[indexPath.section][indexPath.row][@"title"];
+        if (nil != title) {
+            c.title.text = title;
+            c.unit.text = self.cur[indexPath.section][indexPath.row][@"unit"];
+        }
+        else {
             if (self.brain.calculateForGainOrLoss) {
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForGainOrLoss"];
                 c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForGainOrLoss"];
+            }
             else {
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForBreakevenPrice"];
                 c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForBreakevenPrice"];
             }
+        }
+        
         c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
         return c;
     }
@@ -368,22 +376,21 @@
     }
     //brain calculates.
     float transfer = [self.brain transferOfTrade];
-    float stamp = [self.brain stampOfTrade];
-    float commission = [self.brain commissionOfTrade];
-    float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
-    float result = [self.brain resultOfTrade];
-    self.cur[2][0][@"value"] = [NSString stringWithFormat(@"%.2f", transfer)];
-    self.cur[2][1][@"value"] = [NSString stringWithFormat(@"%.2f", stamp)];
-    self.cur[2][2][@"value"] = [NSString stringWithFormat(@"%.2f", commission)];
-    self.cur[2][3][@"value"] = [NSString stringWithFormat(@"%.2f", taxesAndButies];
-    self.cur[2][4][@"value"] = [NSString stringWithFormat(@"%.2f", result];
+//    float stamp = [self.brain stampOfTrade];
+//    float commission = [self.brain commissionOfTrade];
+//    float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
+//    float result = [self.brain resultOfTrade];
+    [self.cur[1][0] setObject:[NSString stringWithFormat:@"%.2f", transfer] forKey:@"value"];
+    //self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f", stamp];
+    //self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f", commission];
+    //self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f", taxesAndDuties];
+    //self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f", result];
     [self.layout reloadData];
-    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
-    [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    //NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
+    //[self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 -(void) reset:(id)sender {
-    self.cur
     if (self.cur.count == 2) {
         [self.cur removeObjectAtIndex:1];
     }
@@ -413,8 +420,9 @@
 #pragma mark Text Field Delegate Methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"%@", textField.superview.superview);
     NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
-    [self.brain setValue:textField.text.floatValue forKey:self.cur[path.section][path.row][@"value"];
+    [self.brain setValue:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
 }
 
 /*
@@ -497,5 +505,4 @@
     self.brain.inSZ = index == 0 ? NO:YES;
     [self.marketOfStock setTitle:self.pickerData[index] forState:UIControlStateNormal];
 }
-
 @end

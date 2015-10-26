@@ -23,7 +23,7 @@
 
 @implementation Trade
 -(void)setPrice:(float)p {
-    self.price = p;
+    self->_price = p;
     self->_amount = p * self.quantity;
 }
 
@@ -34,12 +34,12 @@
 
 -(instancetype) initWithPrice:(float)p AndAmount:(float)q {
     self = [super init];
-    self.price = p;
+    self->_price = p;
     self.quantity = q;
-    self->_amount = price * quantity;
+    self->_amount = self->_price * quantity;
     return self;
 }
-@synthesize price, quantity, amount = _amount;
+@synthesize price=_price, quantity, amount = _amount;
 @end
 
 #pragma mark -
@@ -56,9 +56,9 @@
     self = [super init];
     self.inSZ = NO;
     self.calculateForGainOrLoss = YES;
+    self.buy = [[Trade alloc] init];
     return self;
 }
-
 
 - (float) commission:(float)amount {
     if (amount <= 10000.000) {

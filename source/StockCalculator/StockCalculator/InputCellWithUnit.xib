@@ -24,8 +24,8 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agV-US-o6X">
-                        <rect key="frame" x="106" y="0.0" width="140" height="32"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agV-US-o6X">
+                        <rect key="frame" x="106" y="0.0" width="148" height="32"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -47,8 +47,8 @@
                     <constraint firstAttribute="trailingMargin" secondItem="peY-p2-0VC" secondAttribute="trailing" constant="2" id="GMT-Ld-N1Y" userLabel="trailingMargin = Label.trailing"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="bottom" secondItem="peY-p2-0VC" secondAttribute="bottom" id="K8e-l2-EbH"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="8" symbolic="YES" id="PdX-Y0-vWg"/>
-                    <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="8" id="UH2-rP-CUW"/>
-                    <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="8" id="VpI-nl-6as"/>
+                    <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" id="UH2-rP-CUW"/>
+                    <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="45" id="VpI-nl-6as"/>
                     <constraint firstItem="peY-p2-0VC" firstAttribute="leading" secondItem="agV-US-o6X" secondAttribute="trailing" constant="8" id="XYA-BN-cPc" userLabel="Label.leading = Input.trailing"/>
                     <constraint firstItem="agV-US-o6X" firstAttribute="top" secondItem="RN7-HM-SHl" secondAttribute="top" id="dC7-bC-5X9"/>
                     <constraint firstAttribute="trailingMargin" secondItem="peY-p2-0VC" secondAttribute="trailing" constant="-10" id="i0W-jf-Sqb" userLabel="trailingMargin = Label.trailing"/>
@@ -59,6 +59,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="EfQ-kO-aXY"/>
+                        <exclude reference="VpI-nl-6as"/>
                         <exclude reference="XYA-BN-cPc"/>
                         <exclude reference="i0W-jf-Sqb"/>
                     </mask>
