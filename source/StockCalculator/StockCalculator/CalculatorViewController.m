@@ -37,8 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.brain = [[CalculateBrain alloc] init];
-    self.brain.calculateForGainOrLost = NO;
-    self.brain.inSZ = NO;
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
@@ -58,7 +56,7 @@
                          ,@"title":@"股票代码"
                          ,@"placeholder":@"代码／名称"
                          ,@"keyboardtype":[NSNumber numberWithInt:UIKeyboardTypeDefault]
-                         ,@"key":@"code"
+                         ,@"value":@"code"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"ButtonCell"
@@ -71,7 +69,7 @@
                          ,@"placeholder":@"0.00"
                          ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.buy.price"
+                         ,@"value":@"buy.price"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
@@ -79,7 +77,7 @@
                          ,@"placeholder":@"0"
                          ,@"unit":@"股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.buy.quantity"
+                         ,@"value":@"buy.quantity"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
@@ -87,7 +85,7 @@
                          ,@"placeholder":@"0.00"
                          ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.sell.price"
+                         ,@"value":@"sell.price"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
@@ -95,7 +93,7 @@
                          ,@"placeholder":@"0"
                          ,@"unit":@"股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.sell.quantity"
+                         ,@"value":@"sell.quantity"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
@@ -103,7 +101,7 @@
                          ,@"placeholder":@"0"
                          ,@"unit":@"%"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.rate.commission"
+                         ,@"value":@"rate.commission"
                          ,@"detail":@"（不足5元，按5元收取）"
                          },@{
                          @"cellReuseIdentifier":@"InputCellWithUnit"
@@ -111,7 +109,7 @@
                          ,@"placeholder":@"0"
                          ,@"unit":@"%"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.rate.stamp"
+                         ,@"value":@"rate.stamp"
                          ,@"detail":@"（仅在卖出征收）"
                          },
                      @{
@@ -120,7 +118,7 @@
                          ,@"placeholder":@"0"
                          ,@"unit":@"元／千股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
-                         ,@"value":@"brain.rate.transfer"
+                         ,@"value":@"rate.transfer"
                          ,@"detail":@"（最低1元收取）"
                          }
                      ]
@@ -129,31 +127,33 @@
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"过户费"
                          ,@"value": @"0.00"
-                         ,@"value":@"brain.transfer"
+                         ,@"unit":@"元"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"印花税"
                          ,@"value": @"0.00"
-                         ,@"value":@"brain.stamp"
+                         ,@"unit":@"元"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"券商佣金"
                          ,@"value": @"0.00"
-                         ,@"value":@"brain.commission"
+                         ,@"unit":@"元"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"OutputCell"
                          ,@"title": @"税费合计"
                          ,@"value": @"0.00"
-                         ,@"value":@"brain.cost"
+                         ,@"unit":@"元"
                          }
                      ,@{
                          @"cellReuseIdentifier":@"OutputCell"
-                         ,@"title": @"投资损益"
+                         ,@"titleForGainOrLoss": @"投资损益"
+                         ,@"titleForBreakevenPrice": @"保本价格"
                          ,@"value": @"0.00"
-                         ,@"value":@"brain."
+                         ,@"unitForGainOrLoss":@"元"
+                         ,@"unitForBreakevenPrice": @"元／千股"
                          }
                      ]
                  ];
@@ -164,7 +164,7 @@
 
 
 #pragma mark -
-#pragma mark KeyBoard
+#pragma mark KeyBoard Methods
 
 -(void)hideKeyBoard:(id)sender {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
@@ -224,49 +224,6 @@
     [UIView setAnimationDuration:interval];
     self.layout.contentOffset = self.layoutOriginContentOffset;
 }
-/*
- - (void)textFieldDidBeginEditing:(UITextField *)textField
- {
- self.currentTextField = textField;
- NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) [self.tableView viewWithTag:self.currentTextField.tag]];
- UITableViewCell *cell = (UITableViewCell *) [textField superview];
- indexPath = [self.tableView indexPathForCell:cell];
- //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
- //int currentIndex = textField.tag;
- CGRect frame = textField.frame;
- CGFloat rowHeight = self.tableView.rowHeight;
- //下面的代码只是为了判断是哪一个textField,可以根据自己的情况进行修改，我为了测试加了7个
- if (indexPath.row == 0) {
- frame.origin.y += rowHeight * 0;
- } else if (indexPath.row==1) {
- frame.origin.y += rowHeight * 1;
- } else if (indexPath.row == 2) {
- frame.origin.y += rowHeight * 2;
- } else if (indexPath.row ==3){
- frame.origin.y += rowHeight * 3;
- }else if(indexPath.row==4)
- {
- frame.origin.y +=rowHeight *4;
- } else if(indexPath.row==5)
- {
- frame.origin.y +=rowHeight *5;
- } else if(indexPath.row==6)
- {
- frame.origin.y +=rowHeight *6;
- }
- CGFloat viewHeight = self.tableView.frame.size.height;
- CGFloat halfHeight = viewHeight / 2;
- CGFloat halfh= frame.origin.y +(textField.frame.size.height / 2);
- if(halfh<halfHeight){
- frame.origin.y = 0;
- frame.size.height =halfh;
- }else{
- frame.origin.y =halfh;
- frame.size.height =halfh;
- }
- [self.tableView scrollRectToVisible:frame animated:YES ];
- }
- */
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -279,6 +236,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 #pragma mark -
 #pragma mark Table View Data Source Methods
 
@@ -286,19 +245,13 @@
     return self.cur.count;
 }
 
-- (NSString * _Nullable)tableView:(UITableView * _Nonnull)tableView
-          titleForHeaderInSection:(NSInteger)section {
-    return nil;//[NSString stringWithFormat:@"%ld", section];
-}
-
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
     return [self.cur[section] count];
 }
 
-- (NSArray<NSString *>*)sectionIndexcurForTableView:(UITableView * _Nonnull)tableView {
-    return nil;
-}
+#pragma mark -
+#pragma mark Table View Delegate Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary* item = self.cur[indexPath.section][indexPath.row];
@@ -335,7 +288,14 @@
     }
     if ([cellId  isEqual: @"OutputCell"]) {
         OutputCell* c = [tableView dequeueReusableCellWithIdentifier:@"OutputCell"];
-        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        if (nil == self.cur[indexPath.section][indexPath.row][@"title"]) {
+            if (self.brain.calculateForGainOrLoss) {
+                c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForGainOrLoss"];
+                c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForGainOrLoss"];
+            else {
+                c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForBreakevenPrice"];
+                c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForBreakevenPrice"];
+            }
         c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
         return c;
     }
@@ -381,6 +341,10 @@
     return tableView.tableFooterView;
 }
 
+
+#pragma mark -
+#pragma mark Outlet Action Methods
+
 -(void) selectMarketOfStock:(id)sender{
     UIButton* button = sender;
     if (self.sheet == nil) {
@@ -403,13 +367,23 @@
         [self.cur addObject:[self.all objectAtIndex:1]];
     }
     //brain calculates.
+    float transfer = [self.brain transferOfTrade];
+    float stamp = [self.brain stampOfTrade];
+    float commission = [self.brain commissionOfTrade];
+    float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
+    float result = [self.brain resultOfTrade];
+    self.cur[2][0][@"value"] = [NSString stringWithFormat(@"%.2f", transfer)];
+    self.cur[2][1][@"value"] = [NSString stringWithFormat(@"%.2f", stamp)];
+    self.cur[2][2][@"value"] = [NSString stringWithFormat(@"%.2f", commission)];
+    self.cur[2][3][@"value"] = [NSString stringWithFormat(@"%.2f", taxesAndButies];
+    self.cur[2][4][@"value"] = [NSString stringWithFormat(@"%.2f", result];
     [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 -(void) reset:(id)sender {
-    //for (UITableViewCell* c in [self.layout ])
+    self.cur
     if (self.cur.count == 2) {
         [self.cur removeObjectAtIndex:1];
     }
@@ -421,29 +395,10 @@
 -(void) save:(id)sender{
     
 }
-#pragma mark -
-#pragma mark Text Field Delegate
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
-    if (self.cur[path.section][path.row][@"placeholder"] == nil) {
-        return NO;
-    }
-    
-    return YES;
-    
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    self.value = textField.text;
-}
-
-#pragma mark -
-#pragma mark Table View Delegate
 
 - (IBAction)selectCalculateType:(id)sender {
-    self.brain.calculateForGainOrLost = !self.brain.calculateForGainOrLost;
-    if (self.brain.calculateForGainOrLost) {
+    self.brain.calculateForGainOrLoss = !self.brain.calculateForGainOrLoss;
+    if (self.brain.calculateForGainOrLoss) {
         [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
     }
     else {
@@ -453,6 +408,82 @@
     [self.layout reloadData];
     
 }
+
+#pragma mark -
+#pragma mark Text Field Delegate Methods
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
+    [self.brain setValue:textField.text.floatValue forKey:self.cur[path.section][path.row][@"value"];
+}
+
+/*
+ - (void)textFieldDidBeginEditing:(UITextField *)textField
+ {
+ self.currentTextField = textField;
+ NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *) [self.tableView viewWithTag:self.currentTextField.tag]];
+ UITableViewCell *cell = (UITableViewCell *) [textField superview];
+ indexPath = [self.tableView indexPathForCell:cell];
+ //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+ //int currentIndex = textField.tag;
+ CGRect frame = textField.frame;
+ CGFloat rowHeight = self.tableView.rowHeight;
+ //下面的代码只是为了判断是哪一个textField,可以根据自己的情况进行修改，我为了测试加了7个
+ if (indexPath.row == 0) {
+ frame.origin.y += rowHeight * 0;
+ } else if (indexPath.row==1) {
+ frame.origin.y += rowHeight * 1;
+ } else if (indexPath.row == 2) {
+ frame.origin.y += rowHeight * 2;
+ } else if (indexPath.row ==3){
+ frame.origin.y += rowHeight * 3;
+ }else if(indexPath.row==4)
+ {
+ frame.origin.y +=rowHeight *4;
+ } else if(indexPath.row==5)
+ {
+ frame.origin.y +=rowHeight *5;
+ } else if(indexPath.row==6)
+ {
+ frame.origin.y +=rowHeight *6;
+ }
+ CGFloat viewHeight = self.tableView.frame.size.height;
+ CGFloat halfHeight = viewHeight / 2;
+ CGFloat halfh= frame.origin.y +(textField.frame.size.height / 2);
+ if(halfh<halfHeight){
+ frame.origin.y = 0;
+ frame.size.height =halfh;
+ }else{
+ frame.origin.y =halfh;
+ frame.size.height =halfh;
+ }
+ [self.tableView scrollRectToVisible:frame animated:YES ];
+ }
+ */
+
+#pragma mark -
+#pragma mark Picker Data Source Methods
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.pickerData.count;
+}
+
+#pragma mark -
+#pragma mark Picker Delegate Methods
+
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.pickerData objectAtIndex:row];
+}
+
+#pragma mark -
+#pragma mark Picker Outlet Action Methods
 
 -(void)actionCancle{
     [sheet dismiss:self];
@@ -465,26 +496,6 @@
     
     self.brain.inSZ = index == 0 ? NO:YES;
     [self.marketOfStock setTitle:self.pickerData[index] forState:UIControlStateNormal];
-}
-
-
-#pragma mark -
-#pragma mark Picker Data Source
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return self.pickerData.count;
-}
-
-#pragma mark -
-#pragma mark Picker Delegate
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return [self.pickerData objectAtIndex:row];
 }
 
 @end

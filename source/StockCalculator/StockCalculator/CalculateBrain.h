@@ -26,7 +26,7 @@
 @interface CalculateBrain : NSObject
 @property (nonatomic, copy) NSString* code;
 @property(nonatomic) BOOL inSZ;
-@property(nonatomic) BOOL calculateForGainOrLost;
+@property(nonatomic) BOOL calculateForGainOrLoss;
 @property (nonatomic, strong) Rate* rate;
 @property (nonatomic, strong) Trade* buy;
 @property (nonatomic, strong) Trade* sell;
@@ -34,4 +34,5 @@
 -(float)stampOfTrade;
 -(float)transferOfTrade;
 -(float)taxesAndDutiesOfTrade;
+-(float)resultOfTrade;
 @end

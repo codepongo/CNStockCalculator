@@ -55,7 +55,7 @@
 - (instancetype) init {
     self = [super init];
     self.inSZ = NO;
-    self.calculateForGainOrLost = YES;
+    self.calculateForGainOrLoss = YES;
     return self;
 }
 
@@ -86,21 +86,21 @@
 }
 
 -(float)commissionOfTrade {
-    if (!self.calculateForGainOrLost) {
+    if (!self.calculateForGainOrLoss) {
         return [self commission:self.buy.amount];
     }
     return  [self commission:self.buy.amount] + [self commission:self.sell.amount];
 }
 
 -(float)stampOfTrade {
-    if (!self.calculateForGainOrLost) {
+    if (!self.calculateForGainOrLoss) {
         return [self stamp:self.buy.amount];
     }
     return [self stamp:self.sell.amount];
 }
 
 -(float)transferOfTrade {
-    if (!self.calculateForGainOrLost) {
+    if (!self.calculateForGainOrLoss) {
         return [self transfer:self.buy.quantity];
     }
     return [self transfer:self.buy.quantity] + [self transfer:self.buy.quantity];
@@ -110,4 +110,18 @@
     return [self commissionOfTrade] + [self stampOfTrade] + [self transferOfTrade];
 }
 
+-(float)resultOfTrade {
+    float cost = self.buy.amount + [self taxesAndDutiesOfTrade];
+    float income = self.sell.amount;
+    if (!self.calculateForGainOrLoss) {
+       if (self.buy.quantity == 0) {
+           return 0;
+       }
+       return cost / self.buy.quantity;
+    }
+    if (self.sell.quantity == 0) {
+        return 0;
+    }
+    return (income - cost) / self.sell.quantity;
+}
 @end
