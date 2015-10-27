@@ -41,16 +41,16 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o] * 输入项 加入单位
 [o]  + 买卖价格数量 加入单位 元 股
 [o]  + 比率 加入单位 百分之
-[ ] * 计算
-[ ]  + 数据保存CalculateBrain
-[ ]  + 计算
-[ ]  + 结果展示
-[ ] * 计算类型选择失效
+[o] * 计算
+[o]  + 数据保存CalculateBrain
+[o]  + 计算
+[o]  + 结果展示
+[o] * 计算类型选择失效
 [o] tableview datasource 和 delegate分开
 [o] 整理 pragrma mark
-[ ] OutputCell模板加入单位
-[] 股票类型 V
-[ ]根据计算类型更改计算结果
+[o] OutputCell模板加入单位
+[o] 股票类型 V
+[o]根据计算类型更改计算结果
 []显示detail
 
 ## Option ##

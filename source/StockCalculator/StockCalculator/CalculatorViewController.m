@@ -125,37 +125,37 @@
                      ]
                  ,@[
                      [NSMutableDictionary dictionaryWithDictionary:@{
-                         @"cellReuseIdentifier":@"OutputCell"
-                         ,@"title": @"过户费"
-                         ,@"value": @"0.00"
-                         ,@"unit":@"元"
-                         }]
+                                                                     @"cellReuseIdentifier":@"OutputCell"
+                                                                     ,@"title": @"过户费"
+                                                                     ,@"value": @"0.00"
+                                                                     ,@"unit":@"元"
+                                                                     }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
-                         @"cellReuseIdentifier":@"OutputCell"
-                         ,@"title": @"印花税"
-                         ,@"value": @"0.00"
-                         ,@"unit":@"元"
-                         }]
+                                                                      @"cellReuseIdentifier":@"OutputCell"
+                                                                      ,@"title": @"印花税"
+                                                                      ,@"value": @"0.00"
+                                                                      ,@"unit":@"元"
+                                                                      }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
-                         @"cellReuseIdentifier":@"OutputCell"
-                         ,@"title": @"券商佣金"
-                         ,@"value": @"0.00"
-                         ,@"unit":@"元"
-                         }]
+                                                                      @"cellReuseIdentifier":@"OutputCell"
+                                                                      ,@"title": @"券商佣金"
+                                                                      ,@"value": @"0.00"
+                                                                      ,@"unit":@"元"
+                                                                      }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
-                         @"cellReuseIdentifier":@"OutputCell"
-                         ,@"title": @"税费合计"
-                         ,@"value": @"0.00"
-                         ,@"unit":@"元"
-                         }]
+                                                                      @"cellReuseIdentifier":@"OutputCell"
+                                                                      ,@"title": @"税费合计"
+                                                                      ,@"value": @"0.00"
+                                                                      ,@"unit":@"元"
+                                                                      }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
-                         @"cellReuseIdentifier":@"OutputCell"
-                         ,@"titleForGainOrLoss": @"投资损益"
-                         ,@"titleForBreakevenPrice": @"保本价格"
-                         ,@"value": @"0.00"
-                         ,@"unitForGainOrLoss":@"元"
-                         ,@"unitForBreakevenPrice": @"元／千股"
-                         }]
+                                                                      @"cellReuseIdentifier":@"OutputCell"
+                                                                      ,@"titleForGainOrLoss": @"投资损益"
+                                                                      ,@"titleForBreakevenPrice": @"保本价格"
+                                                                      ,@"value": @"0.00"
+                                                                      ,@"unitForGainOrLoss":@"元"
+                                                                      ,@"unitForBreakevenPrice": @"元／股"
+                                                                      }]
                      ]
                  ];
     self.cur = [NSMutableArray array];
@@ -253,6 +253,10 @@
 
 #pragma mark -
 #pragma mark Table View Delegate Methods
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+//    return 30;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary* item = self.cur[indexPath.section][indexPath.row];
