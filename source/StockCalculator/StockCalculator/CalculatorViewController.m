@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.brain = [[CalculateBrain alloc] init];
+    [self.brain setCalculateForGainOrLoss:YES];
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
@@ -60,7 +61,7 @@
                          }
                      ,@{
                          @"cellReuseIdentifier":@"ButtonCell"
-                         ,@"title":@"股票类型⌵"
+                         ,@"title":@"股票类型"
                          ,@"value":@"inSZ"
                          }
                      ,@{
@@ -294,7 +295,7 @@
             c.unit.text = self.cur[indexPath.section][indexPath.row][@"unit"];
         }
         else {
-            if (self.brain.calculateForGainOrLoss) {
+            if ([self.brain calculateForGainOrLoss]) {
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForGainOrLoss"];
                 c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForGainOrLoss"];
             }
@@ -376,18 +377,18 @@
     }
     //brain calculates.
     float transfer = [self.brain transferOfTrade];
-//    float stamp = [self.brain stampOfTrade];
-//    float commission = [self.brain commissionOfTrade];
-//    float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
-//    float result = [self.brain resultOfTrade];
+    float stamp = [self.brain stampOfTrade];
+    float commission = [self.brain commissionOfTrade];
+    float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
+    float result = [self.brain resultOfTrade];
     [self.cur[1][0] setObject:[NSString stringWithFormat:@"%.2f", transfer] forKey:@"value"];
-    //self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f", stamp];
-    //self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f", commission];
-    //self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f", taxesAndDuties];
-    //self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f", result];
+    self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f", stamp];
+    self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f", commission];
+    self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f", taxesAndDuties];
+    self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f", result];
     [self.layout reloadData];
-    //NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
-    //[self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
+    [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 -(void) reset:(id)sender {
@@ -404,8 +405,8 @@
 }
 
 - (IBAction)selectCalculateType:(id)sender {
-    self.brain.calculateForGainOrLoss = !self.brain.calculateForGainOrLoss;
-    if (self.brain.calculateForGainOrLoss) {
+    [self.brain setCalculateForGainOrLoss: ![self.brain calculateForGainOrLoss]];
+    if (!self.brain.calculateForGainOrLoss) {
         [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
     }
     else {

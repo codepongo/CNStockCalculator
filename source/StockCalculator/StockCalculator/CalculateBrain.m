@@ -28,7 +28,7 @@
 }
 
 -(void)setQuantity:(NSInteger)q {
-    self.quantity = q;
+    self->_quantity = q;
     self->_amount = self.price * q;
 }
 
@@ -36,10 +36,10 @@
     self = [super init];
     self->_price = p;
     self.quantity = q;
-    self->_amount = self->_price * quantity;
+    self->_amount = self->_price * self.quantity;
     return self;
 }
-@synthesize price=_price, quantity, amount = _amount;
+@synthesize price=_price, quantity=_quantity, amount = _amount;
 @end
 
 #pragma mark -
@@ -52,6 +52,7 @@
 @end
 
 @implementation CalculateBrain
+
 - (instancetype) init {
     self = [super init];
     self.inSZ = NO;
@@ -59,6 +60,23 @@
     self.buy = [[Trade alloc] init];
     return self;
 }
+
+- (void)setCalculateForGainOrLoss:(BOOL)isGainOrLess {
+    if (isGainOrLess == (self.sell != nil)) {
+        return;
+    }
+    if (isGainOrLess) {
+        self.sell = [[Trade alloc] init];
+    }
+    else {
+        self.sell = nil;
+    }
+}
+
+-(BOOL)calculateForGainOrLoss {
+    return self.sell != nil;
+}
+
 
 - (float) commission:(float)amount {
     if (amount <= 10000.000) {

@@ -17,6 +17,7 @@
 @interface Trade:NSObject {
     float _amount;
     float _price;
+    NSInteger _quantity;
 }
 @property (nonatomic) float price;
 @property (nonatomic) NSInteger quantity;
@@ -27,10 +28,11 @@
 @interface CalculateBrain : NSObject
 @property (nonatomic, copy) NSString* code;
 @property(nonatomic) BOOL inSZ;
-@property(nonatomic) BOOL calculateForGainOrLoss;
 @property (nonatomic, strong) Rate* rate;
 @property (nonatomic, strong) Trade* buy;
 @property (nonatomic, strong) Trade* sell;
+-(void)setCalculateForGainOrLoss:(BOOL)isGainOrLoss;
+-(BOOL)calculateForGainOrLoss;
 -(float)commissionOfTrade;
 -(float)stampOfTrade;
 -(float)transferOfTrade;
