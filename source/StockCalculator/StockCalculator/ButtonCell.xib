@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -25,36 +26,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aa2-VL-fht">
-                        <rect key="frame" x="106" y="0.0" width="144" height="30"/>
+                        <rect key="frame" x="106" y="0.0" width="206" height="30"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal">
-                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⌵" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ7-no-QkV">
-                        <rect key="frame" x="252" y="0.0" width="60" height="32"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="60" id="RKj-5Z-eIv"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="aZ7-no-QkV" firstAttribute="leading" secondItem="Aa2-VL-fht" secondAttribute="trailing" constant="2" id="28l-g9-8pq"/>
+                    <constraint firstItem="Aa2-VL-fht" firstAttribute="trailing" secondItem="ZAZ-Lb-YSg" secondAttribute="trailingMargin" id="1G6-Y5-VpC"/>
+                    <constraint firstItem="Aa2-VL-fht" firstAttribute="firstBaseline" secondItem="RN7-HM-SHl" secondAttribute="firstBaseline" id="BRo-gW-UdN"/>
+                    <constraint firstItem="Aa2-VL-fht" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="8" symbolic="YES" id="Bca-8e-vL9"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="leading" secondItem="ZAZ-Lb-YSg" secondAttribute="leadingMargin" id="DEE-By-u0q"/>
-                    <constraint firstItem="Aa2-VL-fht" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="8" id="Rac-Bm-Wo1" userLabel="Button.leading = Title.trailing"/>
-                    <constraint firstItem="aZ7-no-QkV" firstAttribute="bottom" secondItem="RN7-HM-SHl" secondAttribute="bottom" id="W9Q-xi-MTw"/>
-                    <constraint firstItem="aZ7-no-QkV" firstAttribute="top" secondItem="Aa2-VL-fht" secondAttribute="top" id="bq4-4I-Xgs"/>
-                    <constraint firstItem="aZ7-no-QkV" firstAttribute="trailing" secondItem="ZAZ-Lb-YSg" secondAttribute="trailingMargin" id="hzI-l6-9BL"/>
+                    <constraint firstItem="Aa2-VL-fht" firstAttribute="top" secondItem="RN7-HM-SHl" secondAttribute="top" id="GR3-pt-SJv"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Aa2-VL-fht" secondAttribute="bottom" constant="-6" id="LMn-vS-WfG"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="top" id="rHE-rM-MCT"/>
-                    <constraint firstItem="Aa2-VL-fht" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="topMargin" constant="-8" id="uPN-2R-cH8" userLabel="Button.top = topMargin"/>
                     <constraint firstAttribute="bottom" secondItem="RN7-HM-SHl" secondAttribute="bottom" id="y9X-GU-9lj"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Aa2-VL-fht" secondAttribute="bottom" constant="-6" id="yy3-uq-GUB" userLabel="bottomMargin = Button.bottom"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>

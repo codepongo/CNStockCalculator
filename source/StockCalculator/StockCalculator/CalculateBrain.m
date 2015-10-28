@@ -7,16 +7,7 @@
 //
 
 #import "CalculateBrain.h"
-
-#pragma mark -
-#pragma mark Rate
-@implementation Rate
--(instancetype)init{
-    self = [super init];
-    self.stamp = 0.001;
-    return self;
-}
-@end
+#import <Foundation/NSUserDefaults.h>
 
 #pragma mark -
 #pragma mark Trade
@@ -57,6 +48,7 @@
     self = [super init];
     self.inSZ = NO;
     self.calculateForGainOrLoss = YES;
+    self.rate = [[Rate alloc]init];
     self.buy = [[Trade alloc] init];
     return self;
 }
@@ -79,19 +71,23 @@
 
 
 - (float) commission:(float)amount {
+    if (amount == 0) {
+        return 0.000;
+    }
     if (amount <= 10000.000) {
         return 5.000;
     }
-    return (amount * self.rate.commission);
+    return (amount * 1000 * self.rate.commission);
 }
 
 -(float)stamp:(float)amount {
-    float stamp = 1.000;
-    if (amount * 0.001 > stamp) {
-        stamp = amount * self.rate.stamp;
+    if (amount == 0) {
+        return 0.000;
     }
-    return stamp;
-
+    if (amount < 1000) {
+        return 1.000;
+    }
+    return amount * 1000 * self.rate.stamp;
 }
 
 -(float)transfer:(float)quantity {
@@ -99,7 +95,7 @@
         return 0;
     }
     int transfer = (int)quantity % 1000 == 0 ? 0:1;
-    transfer += (int)quantity / 1000;
+    transfer +=  ((int)quantity / 1000) * self.rate.transfer;
     return transfer;
 }
 
@@ -140,6 +136,16 @@
     if (self.sell.quantity == 0) {
         return 0;
     }
-    return (income - cost) / self.sell.quantity;
+    return (income - cost);
+}
+
+-(void)reset {
+    self.buy.price = 0;
+    self.buy.quantity = 0;
+    if (self.sell != nil) {
+        self.sell.price = 0;
+        self.sell.quantity = 0;
+    }
+    self.code = @"";
 }
 @end

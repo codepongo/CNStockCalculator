@@ -7,12 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface Rate:NSObject
-@property (nonatomic) float commission;
-@property (nonatomic) float stamp;
-@property (nonatomic) float transfer;
-@end
+#import "Rate.h"
 
 @interface Trade:NSObject {
     float _amount;
@@ -38,4 +33,5 @@
 -(float)transferOfTrade;
 -(float)taxesAndDutiesOfTrade;
 -(float)resultOfTrade;
+-(void)reset;
 @end

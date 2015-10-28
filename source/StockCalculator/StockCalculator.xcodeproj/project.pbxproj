@@ -20,6 +20,7 @@
 		FA2A9A921BD91FA400FCC8A5 /* InputCellWithUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A901BD91FA400FCC8A5 /* InputCellWithUnit.xib */; };
 		FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */; };
 		FA2A9A971BD9256600FCC8A5 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */; };
+		FA6179ED1BE06EA300E4AFA6 /* Rate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6179EC1BE06EA300E4AFA6 /* Rate.m */; };
 		FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71F91BCEA7D20086F0EB /* AppDelegate.m */; };
 		FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */; };
 		FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */; };
@@ -54,6 +55,8 @@
 		FA2A9A931BD9256600FCC8A5 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		FA6179EB1BE06EA300E4AFA6 /* Rate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rate.h; sourceTree = "<group>"; };
+		FA6179EC1BE06EA300E4AFA6 /* Rate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rate.m; sourceTree = "<group>"; };
 		FACE71DB1BCEA75C0086F0EB /* StockCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACE71F81BCEA7D20086F0EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACE71F91BCEA7D20086F0EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 			children = (
 				FA2323621BDCB23E004EE7E8 /* CalculateBrain.h */,
 				FA2323631BDCB23E004EE7E8 /* CalculateBrain.m */,
+				FA6179EB1BE06EA300E4AFA6 /* Rate.h */,
+				FA6179EC1BE06EA300E4AFA6 /* Rate.m */,
 			);
 			name = CalculateBrain;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA2A9A8C1BD91B4700FCC8A5 /* OutputCell.m in Sources */,
+				FA6179ED1BE06EA300E4AFA6 /* Rate.m in Sources */,
 				FA2A9A831BD3D79F00FCC8A5 /* TabBarController.m in Sources */,
 				FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */,
 				FA23235B1BDB402C004EE7E8 /* SimulateActionSheet.m in Sources */,

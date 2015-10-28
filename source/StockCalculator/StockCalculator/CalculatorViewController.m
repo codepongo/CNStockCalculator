@@ -25,6 +25,7 @@
 @property(nonatomic, strong) CalculateBrain* brain;
 @property id value;
 @property (nonatomic, weak) UIButton* marketOfStock;
+
 @end
 
 @implementation CalculatorViewController
@@ -65,7 +66,7 @@
                          ,@"value":@"inSZ"
                          }
                      ,@{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"买入价格"
                          ,@"placeholder":@"0.00"
                          ,@"unit":@"元／股"
@@ -73,7 +74,7 @@
                          ,@"value":@"buy.price"
                          }
                      ,@{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"买入数量"
                          ,@"placeholder":@"0"
                          ,@"unit":@"股"
@@ -81,7 +82,7 @@
                          ,@"value":@"buy.quantity"
                          }
                      ,@{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"卖出价格"
                          ,@"placeholder":@"0.00"
                          ,@"unit":@"元／股"
@@ -89,7 +90,7 @@
                          ,@"value":@"sell.price"
                          }
                      ,@{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
+                         @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"卖出数量"
                          ,@"placeholder":@"0"
                          ,@"unit":@"股"
@@ -97,30 +98,27 @@
                          ,@"value":@"sell.quantity"
                          }
                      ,@{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
-                         ,@"title":@"券商佣金比率"
-                         ,@"placeholder":@"0"
-                         ,@"unit":@"%"
+                         @"cellReuseIdentifier":@"InputCell"
+                         ,@"title":@"佣金比率"
+                         ,@"placeholder":@"‰（不足5元，按5元收取）"
+                         ,@"unit":@"‰"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.commission"
-                         ,@"detail":@"（不足5元，按5元收取）"
                          },@{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
-                         ,@"title":@"印花税税率"
-                         ,@"placeholder":@"0"
-                         ,@"unit":@"%"
+                         @"cellReuseIdentifier":@"InputCell"
+                         ,@"title":@"印花税率"
+                         ,@"placeholder":@"0.1‰（仅在卖出征收）"
+                         ,@"unit":@"‰"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.stamp"
-                         ,@"detail":@"（仅在卖出征收）"
                          },
                      @{
-                         @"cellReuseIdentifier":@"InputCellWithUnit"
-                         ,@"title":@"过户费费率"
-                         ,@"placeholder":@"0"
-                         ,@"unit":@"元／股"
+                         @"cellReuseIdentifier":@"InputCell"
+                         ,@"title":@"过户费率"
+                         ,@"placeholder":@"1元／千股（最低1元收取）"
+                         ,@"unit":@"元／千股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.transfer"
-                         ,@"detail":@"（最低1元收取）"
                          }
                      ]
                  ,@[
@@ -160,7 +158,7 @@
                  ];
     self.cur = [NSMutableArray array];
     [self.cur addObject:[NSMutableArray arrayWithArray:[self.all objectAtIndex:0]]];
-    
+    [self.cur[0] removeLastObject];
 }
 
 
@@ -191,8 +189,7 @@
     }
     [self.view addSubview:self.keyBoardBackground];
     self.keyBoardBackground.hidden = NO;
-    
-#define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
+ #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
     CGRect keyboardRect = [self.view convertRect:[[[note userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil];
     if (CGRectIsEmpty(keyboardRect)) {
         return;
@@ -268,7 +265,13 @@
         InputCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
         c.input.delegate = self;
-        self.value = item[@"value"];
+        NSNumber* v = (NSNumber*)[self.brain valueForKeyPath:item[@"value"]];
+        if (v != nil && [v floatValue] != 0) {
+            c.input.text = [NSString stringWithFormat:@"%g %@",[v floatValue], item[@"unit"]];
+        }
+        else {
+            c.input.text = @"";
+        }
         c.input.placeholder = item[@"placeholder"];
         c.input.keyboardType = [item[@"inputtype"] integerValue];
         return c;
@@ -277,7 +280,7 @@
         InputCellWithUnit* c = [tableView dequeueReusableCellWithIdentifier:cellId];
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
         c.input.delegate = self;
-        c.input.placeholder = item[@"placeholder"];
+        c.input.placeholder = [NSString stringWithFormat:@"%@%@", item[@"placeholder"],item[@"unit"]];
         c.input.keyboardType = [item[@"inputtype"] integerValue];
         c.unit.text = item[@"unit"];
         return c;
@@ -287,6 +290,7 @@
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
         self.marketOfStock = c.button;
         [c.button addTarget:self action:@selector(selectMarketOfStock:) forControlEvents:UIControlEventTouchUpInside];
+//        c.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [c.button setTitle:self.pickerData[1] forState:UIControlStateNormal];
         
         return c;
@@ -335,7 +339,7 @@
         footer.reset.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
         footer.reset.layer.borderWidth = 1.0; //边框宽度
         footer.reset.layer.borderColor = footer.reset.titleLabel.textColor.CGColor;
-        [footer.reset addTarget:self action:@selector(reset:) forControlEvents:UIControlEventTouchUpInside];
+        [footer.reset addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
         footer.calculate.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
         footer.calculate.layer.borderWidth = 1.0; //边框宽度
         footer.calculate.layer.borderColor = footer.calculate.backgroundColor.CGColor;
@@ -395,10 +399,11 @@
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
--(void) reset:(id)sender {
+-(void) reset {
     if (self.cur.count == 2) {
         [self.cur removeObjectAtIndex:1];
     }
+    [self.brain reset];
     [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -417,6 +422,9 @@
         [self.cur[0] insertObject:self.all[0][4] atIndex:4];
         [self.cur[0] insertObject:self.all[0][5] atIndex:5];
     }
+    if ([self.cur count] == 2) {
+        [self.cur removeObjectAtIndex:1];
+    }
     [self.layout reloadData];
     
 }
@@ -425,9 +433,12 @@
 #pragma mark Text Field Delegate Methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"%@", textField.superview.superview);
     NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
     [self.brain setValue:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
+    
+    if (![textField.text  isEqual: @""]) {
+        textField.text = [NSString stringWithFormat:@"%@ %@",textField.text, self.cur[path.section][path.row][@"unit"]];
+    }
 }
 
 /*
@@ -509,5 +520,12 @@
     
     self.brain.inSZ = index == 0 ? NO:YES;
     [self.marketOfStock setTitle:self.pickerData[index] forState:UIControlStateNormal];
+    if (self.brain.inSZ) {
+        [self.cur[0] removeLastObject];
+    }
+    else {
+        [self.cur[0] addObject:self.all[0][[self.all[0]     count]-1]];
+    }
+    [self.layout reloadData];
 }
 @end

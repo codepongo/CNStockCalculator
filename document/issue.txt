@@ -51,7 +51,10 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o] OutputCell模板加入单位
 [o] 股票类型 V
 [o]根据计算类型更改计算结果
-[]显示detail
+[o]显示detail
+[o] 保存rate
+[o] 初始化数据
+[] 深圳A股 隐藏结果中的过户费
 
 ## Option ##
 [o] * 批量注释 command+/
