@@ -77,7 +77,7 @@
     if (amount <= 10000.000) {
         return 5.000;
     }
-    return (amount * 1000 * self.rate.commission);
+    return (amount * self.rate.commission / 1000);
 }
 
 -(float)stamp:(float)amount {
@@ -87,7 +87,7 @@
     if (amount < 1000) {
         return 1.000;
     }
-    return amount * 1000 * self.rate.stamp;
+    return amount * self.rate.stamp / 1000;
 }
 
 -(float)transfer:(float)quantity {

@@ -25,18 +25,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r86-m8-hhn">
-                        <rect key="frame" x="98" y="0.0" width="147" height="32"/>
+                        <rect key="frame" x="118" y="0.0" width="194" height="32"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVC-Hh-JUJ">
-                        <rect key="frame" x="245" y="0.0" width="61" height="32"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="61" id="325-Ou-09G"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -44,29 +34,21 @@
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="GVC-Hh-JUJ" firstAttribute="leading" secondItem="r86-m8-hhn" secondAttribute="trailing" id="2LM-Es-mVg"/>
-                    <constraint firstItem="GVC-Hh-JUJ" firstAttribute="top" secondItem="r86-m8-hhn" secondAttribute="top" id="CbS-Cu-hMC"/>
-                    <constraint firstItem="RN7-HM-SHl" firstAttribute="leading" secondItem="ZAZ-Lb-YSg" secondAttribute="leadingMargin" id="DEE-By-u0q"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="RN7-HM-SHl" secondAttribute="bottom" constant="-8" id="6Ce-Gj-53c"/>
                     <constraint firstItem="r86-m8-hhn" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="topMargin" constant="-8" id="DQq-fc-o2K" userLabel="Label.top = top"/>
-                    <constraint firstItem="GVC-Hh-JUJ" firstAttribute="bottom" secondItem="r86-m8-hhn" secondAttribute="bottom" id="NTq-gZ-MHM"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="GVC-Hh-JUJ" secondAttribute="trailing" id="Q4K-qx-D7F"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="GVC-Hh-JUJ" secondAttribute="trailing" constant="6" id="jwi-Un-47X"/>
-                    <constraint firstItem="r86-m8-hhn" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" id="lV5-rg-OQT" userLabel="Label.leading = Title.trailing"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="RN7-HM-SHl" secondAttribute="leading" id="Kxe-ew-NuK"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="r86-m8-hhn" secondAttribute="trailing" id="Ndg-0h-5xx"/>
+                    <constraint firstItem="RN7-HM-SHl" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="topMargin" constant="-8" id="UxD-Fb-y6m"/>
+                    <constraint firstItem="r86-m8-hhn" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="20" id="lV5-rg-OQT" userLabel="Label.leading = Title.trailing"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="top" id="rHE-rM-MCT"/>
                     <constraint firstAttribute="bottom" secondItem="RN7-HM-SHl" secondAttribute="bottom" id="y9X-GU-9lj"/>
                     <constraint firstAttribute="bottomMargin" secondItem="r86-m8-hhn" secondAttribute="bottom" constant="-8" id="zN8-2m-jEs" userLabel="bottom = Label.bottom"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="Q4K-qx-D7F"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>
                 <outlet property="result" destination="r86-m8-hhn" id="96A-B6-kMP"/>
                 <outlet property="title" destination="RN7-HM-SHl" id="lzB-fF-92Q"/>
-                <outlet property="unit" destination="GVC-Hh-JUJ" id="u5A-hg-4Ib"/>
             </connections>
             <point key="canvasLocation" x="397" y="240.5"/>
         </tableViewCell>

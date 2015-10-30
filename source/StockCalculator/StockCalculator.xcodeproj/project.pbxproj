@@ -21,6 +21,8 @@
 		FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */; };
 		FA2A9A971BD9256600FCC8A5 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */; };
 		FA6179ED1BE06EA300E4AFA6 /* Rate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6179EC1BE06EA300E4AFA6 /* Rate.m */; };
+		FA6179EF1BE0E79200E4AFA6 /* InputAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */; };
+		FA6179F21BE0EABC00E4AFA6 /* InputAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */; };
 		FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71F91BCEA7D20086F0EB /* AppDelegate.m */; };
 		FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */; };
 		FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */; };
@@ -57,6 +59,9 @@
 		FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		FA6179EB1BE06EA300E4AFA6 /* Rate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rate.h; sourceTree = "<group>"; };
 		FA6179EC1BE06EA300E4AFA6 /* Rate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rate.m; sourceTree = "<group>"; };
+		FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputAccessory.xib; sourceTree = "<group>"; };
+		FA6179F01BE0EABC00E4AFA6 /* InputAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAccessory.h; sourceTree = "<group>"; };
+		FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAccessory.m; sourceTree = "<group>"; };
 		FACE71DB1BCEA75C0086F0EB /* StockCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACE71F81BCEA7D20086F0EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACE71F91BCEA7D20086F0EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -157,6 +162,16 @@
 			name = ButtonCell;
 			sourceTree = "<group>";
 		};
+		FA6179F31BE1060100E4AFA6 /* InputAccessory */ = {
+			isa = PBXGroup;
+			children = (
+				FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */,
+				FA6179F01BE0EABC00E4AFA6 /* InputAccessory.h */,
+				FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */,
+			);
+			name = InputAccessory;
+			sourceTree = "<group>";
+		};
 		FACE71D21BCEA75B0086F0EB = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +191,7 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FA6179F31BE1060100E4AFA6 /* InputAccessory */,
 				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
 				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
 				FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */,
@@ -266,6 +282,7 @@
 				FA2323561BDB3CDC004EE7E8 /* SaveFooter.xib in Resources */,
 				FACE72131BCEA7F40086F0EB /* Main.storyboard in Resources */,
 				FA2A9A971BD9256600FCC8A5 /* ButtonCell.xib in Resources */,
+				FA6179EF1BE0E79200E4AFA6 /* InputAccessory.xib in Resources */,
 				FACE721E1BCF33610086F0EB /* InputCell.xib in Resources */,
 				FA2A9A7D1BD15A1F00FCC8A5 /* CalculateFooter.xib in Resources */,
 				FA2A9A8D1BD91B4700FCC8A5 /* OutputCell.xib in Resources */,
@@ -293,6 +310,7 @@
 				FA2323641BDCB23E004EE7E8 /* CalculateBrain.m in Sources */,
 				FACE721B1BCF31110086F0EB /* InputCell.m in Sources */,
 				FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */,
+				FA6179F21BE0EABC00E4AFA6 /* InputAccessory.m in Sources */,
 				FACE720D1BCEA7D20086F0EB /* RecordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

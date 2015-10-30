@@ -16,6 +16,7 @@
 #import "SaveFooter.h"
 #import "SimulateActionSheet.h"
 #import "CalculateBrain.h"
+#import "InputAccessory.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
@@ -25,7 +26,7 @@
 @property(nonatomic, strong) CalculateBrain* brain;
 @property id value;
 @property (nonatomic, weak) UIButton* marketOfStock;
-
+@property (nonatomic) NSInteger selectedIndexInSheet;
 @end
 
 @implementation CalculatorViewController
@@ -37,6 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedIndexInSheet = 1;
     self.brain = [[CalculateBrain alloc] init];
     [self.brain setCalculateForGainOrLoss:YES];
     // Do any additional setup after loading the view, typically from a nib.
@@ -274,7 +276,12 @@
         }
         c.input.placeholder = item[@"placeholder"];
         c.input.keyboardType = [item[@"inputtype"] integerValue];
-        return c;
+        
+        InputAccessory* a = [[[NSBundle mainBundle]loadNibNamed:@"InputAccessory" owner:nil options:nil] objectAtIndex:0];
+        a.done.action = @selector(hideKeyBoard:);
+        //[a.done addTarget:self action:@selector(hideKeyBoard:) forControlEvents:UIControlEventTouchUpInside];
+        c.input.inputAccessoryView = a;
+       return c;
     }
     if ([cellId  isEqual: @"InputCellWithUnit"]) {
         InputCellWithUnit* c = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -291,7 +298,7 @@
         self.marketOfStock = c.button;
         [c.button addTarget:self action:@selector(selectMarketOfStock:) forControlEvents:UIControlEventTouchUpInside];
 //        c.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        [c.button setTitle:self.pickerData[1] forState:UIControlStateNormal];
+        [c.button setTitle:self.pickerData[self.selectedIndexInSheet] forState:UIControlStateNormal];
         
         return c;
     }
@@ -300,16 +307,13 @@
         NSString* title = self.cur[indexPath.section][indexPath.row][@"title"];
         if (nil != title) {
             c.title.text = title;
-            c.unit.text = self.cur[indexPath.section][indexPath.row][@"unit"];
         }
         else {
             if ([self.brain calculateForGainOrLoss]) {
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForGainOrLoss"];
-                c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForGainOrLoss"];
             }
             else {
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForBreakevenPrice"];
-                c.unit.text = self.cur[indexPath.section][indexPath.row][@"unitForBreakevenPrice"];
             }
         }
         
@@ -367,6 +371,7 @@
     if (self.sheet == nil) {
         self.sheet = [SimulateActionSheet styleDefault];
     }
+    [self.sheet.pickerView selectRow:self.selectedIndexInSheet inComponent:0 animated:NO];
     
     self.sheet.delegate = self;
     //    //必须在设置delegate之后调用，否则无法选中指定的行
@@ -389,11 +394,11 @@
     float commission = [self.brain commissionOfTrade];
     float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
     float result = [self.brain resultOfTrade];
-    [self.cur[1][0] setObject:[NSString stringWithFormat:@"%.2f", transfer] forKey:@"value"];
-    self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f", stamp];
-    self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f", commission];
-    self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f", taxesAndDuties];
-    self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f", result];
+    [self.cur[1][0] setObject:[NSString stringWithFormat:@"%.2f %@", transfer, self.cur[1][0][@"unit"]] forKey:@"value"];
+    self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f %@", stamp, self.cur[1][0][@"unit"]];
+    self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f %@", commission, self.cur[1][0][@"unit"]];
+    self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f %@", taxesAndDuties, self.cur[1][0][@"unit"]];
+    self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
     [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
@@ -435,12 +440,15 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
     [self.brain setValue:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
-    
+    NSLog(@"%@", textField.text);
     if (![textField.text  isEqual: @""]) {
         textField.text = [NSString stringWithFormat:@"%@ %@",textField.text, self.cur[path.section][path.row][@"unit"]];
     }
 }
 
+- (BOOL)textFieldShouldClear:(UITextField * _Nonnull)textField {
+    return YES;
+}
 /*
  - (void)textFieldDidBeginEditing:(UITextField *)textField
  {
@@ -516,15 +524,16 @@
 -(void)actionDone{
     [sheet dismiss:self];
     
-    NSUInteger index = [sheet selectedRowInComponent:0];
+    self.selectedIndexInSheet = [sheet selectedRowInComponent:0];
+    [self.marketOfStock setTitle:self.pickerData[self.selectedIndexInSheet] forState:UIControlStateNormal];
     
-    self.brain.inSZ = index == 0 ? NO:YES;
-    [self.marketOfStock setTitle:self.pickerData[index] forState:UIControlStateNormal];
+    self.brain.inSZ = self.selectedIndexInSheet == 0 ? NO:YES;
+
     if (self.brain.inSZ) {
         [self.cur[0] removeLastObject];
     }
     else {
-        [self.cur[0] addObject:self.all[0][[self.all[0]     count]-1]];
+        [self.cur[0] addObject:self.all[0][[self.all[0] count]-1]];
     }
     [self.layout reloadData];
 }
