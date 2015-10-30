@@ -54,7 +54,9 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o]显示detail
 [o] 保存rate
 [o] 初始化数据
-[] 深圳A股 隐藏结果中的过户费
+[o] 深圳A股 隐藏结果中的过户费
+[] input数据不足则计算按钮保持灰色
+[
 
 ## Option ##
 [o] * 批量注释 command+/
