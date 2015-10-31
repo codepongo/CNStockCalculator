@@ -12,12 +12,10 @@
 
 @implementation SimulateActionSheet
 +(instancetype)styleDefault{
-    NSLog(@"%s", __FUNCTION__);
-    SimulateActionSheet* sheet = [[SimulateActionSheet alloc]initWithFrame:CGRectMake(
-                                                                                     0,
-                                                                                     0,
-                                                                                     UIScreen.mainScreen.bounds.size.width,
-                                                                                     UIScreen.mainScreen.bounds.size.height)];
+    NSLog(@"%g", UIScreen.mainScreen.bounds.size.width);
+        SimulateActionSheet* sheet = [[SimulateActionSheet alloc]initWithFrame:CGRectMake(0,0,UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.height)];
+    //SimulateActionSheet* sheet = [[[NSBundle mainBundle]loadNibNamed:@"PickerSheet" owner:nil options:nil] objectAtIndex:0];
+    
     
     [sheet setBackgroundColor:[UIColor clearColor]];
     sheet.toolBar = (UIToolbar*)[sheet actionToolBar];
@@ -68,17 +66,17 @@
                          [controller.navigationController.navigationBar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
                          
                          [self.toolBar setFrame:CGRectMake(self.toolBar.frame.origin.x,
-                                                            toolBarYposition,
-                                                            self.toolBar.frame.size.width,
-                                                            self.toolBar.frame.size.height)];
+                                                           toolBarYposition,
+                                                           self.toolBar.frame.size.width,
+                                                           self.toolBar.frame.size.height)];
                          
                          [self.pickerView setFrame:CGRectMake(self.pickerView.frame.origin.x,
-                                                     toolBarYposition+self.toolBar.frame.size.height,
-                                                     self.pickerView.frame.size.width,
-                                                     self.pickerView.frame.size.height)];
+                                                              toolBarYposition+self.toolBar.frame.size.height,
+                                                              self.pickerView.frame.size.width,
+                                                              self.pickerView.frame.size.height)];
                      }
                      completion:nil];
-
+    
 }
 -(void)dismiss:(UIViewController *)controller{
     [UIView animateWithDuration:0.25f
@@ -97,11 +95,11 @@
                      completion:^(BOOL finished) {
                          [self removeFromSuperview];
                      }];
-
+    
 }
 
 -(UIView *)actionToolBar{
-    UIView *tools = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UIView *tools = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 44)];
     tools.backgroundColor = toolBarColor;
     UIButton *cancle = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     
@@ -131,7 +129,7 @@
     NSLayoutConstraint *okConstraintY = [NSLayoutConstraint constraintWithItem:ok attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:tools attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0];
     [tools addConstraint:okConstraintRight];
     [tools addConstraint:okConstraintY];
-
+    
     return tools;
 }
 
@@ -139,7 +137,14 @@
     UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 44, 0, 0)];
     picker.showsSelectionIndicator=YES;
     [picker setBackgroundColor:pickerBgColor];
+    picker.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *pickerConstrainLeft = [NSLayoutConstraint constraintWithItem:picker attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f];
+    NSLayoutConstraint *pickerConstrainRight = [NSLayoutConstraint constraintWithItem:picker attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0f constant:0.0f];
+    NSLayoutConstraint *pickerConstrainVerticalSpace = [NSLayoutConstraint constraintWithItem:picker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.toolBar attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0.0f];
     
+    [self addConstraint:pickerConstrainLeft];
+    [self addConstraint:pickerConstrainRight];
+    [self addConstraint:pickerConstrainVerticalSpace];
     return picker;
 }
 
