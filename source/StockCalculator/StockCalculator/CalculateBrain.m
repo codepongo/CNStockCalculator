@@ -71,14 +71,13 @@
 
 
 - (float) commission:(float)amount {
-    if (amount == 0) {
-        return 0.000;
+    float c = 5.000;
+    if (amount < 10000.000) {
+        return c;
     }
-    float c = (amount * self.rate.commission / 1000);
-    if (c < 5.000) {
-        return 5.000;
-    }
-    return c;
+
+    return (amount * self.rate.commission / 1000);
+
 }
 
 -(float)stamp:(float)amount {
