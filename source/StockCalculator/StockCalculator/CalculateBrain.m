@@ -9,29 +9,28 @@
 #import "CalculateBrain.h"
 #import <Foundation/NSUserDefaults.h>
 
-#pragma mark -
-#pragma mark Trade
-
-@implementation Trade
--(void)setPrice:(float)p {
-    self->_price = p;
-    self->_amount = p * self.quantity;
-}
-
--(void)setQuantity:(NSInteger)q {
-    self->_quantity = q;
-    self->_amount = self.price * q;
-}
-
--(instancetype) initWithPrice:(float)p AndAmount:(float)q {
-    self = [super init];
-    self->_price = p;
-    self.quantity = q;
-    self->_amount = self->_price * self.quantity;
-    return self;
-}
-@synthesize price=_price, quantity=_quantity, amount = _amount;
-@end
+//#pragma mark -
+//#pragma mark Trade
+//
+//@implementation Trade
+//-(void)setPrice:(float)p {
+//    self->_price = p;
+//    self->_amount = p * self.quantity;
+//}
+//
+//-(void)setQuantity:(NSInteger)q {
+//    self->_quantity = q;
+//    self->_amount = self.price * q;
+//}
+//
+//-(instancetype) initWithPrice:(float)p AndAmount:(float)q {
+//    self = [super init];
+//    _price = p;
+//    self.quantity = q;
+//    _amount = _price * self.quantity;
+//    return self;
+//}
+//@end
 
 #pragma mark -
 #pragma mark CalculateBrain
@@ -71,9 +70,12 @@
 
 
 - (float) commission:(float)amount {
-    float c = 5.000;
+    if (amount - 0.000 <= 0.0001)
+    {
+        return 0.000;
+    }
     if (amount < 10000.000) {
-        return c;
+        return 5.000;
     }
 
     return (amount * self.rate.commission / 1000);

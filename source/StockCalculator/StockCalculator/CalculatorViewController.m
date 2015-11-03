@@ -205,7 +205,7 @@
     [duration getValue:&interval];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:interval];
-    //self.layout.frame = frame;
+    self.layout.frame = frame;
 }
 
 - (void)keyboardWillHide:(NSNotification*)note {
@@ -223,6 +223,17 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:interval];
     self.layout.contentOffset = self.layoutOriginContentOffset;
+    
+    CGRect keyboardRect = [self.view convertRect:[[[note userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil];
+    if (CGRectIsEmpty(keyboardRect)) {
+        return;
+    }
+    CGRect frame = self.layout.frame;
+    
+    frame.size.height = keyboardRect.origin.y + self.layout.frame.origin.y + 10;
+    self.layout.frame = frame;
+
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -344,10 +355,14 @@
         footer.reset.layer.borderWidth = 1.0; //边框宽度
         footer.reset.layer.borderColor = footer.reset.titleLabel.textColor.CGColor;
         [footer.reset addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
+        
+        [footer.calculate setBackgroundColor:[UIColor lightGrayColor]];
         footer.calculate.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
         footer.calculate.layer.borderWidth = 1.0; //边框宽度
         footer.calculate.layer.borderColor = footer.calculate.backgroundColor.CGColor;
         [footer.calculate addTarget:self action:@selector(calculate:) forControlEvents:UIControlEventTouchUpInside];
+        [footer.calculate setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+
         
         return (UIView*)footer;
     }
@@ -439,6 +454,9 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
+    if ([self.cur[path.section] count] <= path.row) {
+        return;
+    }
     [self.brain setValue:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
     NSLog(@"%@", textField.text);
     if (![textField.text  isEqual: @""]) {

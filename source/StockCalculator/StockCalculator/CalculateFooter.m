@@ -16,4 +16,5 @@
 @synthesize calculate;
 @synthesize reset;
 
+
 @end

@@ -23,6 +23,7 @@
 		FA6179ED1BE06EA300E4AFA6 /* Rate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6179EC1BE06EA300E4AFA6 /* Rate.m */; };
 		FA6179EF1BE0E79200E4AFA6 /* InputAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */; };
 		FA6179F21BE0EABC00E4AFA6 /* InputAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */; };
+		FA617A061BE8E9FB00E4AFA6 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA617A051BE8E9FB00E4AFA6 /* Trade.swift */; };
 		FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71F91BCEA7D20086F0EB /* AppDelegate.m */; };
 		FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */; };
 		FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */; };
@@ -62,6 +63,8 @@
 		FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputAccessory.xib; sourceTree = "<group>"; };
 		FA6179F01BE0EABC00E4AFA6 /* InputAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAccessory.h; sourceTree = "<group>"; };
 		FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAccessory.m; sourceTree = "<group>"; };
+		FA617A041BE8E9FA00E4AFA6 /* StockCalculator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StockCalculator-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA617A051BE8E9FB00E4AFA6 /* Trade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		FACE71DB1BCEA75C0086F0EB /* StockCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACE71F81BCEA7D20086F0EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACE71F91BCEA7D20086F0EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 			children = (
 				FA2323621BDCB23E004EE7E8 /* CalculateBrain.h */,
 				FA2323631BDCB23E004EE7E8 /* CalculateBrain.m */,
+				FA617A051BE8E9FB00E4AFA6 /* Trade.swift */,
 				FA6179EB1BE06EA300E4AFA6 /* Rate.h */,
 				FA6179EC1BE06EA300E4AFA6 /* Rate.m */,
 			);
@@ -172,6 +176,16 @@
 			name = InputAccessory;
 			sourceTree = "<group>";
 		};
+		FA617A071BE8F61100E4AFA6 /* CalculateFooter */ = {
+			isa = PBXGroup;
+			children = (
+				FA2A9A841BD3DE4700FCC8A5 /* CalculateFooter.h */,
+				FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */,
+				FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */,
+			);
+			name = CalculateFooter;
+			sourceTree = "<group>";
+		};
 		FACE71D21BCEA75B0086F0EB = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +205,7 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FA617A071BE8F61100E4AFA6 /* CalculateFooter */,
 				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
 				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
 				FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */,
@@ -201,9 +216,6 @@
 				FA2A9A981BD9898D00FCC8A5 /* ButtonCell */,
 				FA2323511BDB3C9B004EE7E8 /* InputCellWithUnit */,
 				FA2323501BDB3C7C004EE7E8 /* OutputCell */,
-				FA2A9A841BD3DE4700FCC8A5 /* CalculateFooter.h */,
-				FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */,
-				FA2A9A7B1BD15A1F00FCC8A5 /* CalculateFooter.xib */,
 				FACE720E1BCEA7F40086F0EB /* LaunchScreen.storyboard */,
 				FACE72101BCEA7F40086F0EB /* Main.storyboard */,
 				FACE71F81BCEA7D20086F0EB /* AppDelegate.h */,
@@ -215,6 +227,7 @@
 				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
 				FA2A9A811BD3D79F00FCC8A5 /* TabBarController.h */,
 				FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */,
+				FA617A041BE8E9FA00E4AFA6 /* StockCalculator-Bridging-Header.h */,
 			);
 			path = StockCalculator;
 			sourceTree = "<group>";
@@ -245,6 +258,7 @@
 		FACE71D31BCEA75B0086F0EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = zuohaitao;
 				TargetAttributes = {
@@ -303,6 +317,7 @@
 				FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */,
 				FA23235B1BDB402C004EE7E8 /* SimulateActionSheet.m in Sources */,
 				FACE720C1BCEA7D20086F0EB /* main.m in Sources */,
+				FA617A061BE8E9FB00E4AFA6 /* Trade.swift in Sources */,
 				FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */,
 				FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */,
 				FA2323551BDB3CDC004EE7E8 /* SaveFooter.m in Sources */,
@@ -421,12 +436,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = StockCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepongo.StockCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StockCalculator/StockCalculator-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -435,12 +454,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = StockCalculator/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codepongo.StockCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "StockCalculator/StockCalculator-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

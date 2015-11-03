@@ -8,17 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "Rate.h"
+#import "StockCalculator-Swift.h"
 
-@interface Trade:NSObject {
-    float _amount;
-    float _price;
-    NSInteger _quantity;
-}
-@property (nonatomic) float price;
-@property (nonatomic) NSInteger quantity;
-@property (nonatomic, readonly) float amount;
--(instancetype) initWithPrice:(float)price AndAmount:(float)quantity;
-@end
+//@interface Trade:NSObject {
+//    float _amount;
+//    float _price;
+//    NSInteger _quantity;
+//}
+//@property (nonatomic) float price;
+//@property (nonatomic) NSInteger quantity;
+//@property (nonatomic, readonly) float amount;
+//-(instancetype) initWithPrice:(float)price AndAmount:(float)quantity;
+//@end
 
 @interface CalculateBrain : NSObject
 @property (nonatomic, copy) NSString* code;
