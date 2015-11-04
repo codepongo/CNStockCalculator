@@ -494,16 +494,21 @@
     self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f %@", stamp, self.cur[1][0][@"unit"]];
     self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f %@", commission, self.cur[1][0][@"unit"]];
     self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f %@", taxesAndDuties, self.cur[1][0][@"unit"]];
+  
+    self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
+    
+    self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
+    
+    
+    [self.layout reloadData];
+    OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];
+    
     if (self.brain.calculateForGainOrLoss && result < 0) {
-        OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];
         c.result.textColor = [UIColor greenColor];
     }
     if (self.brain.calculateForGainOrLoss && result > 0) {
-        OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];
         c.result.textColor = [UIColor redColor];
     }
-    self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
-    [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
