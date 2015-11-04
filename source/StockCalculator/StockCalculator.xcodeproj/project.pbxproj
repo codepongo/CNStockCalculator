@@ -205,12 +205,12 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				FA617A071BE8F61100E4AFA6 /* CalculateFooter */,
 				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
 				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
 				FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */,
 				FA6179F31BE1060100E4AFA6 /* InputAccessory */,
 				FA23235C1BDB4031004EE7E8 /* SimulateActionSheet */,
+				FA617A071BE8F61100E4AFA6 /* CalculateFooter */,
 				FA2323571BDB3CE3004EE7E8 /* SaveFooter */,
 				FA2323661BDD1D19004EE7E8 /* InputCell */,
 				FA2A9A981BD9898D00FCC8A5 /* ButtonCell */,

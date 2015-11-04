@@ -44,7 +44,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.keyBoardBackground = [[UIButton alloc]initWithFrame:self.layout.frame];
     self.keyBoardBackground.backgroundColor = [UIColor clearColor];
-    [self.keyBoardBackground addTarget:self action:@selector(hideKeyBoard:) forControlEvents:UIControlEventTouchDown];
+    [self.keyBoardBackground addTarget:self action:@selector(hideKeyBoard) forControlEvents:UIControlEventTouchDown];
     self.keyBoardBackground.hidden = YES;
     [self.layout registerNib:[UINib nibWithNibName:@"InputCell" bundle:nil]forCellReuseIdentifier:@"InputCell"];
     [self.layout registerNib:[UINib nibWithNibName:@"InputCellWithUnit" bundle:nil] forCellReuseIdentifier:@"InputCellWithUnit"];
@@ -58,8 +58,8 @@
                      @{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"股票代码"
-                         ,@"placeholder":@"代码／名称"
-                         ,@"keyboardtype":[NSNumber numberWithInt:UIKeyboardTypeDefault]
+                         ,@"placeholder":@"代码"
+                         ,@"keyboardtype":[NSNumber numberWithInt:UIKeyboardTypeNumberPad]
                          ,@"value":@"code"
                          }
                      ,@{
@@ -70,7 +70,7 @@
                      ,@{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"买入价格"
-                         ,@"placeholder":@"0.00"
+                         ,@"placeholder":@"0.00 元／股"
                          ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"buy.price"
@@ -78,7 +78,7 @@
                      ,@{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"买入数量"
-                         ,@"placeholder":@"0"
+                         ,@"placeholder":@"0 股"
                          ,@"unit":@"股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"buy.quantity"
@@ -86,7 +86,7 @@
                      ,@{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"卖出价格"
-                         ,@"placeholder":@"0.00"
+                         ,@"placeholder":@"0.00 元／股"
                          ,@"unit":@"元／股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"sell.price"
@@ -94,7 +94,7 @@
                      ,@{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"卖出数量"
-                         ,@"placeholder":@"0"
+                         ,@"placeholder":@"0 股"
                          ,@"unit":@"股"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"sell.quantity"
@@ -102,14 +102,14 @@
                      ,@{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"佣金比率"
-                         ,@"placeholder":@"0‰（不足1万元，按5元收取）"
+                         ,@"placeholder":@"0‰（不足5元，按5元收取）"
                          ,@"unit":@"‰"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.commission"
                          },@{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"印花税率"
-                         ,@"placeholder":@"0.1‰（仅在卖出征收）"
+                         ,@"placeholder":@"（仅在卖出征收1‰）"
                          ,@"unit":@"‰"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.stamp"
@@ -117,8 +117,8 @@
                      @{
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"过户费率"
-                         ,@"placeholder":@"1元／千股（最低1元收取）"
-                         ,@"unit":@"元／千股"
+                         ,@"placeholder":@"（0.02 ‰）"
+                         ,@"unit":@"‰"
                          ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
                          ,@"value":@"rate.transfer"
                          }
@@ -167,7 +167,7 @@
 #pragma mark -
 #pragma mark KeyBoard Methods
 
--(void)hideKeyBoard:(id)sender {
+-(void)hideKeyBoard {
     UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -186,35 +186,37 @@
 
 -(void) keyboardWillShow:(NSNotification *)note
 {
-//    if (self.keyBoardBackground.hidden == NO) {
-//        return;
-//    }
-//    [self.view addSubview:self.keyBoardBackground];
-//    self.keyBoardBackground.hidden = NO;
- #define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
+    //    if (self.keyBoardBackground.hidden == NO) {
+    //        return;
+    //    }
+    //    [self.view addSubview:self.keyBoardBackground];
+    //    self.keyBoardBackground.hidden = NO;
+#define _UIKeyboardFrameEndUserInfoKey (&UIKeyboardFrameEndUserInfoKey != NULL ? UIKeyboardFrameEndUserInfoKey : @"UIKeyboardBoundsUserInfoKey")
     CGRect keyboardRect = [self.view convertRect:[[[note userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil];
     if (CGRectIsEmpty(keyboardRect)) {
         return;
     }
     
-    self.layoutOriginContentOffset = self.layout.contentOffset;
-    CGRect frame = self.layout.frame;
-    frame.size.height = keyboardRect.origin.y - self.layout.frame.origin.y - 10;
+    self.layout.contentInset = UIEdgeInsetsMake(self.layout.contentInset.top, 0, keyboardRect.size.height, 0);
+    
+    //    self.layoutOriginContentOffset = self.layout.contentOffset;
+    //    CGRect frame = self.layout.frame;
+    //    frame.size.height = keyboardRect.origin.y - self.layout.frame.origin.y - 10;
     NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval interval;
     [duration getValue:&interval];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:interval];
-    self.layout.frame = frame;
+    //    self.layout.frame = frame;
 }
 
 - (void)keyboardWillHide:(NSNotification*)note {
-//    if (self.keyBoardBackground.hidden == YES) {
-//        return;
-//    }
-//    self.keyBoardBackground.hidden = YES;
-//    [self.keyBoardBackground removeFromSuperview];
-//    
+    //    if (self.keyBoardBackground.hidden == YES) {
+    //        return;
+    //    }
+    //    self.keyBoardBackground.hidden = YES;
+    //    [self.keyBoardBackground removeFromSuperview];
+    //
     
     NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval interval;
@@ -228,12 +230,13 @@
     if (CGRectIsEmpty(keyboardRect)) {
         return;
     }
-    CGRect frame = self.layout.frame;
+    self.layout.contentInset = UIEdgeInsetsMake(self.layout.contentInset.top, 0, 0, 0);
+    //    CGRect frame = self.layout.frame;
+    //
+    //    frame.size.height = keyboardRect.origin.y + self.layout.frame.origin.y + 10;
+    //    self.layout.frame = frame;
     
-    frame.size.height = keyboardRect.origin.y + self.layout.frame.origin.y + 10;
-    self.layout.frame = frame;
-
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -289,10 +292,10 @@
         c.input.keyboardType = [item[@"inputtype"] integerValue];
         
         InputAccessory* a = [[[NSBundle mainBundle]loadNibNamed:@"InputAccessory" owner:nil options:nil] objectAtIndex:0];
-        a.done.action = @selector(hideKeyBoard:);
-        //[a.done addTarget:self action:@selector(hideKeyBoard:) forControlEvents:UIControlEventTouchUpInside];
+        a.done.action = @selector(hideKeyBoard);
+        //[a.done addTarget:self action:@selector(hideKeyBoard) forControlEvents:UIControlEventTouchUpInside];
         c.input.inputAccessoryView = a;
-       return c;
+        return c;
     }
     if ([cellId  isEqual: @"InputCellWithUnit"]) {
         InputCellWithUnit* c = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -308,7 +311,7 @@
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
         self.marketOfStock = c.button;
         [c.button addTarget:self action:@selector(selectMarketOfStock:) forControlEvents:UIControlEventTouchUpInside];
-//        c.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        //        c.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [c.button setTitle:self.pickerData[self.selectedIndexInSheet] forState:UIControlStateNormal];
         
         return c;
@@ -356,13 +359,13 @@
         footer.reset.layer.borderColor = footer.reset.titleLabel.textColor.CGColor;
         [footer.reset addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
         
-        [footer.calculate setBackgroundColor:[UIColor lightGrayColor]];
         footer.calculate.layer.cornerRadius = 5.0; //设置矩形四个圆角半径
         footer.calculate.layer.borderWidth = 1.0; //边框宽度
+        
         footer.calculate.layer.borderColor = footer.calculate.backgroundColor.CGColor;
         [footer.calculate addTarget:self action:@selector(calculate:) forControlEvents:UIControlEventTouchUpInside];
-        [footer.calculate setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
-
+        [footer.calculate setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+        
         
         return (UIView*)footer;
     }
@@ -382,6 +385,7 @@
 #pragma mark Outlet Action Methods
 
 -(void) selectMarketOfStock:(id)sender{
+    [self hideKeyBoard];
     UIButton* button = sender;
     if (self.sheet == nil) {
         self.sheet = [SimulateActionSheet styleDefault];
@@ -400,6 +404,83 @@
 }
 
 -(void) calculate:(id)sender{
+    
+    if (self.brain.buy.price == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    if (self.brain.buy.quantity == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (self.brain.calculateForGainOrLoss) {
+        if (self.brain.sell.price == 0) {
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            return;
+        }
+        
+        if (self.brain.sell.quantity == 0) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            return;
+        }
+    }
+    
+    if (self.brain.rate.commission == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    if (self.brain.rate.commission == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"印花税率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    if (!self.brain.inSZ && self.brain.rate.commission == 0){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"过户费率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+
+    
+    
     if (self.cur.count == 1) {
         [self.cur addObject:[self.all objectAtIndex:1]];
     }
@@ -413,6 +494,14 @@
     self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f %@", stamp, self.cur[1][0][@"unit"]];
     self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f %@", commission, self.cur[1][0][@"unit"]];
     self.cur[1][3][@"value"] = [NSString stringWithFormat:@"%.2f %@", taxesAndDuties, self.cur[1][0][@"unit"]];
+    if (self.brain.calculateForGainOrLoss && result < 0) {
+        OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];
+        c.result.textColor = [UIColor greenColor];
+    }
+    if (self.brain.calculateForGainOrLoss && result > 0) {
+        OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]];
+        c.result.textColor = [UIColor redColor];
+    }
     self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
     [self.layout reloadData];
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
@@ -546,7 +635,7 @@
     [self.marketOfStock setTitle:self.pickerData[self.selectedIndexInSheet] forState:UIControlStateNormal];
     
     self.brain.inSZ = self.selectedIndexInSheet == 0 ? NO:YES;
-
+    
     if (self.brain.inSZ) {
         [self.cur[0] removeLastObject];
     }
