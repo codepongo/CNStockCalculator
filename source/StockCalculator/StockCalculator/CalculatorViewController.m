@@ -202,11 +202,11 @@
     //    self.layoutOriginContentOffset = self.layout.contentOffset;
     //    CGRect frame = self.layout.frame;
     //    frame.size.height = keyboardRect.origin.y - self.layout.frame.origin.y - 10;
-    NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval interval;
-    [duration getValue:&interval];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:interval];
+//    NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    NSTimeInterval interval;
+//    [duration getValue:&interval];
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:interval];
     //    self.layout.frame = frame;
 }
 
@@ -218,12 +218,11 @@
     //    [self.keyBoardBackground removeFromSuperview];
     //
     
-    NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    NSTimeInterval interval;
-    [duration getValue:&interval];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:interval];
+//    NSValue* duration = [[note userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    NSTimeInterval interval;
+//    [duration getValue:&interval];
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:interval];
     self.layout.contentOffset = self.layoutOriginContentOffset;
     
     CGRect keyboardRect = [self.view convertRect:[[[note userInfo] objectForKey:_UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil];
@@ -329,8 +328,18 @@
             else {
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForBreakevenPrice"];
             }
+            
+            float r = [self.brain resultOfTrade];
+            if (r < 0) {
+                c.result.textColor =[UIColor greenColor];
+            }
+            else if (r > 0) {
+                c.result.textColor = [UIColor redColor];
+            }
+            else {
+                c.result.textColor = [UIColor blackColor];
+            }
         }
-        
         c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
         return c;
     }
@@ -481,15 +490,27 @@
 
     
     
-    if (self.cur.count == 1) {
-        [self.cur addObject:[self.all objectAtIndex:1]];
-    }
+
     //brain calculates.
     float transfer = [self.brain transferOfTrade];
     float stamp = [self.brain stampOfTrade];
     float commission = [self.brain commissionOfTrade];
     float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
     float result = [self.brain resultOfTrade];
+    if (self.cur.count == 1) {
+        [self.cur addObject:[self.all objectAtIndex:1]];
+    }
+    else {
+        OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];
+        
+        if (self.brain.calculateForGainOrLoss && result < 0) {
+            c.result.textColor = [UIColor greenColor];
+        }
+        if (self.brain.calculateForGainOrLoss && result > 0) {
+            c.result.textColor = [UIColor redColor];
+        }
+    }
+
     [self.cur[1][0] setObject:[NSString stringWithFormat:@"%.2f %@", transfer, self.cur[1][0][@"unit"]] forKey:@"value"];
     self.cur[1][1][@"value"] = [NSString stringWithFormat:@"%.2f %@", stamp, self.cur[1][0][@"unit"]];
     self.cur[1][2][@"value"] = [NSString stringWithFormat:@"%.2f %@", commission, self.cur[1][0][@"unit"]];
@@ -498,17 +519,9 @@
     self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
     
     self.cur[1][4][@"value"] = [NSString stringWithFormat:@"%.2f %@", result, self.cur[1][0][@"unit"]];
-    
-    
+ 
     [self.layout reloadData];
-    OutputCell* c = [self.layout cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]];
-    
-    if (self.brain.calculateForGainOrLoss && result < 0) {
-        c.result.textColor = [UIColor greenColor];
-    }
-    if (self.brain.calculateForGainOrLoss && result > 0) {
-        c.result.textColor = [UIColor redColor];
-    }
+
     NSIndexPath* path = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.layout scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
