@@ -559,6 +559,9 @@
 #pragma mark -
 #pragma mark Text Field Delegate Methods
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.text = @"";
+}
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)textField.superview.superview];
     if ([self.cur[path.section] count] <= path.row) {

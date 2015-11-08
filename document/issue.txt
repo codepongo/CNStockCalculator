@@ -55,8 +55,11 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o] 保存rate
 [o] 初始化数据
 [o] 深圳A股 隐藏结果中的过户费
-[] input数据不足则计算按钮保持灰色
-[
+[o] input数据不足则弹出消息框提示
+[] 投资损益应该算你卖出多少股的损益
+[] 建议佣金买入和卖出分开，你买的不是一次就卖出了
+[] 光标在佣金比率，不输入内容，光标换到税，佣金比率百分号嗷嗷增加
+[] 重置时，佣金比率和税率不晴空
 
 ## Option ##
 [o] * 批量注释 command+/
