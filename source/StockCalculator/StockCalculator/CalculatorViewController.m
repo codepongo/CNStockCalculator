@@ -17,6 +17,7 @@
 #import "SimulateActionSheet.h"
 #import "CalculateBrain.h"
 #import "InputAccessory.h"
+#import "OutputCellWithComment.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
@@ -49,6 +50,8 @@
     [self.layout registerNib:[UINib nibWithNibName:@"InputCell" bundle:nil]forCellReuseIdentifier:@"InputCell"];
     [self.layout registerNib:[UINib nibWithNibName:@"InputCellWithUnit" bundle:nil] forCellReuseIdentifier:@"InputCellWithUnit"];
     [self.layout registerNib:[UINib nibWithNibName:@"OutputCell" bundle:nil] forCellReuseIdentifier:@"OutputCell"];
+    [self.layout registerNib:[UINib nibWithNibName:@"OutputCellWithComment" bundle:nil] forCellReuseIdentifier:@"OutputCellWithComment"];
+    
     [self.layout registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:@"ButtonCell"];
     [self.layout registerNib:[UINib nibWithNibName:@"CalculateFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"CalculateFooter"];
     [self.layout registerNib:[UINib nibWithNibName:@"SaveFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"SaveFooter"];
@@ -128,19 +131,21 @@
                                                                      @"cellReuseIdentifier":@"OutputCell"
                                                                      ,@"title": @"过户费"
                                                                      ,@"value": @"0.00"
-                                                                     ,@"unit":@"元"
+                                                                     ,@"unit":@"元"                                                                              ,@"instruction":@"过户费属于登记结算机构的收入。买入、卖出双向收取。"
                                                                      }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
-                                                                      @"cellReuseIdentifier":@"OutputCell"
+                                                                      @"cellReuseIdentifier":@"OutputCellWithComment"
                                                                       ,@"title": @"印花税"
                                                                       ,@"value": @"0.00"
                                                                       ,@"unit":@"元"
+                                                                      ,@"instruction":@"由政府收取。卖出单边征收。"
                                                                       }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
                                                                       @"cellReuseIdentifier":@"OutputCell"
                                                                       ,@"title": @"券商佣金"
                                                                       ,@"value": @"0.00"
                                                                       ,@"unit":@"元"
+                                                                      ,@"instruction":@"属于券商的收入。买入、卖出双向收取。"
                                                                       }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
                                                                       @"cellReuseIdentifier":@"OutputCell"
@@ -315,11 +320,25 @@
         
         return c;
     }
+    if ([cellId isEqual:@"OutputCellWithComment"]) {
+        OutputCellWithComment* c = [tableView dequeueReusableCellWithIdentifier:cellId];
+        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
+        c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
+        
+        [c.comment addTarget:self action:@selector(detail) forControlEvents:UIControlEventTouchDown];
+        return c;
+   
+    }
     if ([cellId  isEqual: @"OutputCell"]) {
         OutputCell* c = [tableView dequeueReusableCellWithIdentifier:@"OutputCell"];
         NSString* title = self.cur[indexPath.section][indexPath.row][@"title"];
         if (nil != title) {
             c.title.text = title;
+            
+            NSString* instruction = self.cur[indexPath.section][indexPath.row][@"instruction"];
+            if (instruction != nil) {
+                c.accessoryType = UITableViewCellAccessoryDetailButton;
+            }
         }
         else {
             if ([self.brain calculateForGainOrLoss]) {
@@ -339,6 +358,7 @@
             else {
                 c.result.textColor = [UIColor blackColor];
             }
+
         }
         c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
         return c;
@@ -389,6 +409,26 @@
     return tableView.tableFooterView;
 }
 
+-(void)detail {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:self.cur[1][1][@"title"] message:self.cur[1][1][@"instruction"] preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:self.cur[indexPath.section][indexPath.row][@"title"] message:self.cur[indexPath.section][indexPath.row][@"instruction"] preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
 
 #pragma mark -
 #pragma mark Outlet Action Methods
@@ -414,49 +454,49 @@
 
 -(void) calculate:(id)sender{
     
-    if (self.brain.buy.price == 0) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    
-    if (self.brain.buy.quantity == 0) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    if (self.brain.calculateForGainOrLoss) {
-        if (self.brain.sell.price == 0) {
-            
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            return;
-        }
-        
-        if (self.brain.sell.quantity == 0) {
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-            
-            [alert addAction:defaultAction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-            return;
-        }
-    }
+//    if (self.brain.buy.price == 0) {
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//        
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
+//    
+//    if (self.brain.buy.quantity == 0) {
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//        
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
+//    if (self.brain.calculateForGainOrLoss) {
+//        if (self.brain.sell.price == 0) {
+//            
+//            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//            
+//            [alert addAction:defaultAction];
+//            [self presentViewController:alert animated:YES completion:nil];
+//            
+//            return;
+//        }
+//        
+//        if (self.brain.sell.quantity == 0) {
+//            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//            
+//            [alert addAction:defaultAction];
+//            [self presentViewController:alert animated:YES completion:nil];
+//            
+//            return;
+//        }
+//    }
     
     if (self.brain.rate.commission == 0) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];

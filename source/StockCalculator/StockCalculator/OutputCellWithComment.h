@@ -1,5 +1,5 @@
 //
-//  OutputCell.h
+//  OutputCellWithComment.h
 //  cnstockcalculator
 //
 //  Created by zuohaitao on 15/10/14.
@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface OutputCell : UITableViewCell
+@interface OutputCellWithComment : UITableViewCell
 
 @property(nonatomic, weak) IBOutlet UILabel* title;
 @property(weak, nonatomic) IBOutlet UILabel *result;
+@property IBOutlet UIButton* comment;
 @end
