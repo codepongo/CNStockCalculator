@@ -337,7 +337,14 @@
             
             NSString* instruction = self.cur[indexPath.section][indexPath.row][@"instruction"];
             if (instruction != nil) {
-                c.accessoryType = UITableViewCellAccessoryDetailButton;
+                //UIImage* image = [UIImage imageNamed:@"instruction"];
+                
+                //c.accessoryView =
+                //UIImageView* v = [[UIImageView alloc] initWithImage:];
+                //c.bounds =
+                
+                
+                //c.accessoryType = UITableViewCellAccessoryDetailButton;
             }
         }
         else {

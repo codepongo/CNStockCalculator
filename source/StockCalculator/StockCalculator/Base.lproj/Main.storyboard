@@ -19,7 +19,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="Ecw-Rm-bc0" userLabel="Settings"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="settings" id="Ecw-Rm-bc0" userLabel="Settings"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qj-8z-t3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,13 +62,13 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="list" id="acW-dT-cKf" userLabel="Record"/>
+                    <tabBarItem key="tabBarItem" title="记录" image="list" id="acW-dT-cKf" userLabel="Record"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="254" y="-286"/>
         </scene>
-        <!--Calculator-->
+        <!--计算-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="CalculatorViewController" sceneMemberID="viewController">
@@ -118,7 +118,7 @@
                             <constraint firstItem="bon-TR-Apk" firstAttribute="trailing" secondItem="Ho5-rs-mnP" secondAttribute="trailingMargin" id="wDz-fY-3e0"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calculator" image="stock" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="计算" image="stock" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="layout" destination="xr7-Ew-KwC" id="GhK-TW-KNn"/>
                     </connections>
