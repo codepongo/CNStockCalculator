@@ -337,10 +337,12 @@
             
             NSString* instruction = self.cur[indexPath.section][indexPath.row][@"instruction"];
             if (instruction != nil) {
-                //UIImage* image = [UIImage imageNamed:@"instruction"];
+                UIImage* image = [UIImage imageNamed:@"instruction"];
+                UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width,image.size.height)];
+                [b setImage:image forState:UIControlStateNormal];
+                [b addTarget:self action:@selector(showInstruction:) forControlEvents:UIControlEventTouchUpInside];
                 
-                //c.accessoryView =
-                //UIImageView* v = [[UIImageView alloc] initWithImage:];
+                c.accessoryView = b;//[[UIImageView alloc] initWithImage:image];
                 //c.bounds =
                 
                 
@@ -440,6 +442,11 @@
 #pragma mark -
 #pragma mark Outlet Action Methods
 
+-(void) showInstruction:(id)sender {
+    UIButton* b = sender;
+    NSIndexPath* path = [self.layout indexPathForCell:(UITableViewCell*)b.superview];
+    [self tableView:self.layout accessoryButtonTappedForRowWithIndexPath:path];
+}
 -(void) selectMarketOfStock:(id)sender{
     [self hideKeyBoard];
     UIButton* button = sender;
