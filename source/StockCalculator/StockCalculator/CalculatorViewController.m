@@ -17,7 +17,6 @@
 #import "SimulateActionSheet.h"
 #import "CalculateBrain.h"
 #import "InputAccessory.h"
-#import "OutputCellWithComment.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
@@ -50,7 +49,6 @@
     [self.layout registerNib:[UINib nibWithNibName:@"InputCell" bundle:nil]forCellReuseIdentifier:@"InputCell"];
     [self.layout registerNib:[UINib nibWithNibName:@"InputCellWithUnit" bundle:nil] forCellReuseIdentifier:@"InputCellWithUnit"];
     [self.layout registerNib:[UINib nibWithNibName:@"OutputCell" bundle:nil] forCellReuseIdentifier:@"OutputCell"];
-    [self.layout registerNib:[UINib nibWithNibName:@"OutputCellWithComment" bundle:nil] forCellReuseIdentifier:@"OutputCellWithComment"];
     
     [self.layout registerNib:[UINib nibWithNibName:@"ButtonCell" bundle:nil] forCellReuseIdentifier:@"ButtonCell"];
     [self.layout registerNib:[UINib nibWithNibName:@"CalculateFooter" bundle:nil] forHeaderFooterViewReuseIdentifier:@"CalculateFooter"];
@@ -134,7 +132,7 @@
                                                                      ,@"unit":@"元"                                                                              ,@"instruction":@"过户费属于登记结算机构的收入。买入、卖出双向收取。"
                                                                      }]
                      ,[NSMutableDictionary dictionaryWithDictionary:@{
-                                                                      @"cellReuseIdentifier":@"OutputCellWithComment"
+                                                                      @"cellReuseIdentifier":@"OutputCell"
                                                                       ,@"title": @"印花税"
                                                                       ,@"value": @"0.00"
                                                                       ,@"unit":@"元"
@@ -320,15 +318,6 @@
         
         return c;
     }
-    if ([cellId isEqual:@"OutputCellWithComment"]) {
-        OutputCellWithComment* c = [tableView dequeueReusableCellWithIdentifier:cellId];
-        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-        c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
-        
-        [c.comment addTarget:self action:@selector(detail) forControlEvents:UIControlEventTouchDown];
-        return c;
-   
-    }
     if ([cellId  isEqual: @"OutputCell"]) {
         OutputCell* c = [tableView dequeueReusableCellWithIdentifier:@"OutputCell"];
         NSString* title = self.cur[indexPath.section][indexPath.row][@"title"];
@@ -338,7 +327,7 @@
             NSString* instruction = self.cur[indexPath.section][indexPath.row][@"instruction"];
             if (instruction != nil) {
                 UIImage* image = [UIImage imageNamed:@"instruction"];
-                UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, image.size.width,image.size.height)];
+                UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32,c.contentView.frame.size.height)];
                 [b setImage:image forState:UIControlStateNormal];
                 [b addTarget:self action:@selector(showInstruction:) forControlEvents:UIControlEventTouchUpInside];
                 
@@ -347,6 +336,10 @@
                 
                 
                 //c.accessoryType = UITableViewCellAccessoryDetailButton;
+            }
+            else {
+                UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];
+                c.accessoryView = v;
             }
         }
         else {
@@ -367,6 +360,8 @@
             else {
                 c.result.textColor = [UIColor blackColor];
             }
+            UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];
+            c.accessoryView = v;
 
         }
         c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
@@ -511,36 +506,36 @@
 //            return;
 //        }
 //    }
-    
-    if (self.brain.rate.commission == 0) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    
-    if (self.brain.rate.commission == 0) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"印花税率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
-    
-    if (!self.brain.inSZ && self.brain.rate.commission == 0){
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"过户费率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-        
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-        return;
-    }
+//
+//    if (self.brain.rate.commission == 0) {
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//        
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
+//    
+//    if (self.brain.rate.commission == 0) {
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"印花税率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//        
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
+//    
+//    if (!self.brain.inSZ && self.brain.rate.commission == 0){
+//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"过户费率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+//        
+//        [alert addAction:defaultAction];
+//        [self presentViewController:alert animated:YES completion:nil];
+//        return;
+//    }
 
     
     

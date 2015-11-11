@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r86-m8-hhn">
-                        <rect key="frame" x="118" y="0.0" width="194" height="32"/>
+                        <rect key="frame" x="118" y="0.0" width="162" height="32"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,7 +37,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="RN7-HM-SHl" secondAttribute="bottom" constant="-8" id="6Ce-Gj-53c"/>
                     <constraint firstItem="r86-m8-hhn" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="topMargin" constant="-8" id="DQq-fc-o2K" userLabel="Label.top = top"/>
                     <constraint firstAttribute="leadingMargin" secondItem="RN7-HM-SHl" secondAttribute="leading" id="Kxe-ew-NuK"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="r86-m8-hhn" secondAttribute="trailing" id="Ndg-0h-5xx"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="r86-m8-hhn" secondAttribute="trailing" constant="32" id="Ndg-0h-5xx"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="topMargin" constant="-8" id="UxD-Fb-y6m"/>
                     <constraint firstItem="r86-m8-hhn" firstAttribute="leading" secondItem="RN7-HM-SHl" secondAttribute="trailing" constant="20" id="lV5-rg-OQT" userLabel="Label.leading = Title.trailing"/>
                     <constraint firstItem="RN7-HM-SHl" firstAttribute="top" secondItem="ZAZ-Lb-YSg" secondAttribute="top" id="rHE-rM-MCT"/>
