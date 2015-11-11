@@ -11,7 +11,6 @@
 // Private methods
 @interface SQLiteManager (Private)
 
-- (NSString *)getDatabasePath;
 - (NSError *)createDBErrorWithDescription:(NSString*)description andCode:(int)code;
 
 @end
@@ -436,12 +435,6 @@
 	return dump;
 }
 
-@end
-
-
-#pragma mark -
-@implementation SQLiteManager (Private)
-
 /**
  * Gets the database file path (in NSDocumentDirectory).
  *
@@ -449,18 +442,25 @@
  */
 
 - (NSString *)getDatabasePath{
-	
-	if([[NSFileManager defaultManager] fileExistsAtPath:databaseName]){
-		// Already Full Path
-		return databaseName;
-	} else {
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:databaseName]){
+        // Already Full Path
+        return databaseName;
+    } else {
         // Get the documents directory
         NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docsDir = [dirPaths objectAtIndex:0];
         
         return [docsDir stringByAppendingPathComponent:databaseName];
-	}
+    }
 }
+@end
+
+
+#pragma mark -
+@implementation SQLiteManager (Private)
+
+
 
 /**
  * Creates an NSError.

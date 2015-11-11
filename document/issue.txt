@@ -61,7 +61,7 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o] 光标在佣金比率，不输入内容，光标换到税，佣金比率百分号嗷嗷增加
 [x] 重置时，佣金比率和税率不晴空
 [ ]测试instruction在真机上的表现
-[ ]设计记录数据库 表结构
+[o]设计记录数据库 表结构
 [ ]implementation insert record function of Record class
 [ ]实现保存按钮
 [ ]test the sqlite in iPhone
