@@ -7,9 +7,10 @@
 //
 
 #import "TabBarController.h"
+#import "Record.h"
 
 @interface TabBarController ()
-
+@property Record* record;
 @end
 
 @implementation TabBarController
@@ -18,6 +19,7 @@
     [super viewDidLoad];
     self.selectedIndex = 1;
     // Do any additional setup after loading the view.
+    self.record = [[Record alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
