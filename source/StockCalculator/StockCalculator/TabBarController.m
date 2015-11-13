@@ -18,8 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.selectedIndex = 1;
+    self.extendedLayoutIncludesOpaqueBars = NO;
     // Do any additional setup after loading the view.
     self.record = [[Record alloc]init];
+    
 }
 
 - (void)didReceiveMemoryWarning {
