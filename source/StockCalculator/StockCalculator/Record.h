@@ -11,4 +11,7 @@
 
 @interface Record : NSObject
 @property SQLiteManager* db;
++ (instancetype) sharedRecord;
+- (bool)add:(NSDictionary*)record;
 @end
+static Record* instance;

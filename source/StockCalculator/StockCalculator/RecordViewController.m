@@ -7,12 +7,16 @@
 //
 
 #import "RecordViewController.h"
+#import "Record.h"
 
 @interface RecordViewController ()
 
 @end
 
 @implementation RecordViewController
+
+-(void)dealloc {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -9,22 +9,37 @@
 #import "Record.h"
 #import "Rate.h"
 #import "StockCalculator-Swift.h"
-
+@interface Record()
+-(instancetype)init;
+@end
 @implementation Record
--(id)init {
++ (instancetype)sharedRecord {
+    @synchronized(self) {
+        if (instance == nil) {
+            instance = [[Record alloc] init];
+            return instance;
+        }
+        return instance;
+    }
+}
+
+-(instancetype)init {
     if (self = [super init]) {
         self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
-//        {
-//            NSFileManager *f = [NSFileManager defaultManager];
-//            BOOL bRet = [f fileExistsAtPath:[self.db getDatabasePath]];
-//            if (bRet) {
-//                NSError *err;
-//                [f removeItemAtPath:[self.db getDatabasePath] error:&err];
-//            }
-//            self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
-//
-//        }
-       NSError *error = [self.db doQuery:@"CREATE TABLE IF NOT EXISTS record (code TEXT, buyingprice FLOAT, buyingamount FLOAT, sellingprice FLOAT, sellingamount FLOAT, commission FLOAT, stamp FLOAT, transfer FLOAT, taxandduties FLOAT, gainorlost FLOAT, breakevenprice FLOAT, commissionrate FLOAT, stamprate FLOAT, transferrate FLOATß);"];
+        {
+            NSFileManager *f = [NSFileManager defaultManager];
+            BOOL bRet = [f fileExistsAtPath:[self.db getDatabasePath]];
+            if (bRet) {
+                NSError *err;
+                [f removeItemAtPath:[self.db getDatabasePath] error:&err];
+            }
+            self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
+            
+        }
+//        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT, buy.price FLOAT, buy.quantity FLOAT, sell.price FLOAT, sell.quantity FLOAT, commission FLOAT, stamp FLOAT, transfer FLOAT, taxandduties FLOAT, gainorlost FLOAT, breakevenprice FLOAT, commissionrate FLOAT, stamprate FLOAT, transferrate FLOAT);";
+        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT);";
+        
+        NSError *error = [self.db doQuery:sqlSentence];
         
         if (error != nil) {
             NSLog(@"Error: %@",[error localizedDescription]);
@@ -37,14 +52,54 @@
     }
     return nil;
 }
-//
-//-(BOOL)add:(NSDictionary*)record {
-//    NSString* code = [record objectForKey:@"code"];
+
+-(BOOL)add:(NSDictionary*)record{
+    NSString* code = [record objectForKey:@"code"];
 //    Trade* buy = [[Trade alloc]init];
-//    buy.price = ((NSNumber*)[record objectForKey:@"buyingprice"]).floatValue;
-//    return YES;
+//    buy.price = ((NSNumber*)[record objectForKey:@"buy.price"]).floatValue;
+//    buy.quantity = ((NSNumber*)[record objectForKey:@"buy.quantity"]).floatValue;
 //    
-//}
+//    Trade* sell = [[Trade alloc]init];
+//    sell.price = ((NSNumber*)[record objectForKey:@"sell.price"]).floatValue;
+//    sell.quantity = ((NSNumber*)[record objectForKey:@"sell.quantity"]).floatValue;
+//    Rate* rate = [[Rate alloc] init];
+//    rate.commission = ((NSNumber*)[record objectForKey:@"rate.commission"]).floatValue;
+//    rate.stamp = ((NSNumber*)[record objectForKey:@"rate.stamp"]).floatValue;
+//    rate.transfer = ((NSNumber*)[record objectForKey:@"rate.transfer"]).floatValue;
+//    
+//    float commission = ((NSNumber*)[record objectForKey:@"commission"]).floatValue;
+//    float stamp = ((NSNumber*)[record objectForKey:@"stamp"]).floatValue;
+//    float transfer = ((NSNumber*)[record objectForKey:@"transfer"]).floatValue;
+//    float taxAndDuties = ((NSNumber*)[record objectForKey:@"taxandduties"]).floatValue;
+//    NSString* gainOrLoss = @"null";
+//    {
+//        NSNumber* result = [record objectForKey:@"gainorlost"];
+//        if (result != nil) {
+//            gainOrLoss = [NSString stringWithFormat:@"'%@'", result.stringValue];
+//            
+//        }
+//    }
+//    NSString* breakevenPrice = @"null";
+//    {
+//        NSNumber* result = [record objectForKey:@"breakevenprice"];
+//        if (result != nil) {
+//            breakevenPrice = [NSString stringWithFormat:@"'%@'", result.stringValue];
+//        }
+//    }
+    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (code) values ('%@');",code];
+    
+//    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (code, buy.price, buy.quantity, sell.price, sell.quantity, rate.commission, rate.stamp, rate.transfer, commission, stamp, transfer, taxandduties, gainorlost, breakevenprice) values ('%@',%f, %f, %f, %f, %f,%f,%f, %f,%f, %f,%f, %@, %@);",code, buy.price, buy.quantity, sell.price, sell.quantity, rate.commission, rate.stamp, rate.transfer, commission, stamp, transfer,taxAndDuties, gainOrLoss, breakevenPrice];
+    NSError *error = [self.db doQuery:sqlSentence];
+    if (error != nil) {
+        NSLog(@"Error: %@",[error localizedDescription]);
+    }
+    
+    NSString *dump = [self.db getDatabaseDump];
+    NSLog(@"%@", dump);
+    
+    return YES;
+    
+}
 
 
 @end

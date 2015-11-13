@@ -60,13 +60,16 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [] 建议佣金买入和卖出分开，你买的不是一次就卖出了
 [o] 光标在佣金比率，不输入内容，光标换到税，佣金比率百分号嗷嗷增加
 [x] 重置时，佣金比率和税率不晴空
-[ ]测试instruction在真机上的表现
+[o]测试instruction在真机上的表现
 [o]设计记录数据库 表结构
 [ ]implementation insert record function of Record class
 [ ]实现保存按钮
+[ ]实现record页中的tableview
+[ ]实现数据在record页中展示
 [ ]test the sqlite in iPhone
 [ ]implementation other methods of record
 [ ]implementation
+[ ]调整instruction的位置和大小，便于操作
 
 ## Option ##
 [o] * 批量注释 command+/

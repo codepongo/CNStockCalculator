@@ -10,7 +10,6 @@
 #import "Record.h"
 
 @interface TabBarController ()
-@property Record* record;
 @end
 
 @implementation TabBarController
@@ -20,8 +19,6 @@
     self.selectedIndex = 1;
     self.extendedLayoutIncludesOpaqueBars = NO;
     // Do any additional setup after loading the view.
-    self.record = [[Record alloc]init];
-    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -17,6 +17,7 @@
 #import "SimulateActionSheet.h"
 #import "CalculateBrain.h"
 #import "InputAccessory.h"
+#import "Record.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
@@ -33,7 +34,6 @@
 @synthesize sheet;
 
 - (void)dealloc {
-    
 }
 
 - (void)viewDidLoad {
@@ -586,7 +586,21 @@
 }
 
 -(void) save:(id)sender{
-    
+    self.tabBarController.selectedIndex = 0;
+    NSDictionary *r = @{@"code":self.brain.code
+//                       @"buy.price":[NSNumber numberWithFloat:self.brain.buy.price],
+//                       ,@"buy.quantity":[NSNumber numberWithFloat:self.brain.buy.quantity]
+//                       ,@"sell.price":[NSNumber numberWithFloat:self.brain.sell.price]
+//                       ,@"sell.quantity":[NSNumber numberWithFloat:self.brain.sell.quantity]
+//                       ,@"rate.commssion":[NSNumber numberWithFloat:self.brain.rate.commssion]
+//                       ,@"rate.stamp":[NSNumber numberWithFloat:self.brain.rate.stamp]
+//                       ,@"rate.transfer":[NSNumber numberWithFloat:self.brain.rate.transfer]
+//                       
+//                       ,@"commssion":[NSNumber numberWithFloat:self.brain.rate.commssion]
+//                       ,@"stamp":[NSNumber numberWithFloat:self.brain.rate.stamp]
+//                       ,@"transfer":[NSNumber numberWithFloat:self.brain.re]
+                       };
+    [[Record sharedRecord] add:r];
 }
 
 - (IBAction)selectCalculateType:(id)sender {
