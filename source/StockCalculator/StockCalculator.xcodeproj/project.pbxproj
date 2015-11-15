@@ -224,6 +224,8 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
+				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
 				04E4429E1BF3546E00943EA5 /* Record.h */,
 				04E4429F1BF3546E00943EA5 /* Record.m */,
 				FA617A331BEFFB9700E4AFA6 /* SQLiteManger */,
@@ -245,8 +247,6 @@
 				FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */,
 				FACE71FE1BCEA7D20086F0EB /* Info.plist */,
 				FACE72021BCEA7D20086F0EB /* main.m */,
-				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
-				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
 				FA2A9A811BD3D79F00FCC8A5 /* TabBarController.h */,
 				FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */,
 				FA617A041BE8E9FA00E4AFA6 /* StockCalculator-Bridging-Header.h */,

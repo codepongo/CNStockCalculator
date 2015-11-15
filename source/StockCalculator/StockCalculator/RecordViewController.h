@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordViewController : UIViewController
+@interface RecordViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
 
 
 @end

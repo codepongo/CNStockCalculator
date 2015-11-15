@@ -26,6 +26,7 @@
 -(instancetype)init {
     if (self = [super init]) {
         self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
+/*
         {
             NSFileManager *f = [NSFileManager defaultManager];
             BOOL bRet = [f fileExistsAtPath:[self.db getDatabasePath]];
@@ -36,8 +37,9 @@
             self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
             
         }
+*/
 //        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT, buy.price FLOAT, buy.quantity FLOAT, sell.price FLOAT, sell.quantity FLOAT, commission FLOAT, stamp FLOAT, transfer FLOAT, taxandduties FLOAT, gainorlost FLOAT, breakevenprice FLOAT, commissionrate FLOAT, stamprate FLOAT, transferrate FLOAT);";
-        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT);";
+        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
         
         NSError *error = [self.db doQuery:sqlSentence];
         
@@ -46,7 +48,7 @@
             return nil;
         }
         
-        //NSLog(@"%@",[self.db getDatabaseDump]);
+        NSLog(@"%@",[self.db getDatabaseDump]);
         
         return self;
     }
@@ -96,10 +98,27 @@
     
     NSString *dump = [self.db getDatabaseDump];
     NSLog(@"%@", dump);
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
     return YES;
     
 }
 
+-(NSUInteger)count {
+    NSArray* r = [self.db getRowsForQuery:@"SELECT count(*) FROM record"];
+    return ((NSNumber*)r[0][@"count(*)"]).integerValue;
+}
+
+-(NSArray*)getRecords:(NSRange)range {
+    NSString* sql = [NSString stringWithFormat:@"SELECT * FROM record ORDER BY ROWID DESC LIMIT %ld OFFSET %ld",  range.length, range.location];
+    NSArray* r = [self.db getRowsForQuery:sql];
+    return r;
+}
+
+-(NSDictionary*)recordForIndexPath:(NSInteger)indexPath {
+    NSRange range = {indexPath, 1};
+    NSArray* r = [self getRecords:range];
+    return r[0];
+    
+}
 
 @end

@@ -586,7 +586,9 @@
 }
 
 -(void) save:(id)sender{
-    self.tabBarController.selectedIndex = 0;
+    if (self.brain.code == nil) {
+        self.brain.code = @"";
+    }
     NSDictionary *r = @{@"code":self.brain.code
 //                       @"buy.price":[NSNumber numberWithFloat:self.brain.buy.price],
 //                       ,@"buy.quantity":[NSNumber numberWithFloat:self.brain.buy.quantity]
@@ -601,6 +603,8 @@
 //                       ,@"transfer":[NSNumber numberWithFloat:self.brain.re]
                        };
     [[Record sharedRecord] add:r];
+    self.tabBarController.selectedIndex = 0;
+
 }
 
 - (IBAction)selectCalculateType:(id)sender {
