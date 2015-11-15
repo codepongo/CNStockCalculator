@@ -73,6 +73,10 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [ ]美化record tabpage
 [o]加入navigation controller 至 record tabpage
 [o]增加点击显示record 详细信息页
+[]record查找
+[]record删除
+[]图标 保本 损益 app icon
+
 ## Option ##
 [o] * 批量注释 command+/
 [o] * 代码缩进 control + i http://blog.csdn.net/mars2639/article/details/7587824
