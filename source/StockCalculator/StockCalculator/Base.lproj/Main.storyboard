@@ -29,26 +29,51 @@
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" userLabel="Record" customClass="RecordViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
-                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="tsR-hK-woN" customClass="UITableView">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="1" sectionFooterHeight="1" id="lcU-W5-zFL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <accessibility key="accessibilityConfiguration" identifier=""/>
-                        <connections>
-                            <outlet property="dataSource" destination="9pv-A4-QxB" id="K9I-vQ-Egb"/>
-                            <outlet property="delegate" destination="9pv-A4-QxB" id="4a6-tq-i7Q"/>
-                        </connections>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="记录" image="list" id="acW-dT-cKf" userLabel="Record"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="75" id="Gh7-LS-bIg">
+                                <rect key="frame" x="0.0" y="65" width="600" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gh7-LS-bIg" id="e5q-md-8yo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="74"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <segue destination="8PZ-MJ-BYf" kind="show" id="E62-lq-7BD"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="全部纪录" id="zvo-wx-RFC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="254" y="-286"/>
+            <point key="canvasLocation" x="1066" y="-286"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hhS-ht-eco">
+            <objects>
+                <viewController id="8PZ-MJ-BYf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ae3-Rc-D5X"/>
+                        <viewControllerLayoutGuide type="bottom" id="ut6-pL-YMk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aJK-Sr-uvx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EqI-9F-3gX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2136" y="-263"/>
         </scene>
         <!--计算-->
         <scene sceneID="wg7-f3-ORb">
@@ -121,7 +146,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="vvW-v8-d15"/>
+                        <segue destination="bdi-65-NHh" kind="relationship" relationship="viewControllers" id="vvW-v8-d15"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="gAZ-eE-Gjf"/>
                         <segue destination="hvF-97-RA0" kind="relationship" relationship="viewControllers" id="E5Y-7x-aq9"/>
                     </connections>
@@ -231,6 +256,26 @@
                 </tableViewSection>
             </objects>
             <point key="canvasLocation" x="-460" y="-40"/>
+        </scene>
+        <!--记录-->
+        <scene sceneID="Bki-Wz-O4P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bdi-65-NHh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="记录" image="list" id="acW-dT-cKf" userLabel="Record"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4dG-cL-dm8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="Nw5-ua-31D"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAW-0w-zuT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="254" y="-286"/>
         </scene>
     </scenes>
     <resources>

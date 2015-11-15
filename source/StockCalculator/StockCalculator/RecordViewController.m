@@ -10,9 +10,8 @@
 #import "Record.h"
 
 @interface RecordViewController ()
-@property NSString* cellId;
-@property NSMutableDictionary* cache;
-@property NSUInteger defaultLength;
+//@property NSMutableDictionary* cache;
+//@property NSUInteger defaultLength;
 @end
 
 @implementation RecordViewController
@@ -23,8 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.defaultLength = 10;
-    self.cache = [NSMutableDictionary dictionaryWithCapacity:self.defaultLength];
+    //self.defaultLength = 10;
+    //self.cache = [NSMutableDictionary dictionaryWithCapacity:self.defaultLength];
     [[NSNotificationCenter defaultCenter] addObserver: self.view selector: @selector(reloadData) name: @"recordChanged" object: nil];
 }
 
@@ -49,10 +48,11 @@
 #pragma mark Table View Delegate Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell* c = [tableView dequeueReusableCellWithIdentifier:self.cellId];
+    UITableViewCell* c = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (c == nil) {
-        c =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:self.cellId];
+        c =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
     }
+    c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
 //    NSRange range = {indexPath.row, self.defaultLength};
 //    NSInteger idx = range.location;
@@ -68,6 +68,7 @@
 
     c.textLabel.text =  r[@"code"];
     c.detailTextLabel.text = r[@"time"];
+    
     return c;
 //    NSDictionary* item = self.cur[indexPath.section][indexPath.row];
 //    NSString* cellId = item[@"cellReuseIdentifier"];
@@ -164,19 +165,6 @@
 //    }
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return tableView.sectionHeaderHeight;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return tableView.sectionFooterHeight;
-}
-
--(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-
-    return tableView.tableFooterView;
-}
-
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle: indexPath.description message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -188,7 +176,17 @@
     
 }
 
+#pragma mark - Segues
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+//        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        
+//        UIViewController *controller = (UIViewController *)[[segue destinationViewController] topViewController];
+//        controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
+//        controller.navigationItem.leftItemsSupplementBackButton = YES;
+//    }
+}
 
 
 
