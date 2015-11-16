@@ -628,6 +628,7 @@
             // Remove the old view.
             [fromView removeFromSuperview];
             self.tabBarController.selectedIndex = 0;
+            [self.tabBarController.selectedViewController popToRootViewControllerAnimated:NO];
         }
     }];
 }
