@@ -603,8 +603,33 @@
 //                       ,@"transfer":[NSNumber numberWithFloat:self.brain.re]
                        };
     [[Record sharedRecord] add:r];
-    self.tabBarController.selectedIndex = 0;
-
+    
+    // Get the views to animate.
+    UIView * fromView = self.tabBarController.selectedViewController.view;
+    UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:0] view];
+    
+    // Get the size of the view.
+    CGRect viewSize = fromView.frame;
+    
+    // Add the view that we want to display to superview of currently visible view.
+    [fromView.superview addSubview:toView];
+    
+    // Position it off screen. We will animate it left to right slide.
+    toView.frame = CGRectMake(-self.view.bounds.size.width, viewSize.origin.y, toView.bounds.size.width, viewSize.size.height);
+    
+    // Animate transition
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionTransitionNone animations:^{
+        // Animate the views with slide.
+        fromView.frame = CGRectMake(self.view.bounds.size.width, viewSize.origin.y, toView.bounds.size.width, viewSize.size.height);
+        toView.frame = CGRectMake(0, viewSize.origin.y, toView.bounds.size.width, viewSize.size.height);
+    } completion:^(BOOL finished) {
+        if (finished)
+        {
+            // Remove the old view.
+            [fromView removeFromSuperview];
+            self.tabBarController.selectedIndex = 0;
+        }
+    }];
 }
 
 - (IBAction)selectCalculateType:(id)sender {
