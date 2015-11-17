@@ -336,10 +336,10 @@
                 c.accessoryView.translatesAutoresizingMaskIntoConstraints = NO;
                 [c.accessoryView.topAnchor constraintEqualToAnchor:c.contentView.topAnchor].active = YES;
                 [c.accessoryView.bottomAnchor constraintEqualToAnchor:c.contentView.bottomAnchor].active = YES;
-                [c.accessoryView.heightAnchor constraintEqualToAnchor:c.heightAnchor].active = YES;
+                //[c.accessoryView.heightAnchor constraintEqualToAnchor:c.heightAnchor].active = YES;
                 [c.accessoryView.leadingAnchor constraintEqualToAnchor:c.contentView.trailingAnchor].active = YES;
                 [c.accessoryView.trailingAnchor constraintEqualToAnchor:c.trailingAnchor].active = YES;
-                [c.accessoryView.widthAnchor constraintEqualToConstant:32].active = YES;
+                //[c.accessoryView.widthAnchor constraintEqualToConstant:32].active = YES;
 
             }
             else {
