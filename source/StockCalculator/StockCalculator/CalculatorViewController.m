@@ -629,6 +629,9 @@
             [fromView removeFromSuperview];
             self.tabBarController.selectedIndex = 0;
             [self.tabBarController.selectedViewController popToRootViewControllerAnimated:NO];
+            UITableView* tbl = (UITableView*)[self.tabBarController.selectedViewController topViewController].view;
+            //[tbl scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            [tbl selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         }
     }];
 }
