@@ -327,15 +327,20 @@
             NSString* instruction = self.cur[indexPath.section][indexPath.row][@"instruction"];
             if (instruction != nil) {
                 UIImage* image = [UIImage imageNamed:@"instruction"];
-                UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32,c.contentView.frame.size.height)];
+                UIButton *b = [[UIButton alloc]init];//WithFrame:CGRectMake(0, 0, 32,c.contentView.frame.size.height)];
+                [c addSubview:b];
                 [b setImage:image forState:UIControlStateNormal];
                 [b addTarget:self action:@selector(showInstruction:) forControlEvents:UIControlEventTouchUpInside];
-                
-                c.accessoryView = b;//[[UIImageView alloc] initWithImage:image];
-                //c.bounds =
-                
-                
-                //c.accessoryType = UITableViewCellAccessoryDetailButton;
+                c.accessoryView = b;
+                c.accessoryView.autoresizingMask = NO;
+                c.accessoryView.translatesAutoresizingMaskIntoConstraints = NO;
+                [c.accessoryView.topAnchor constraintEqualToAnchor:c.contentView.topAnchor].active = YES;
+                [c.accessoryView.bottomAnchor constraintEqualToAnchor:c.contentView.bottomAnchor].active = YES;
+                [c.accessoryView.heightAnchor constraintEqualToAnchor:c.heightAnchor].active = YES;
+                [c.accessoryView.leadingAnchor constraintEqualToAnchor:c.contentView.trailingAnchor].active = YES;
+                [c.accessoryView.trailingAnchor constraintEqualToAnchor:c.trailingAnchor].active = YES;
+                [c.accessoryView.widthAnchor constraintEqualToConstant:32].active = YES;
+
             }
             else {
                 UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];

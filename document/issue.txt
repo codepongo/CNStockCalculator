@@ -66,9 +66,8 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o]实现保存按钮
 [o]实现record页中的tableview
 [o]实现数据在record页中展示
-[ ]test the sqlite in iPhone
-[ ]implementation other methods of record
-[ ]implementation
+[o]test the sqlite in iPhone
+[o]implementation other methods of record
 [ ]调整instruction的位置和大小，便于操作
 [ ]美化record tabpage
 [o]加入navigation controller 至 record tabpage
