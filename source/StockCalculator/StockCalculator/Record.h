@@ -14,7 +14,7 @@
 + (instancetype) sharedRecord;
 - (bool)add:(NSDictionary*)record;
 - (NSUInteger)count;
--(NSArray*)getRecords:(NSRange)range;
 -(NSDictionary*)recordForIndexPath:(NSInteger)indexPath;
+- (void)removeAtIndex:(NSInteger)index;
 @end
 static Record* instance;
