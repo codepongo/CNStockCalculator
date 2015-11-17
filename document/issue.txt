@@ -75,6 +75,7 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 []record查找
 []record删除
 []图标 保本 损益 app icon
+[]settings 印花税率 佣金比率 过户费率 版本 关于
 
 ## Option ##
 [o] * 批量注释 command+/
