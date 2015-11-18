@@ -60,7 +60,7 @@
                          @"cellReuseIdentifier":@"InputCell"
                          ,@"title":@"股票代码"
                          ,@"placeholder":@"代码"
-                         ,@"keyboardtype":[NSNumber numberWithInt:UIKeyboardTypeNumberPad]
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeNumberPad]
                          ,@"value":@"code"
                          }
                      ,@{
@@ -285,7 +285,12 @@
         c.input.delegate = self;
         NSNumber* v = (NSNumber*)[self.brain valueForKeyPath:item[@"value"]];
         if (v != nil && [v floatValue] != 0) {
-            c.input.text = [NSString stringWithFormat:@"%g %@",[v floatValue], item[@"unit"]];
+            if (nil == item[@"unit"]) {
+                c.input.text = v.stringValue;
+            }
+            else {
+                c.input.text = [NSString stringWithFormat:@"%g %@",[v floatValue], item[@"unit"]];
+            }
         }
         else {
             c.input.text = @"";
@@ -299,15 +304,7 @@
         c.input.inputAccessoryView = a;
         return c;
     }
-    if ([cellId  isEqual: @"InputCellWithUnit"]) {
-        InputCellWithUnit* c = [tableView dequeueReusableCellWithIdentifier:cellId];
-        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-        c.input.delegate = self;
-        c.input.placeholder = [NSString stringWithFormat:@"%@%@", item[@"placeholder"],item[@"unit"]];
-        c.input.keyboardType = [item[@"inputtype"] integerValue];
-        c.unit.text = item[@"unit"];
-        return c;
-    }
+
     if ([cellId  isEqual: @"ButtonCell"]) {
         ButtonCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
@@ -671,7 +668,10 @@
     [self.brain setValue:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
     NSLog(@"%@", textField.text);
     if (![textField.text  isEqual: @""]) {
-        textField.text = [NSString stringWithFormat:@"%@ %@",textField.text, self.cur[path.section][path.row][@"unit"]];
+        NSString* unit = self.cur[path.section][path.row][@"unit"];
+        if (unit != nil) {
+            textField.text = [NSString stringWithFormat:@"%@ %@",textField.text, unit];
+        }
     }
 }
 
