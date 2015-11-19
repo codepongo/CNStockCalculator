@@ -27,6 +27,7 @@
 		FA617A061BE8E9FB00E4AFA6 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA617A051BE8E9FB00E4AFA6 /* Trade.swift */; };
 		FA617A361BEFFBAE00E4AFA6 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA617A351BEFFBAE00E4AFA6 /* SQLiteManager.m */; };
 		FA617A381BEFFC0300E4AFA6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FA617A371BEFFC0300E4AFA6 /* libsqlite3.tbd */; };
+		FA8C9E771BFE71520072FE7C /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8C9E761BFE71520072FE7C /* Rate.swift */; };
 		FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71F91BCEA7D20086F0EB /* AppDelegate.m */; };
 		FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */; };
 		FACE72081BCEA7D20086F0EB /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */; };
@@ -73,6 +74,7 @@
 		FA617A341BEFFBAE00E4AFA6 /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
 		FA617A351BEFFBAE00E4AFA6 /* SQLiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
 		FA617A371BEFFC0300E4AFA6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		FA8C9E761BFE71520072FE7C /* Rate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		FACE71DB1BCEA75C0086F0EB /* StockCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FACE71F81BCEA7D20086F0EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FACE71F91BCEA7D20086F0EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				FA2323631BDCB23E004EE7E8 /* CalculateBrain.m */,
 				FA617A051BE8E9FB00E4AFA6 /* Trade.swift */,
 				FA6179EB1BE06EA300E4AFA6 /* Rate.h */,
+				FA8C9E761BFE71520072FE7C /* Rate.swift */,
 				FA6179EC1BE06EA300E4AFA6 /* Rate.m */,
 			);
 			name = CalculateBrain;
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA8C9E771BFE71520072FE7C /* Rate.swift in Sources */,
 				FA617A361BEFFBAE00E4AFA6 /* SQLiteManager.m in Sources */,
 				FA2A9A8C1BD91B4700FCC8A5 /* OutputCell.m in Sources */,
 				FA6179ED1BE06EA300E4AFA6 /* Rate.m in Sources */,

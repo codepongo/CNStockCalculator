@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Rate.h"
 #import "StockCalculator-Swift.h"
 
 //@interface Trade:NSObject {

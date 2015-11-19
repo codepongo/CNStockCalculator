@@ -66,7 +66,15 @@
 //    }
 //    d = [self.cache objectForKey:[NSNumber numberWithInteger:indexPath.row]];
 
-    c.textLabel.text =  r[@"code"];
+    
+//    if (r[@"sell.price"] != nil) {
+//        c.textLabel.text = [NSString stringWithFormat:@"[%@] %@ %@ %@ %@ (%@) %@", r[@"code"], r[@"buy.price"], r[@"buy.quanlity"], r[@"sell.price"], r[@"sell.quanlity"], @"买卖损益", r[@"result"]];
+//    }
+//    else {
+//        c.textLabel.text = [NSString stringWithFormat:@"[%@] %@ %@ (%@) %@", r[@"code"], r[@"buy.price"], r[@"buy.quanlity"], @"保本价格", r[@"result"]];
+//        
+//    }
+    c.textLabel.text = [NSString stringWithFormat:@"[%@] %@ %@", r[@"code"], r[@"buy.price"], r[@"buy.quanlity"]];
     c.detailTextLabel.text = r[@"time"];
     
     return c;

@@ -9,29 +9,6 @@
 #import "CalculateBrain.h"
 #import <Foundation/NSUserDefaults.h>
 
-//#pragma mark -
-//#pragma mark Trade
-//
-//@implementation Trade
-//-(void)setPrice:(float)p {
-//    self->_price = p;
-//    self->_amount = p * self.quantity;
-//}
-//
-//-(void)setQuantity:(NSInteger)q {
-//    self->_quantity = q;
-//    self->_amount = self.price * q;
-//}
-//
-//-(instancetype) initWithPrice:(float)p AndAmount:(float)q {
-//    self = [super init];
-//    _price = p;
-//    self.quantity = q;
-//    _amount = _price * self.quantity;
-//    return self;
-//}
-//@end
-
 #pragma mark -
 #pragma mark CalculateBrain
 
@@ -78,7 +55,7 @@
         return 5.000;
     }
 
-    return (amount * self.rate.commission / 1000);
+    return (amount * [[self.rate valueForKey:@"commission"] floatValue]/ 1000);
 
 }
 

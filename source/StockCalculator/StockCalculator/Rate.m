@@ -8,7 +8,7 @@
 
 #import "Rate.h"
 
-@implementation Rate
+@implementation RateOld
 
 -(instancetype)init{
     self = [super init];

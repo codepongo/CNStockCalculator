@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Rate:NSObject
+@interface RateOld:NSObject
 @property (nonatomic) float commission;
 @property (nonatomic) float stamp;
 @property (nonatomic) float transfer;
