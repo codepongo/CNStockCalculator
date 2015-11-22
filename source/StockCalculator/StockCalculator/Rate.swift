@@ -22,13 +22,15 @@ class Rate:NSObject {
         }
 
     }
-    internal var transfer:Float {
+    var transfer:Float {
         get {
             return (self.valueForKey(__FUNCTION__) as! Float)
         }
 
     }
-    func commssion() -> Float {
-        return (self.valueForKey(__FUNCTION__) as! Float)
+    var commssion:Float {
+        get {
+            return (self.valueForKey(__FUNCTION__) as! Float)
+        }
     }
 }
