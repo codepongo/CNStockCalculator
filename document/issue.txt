@@ -68,13 +68,19 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o]实现数据在record页中展示
 [o]test the sqlite in iPhone
 [o]implementation other methods of record
-[ ]调整instruction的位置和大小，便于操作
-[ ]美化record tabpage
+[o]调整instruction的位置和大小，便于操作
+[o]美化record tabpage
 [o]加入navigation controller 至 record tabpage
 [o]增加点击显示record 详细信息页
+[]new brain
 []record查找
 []record删除
-[]图标 保本 损益 app icon
+[]record cell
+[]record cell image
+[]record detail 
+[]setting 
+[]setting detail
+[o]图标 保本 损益 app icon
 []settings 印花税率 佣金比率 过户费率 版本 关于
 
 ## Option ##
