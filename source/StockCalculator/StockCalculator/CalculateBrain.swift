@@ -72,26 +72,43 @@ class CalculateBrain_:NSObject {
         return transfer
     }
     
-    func calculate() -> (Float, Float, Float, Float, Float) {
-        self.commission = self.commission(self.buy.amount()) + (self.sell != nil ? self.commission(self.sell!.amount()): 0)
-        self.stamp = self.sell != nil ? self.stamp(self.sell!.amount()) : self.stamp(self.buy.amount())
+    func calculateForBreakevenPrice() -> (Float, Float, Float?, Float, Float) {
+        let sell:Trade = Trade()
+        sell.quantity = self.buy.quantity
+        sell.price = self.buy.price
+        repeat {
+            let result = calculateForGainOrLoss(sell)
+            if result.4 > 0 {
+                return (result.0, result.1, inSZ ? nil : result.2, result.3, sell.price)
+            }
+            sell.price += 0.01
+        }while true
+    }
+    
+    func calculateForGainOrLoss(var s:Trade? = nil) -> (Float, Float, Float?, Float, Float) {
+        if s == nil {
+            s = self.sell
+        }
+        let commission = self.commission(self.buy.amount()) + self.commission(s!.amount())
+        let stamp = self.stamp(s!.amount())
+        var transfer:Float? = nil
         if self.transfer != nil {
-            self.transfer = self.transfer(Float(self.buy.quantity)) + (self.sell != nil ? self.transfer(Float(self.sell!.quantity)): 0)
+            transfer = self.transfer(Float(self.buy.quantity)) + self.transfer(Float(s!.quantity))
         }
         let fee:Float = self.commission + self.stamp + self.transfer!
         let cost:Float = self.buy.amount() + fee
-        let income = self.sell!.amount()
+        let income = s!.amount()
         var result:Float = 0.000
         if self.sell == nil {
             if self.buy.quantity != 0 {
                 result = cost/Float(self.buy.quantity)
             }
-
+            
         }
         else {
             result = income - cost
         }
-        return (self.commission, self.stamp, self.transfer!, fee, result)
+        return (commission, stamp, transfer, fee, result)
     }
     
 }
