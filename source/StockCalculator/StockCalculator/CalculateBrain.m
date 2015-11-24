@@ -12,13 +12,13 @@
 #pragma mark -
 #pragma mark CalculateBrain
 
-@interface CalculateBrain()
+@interface CalculateBrainOld()
 -(float)commission:(float)amount;
 -(float)stamp:(float)amount;
 -(float)transfer:(float)quantity;
 @end
 
-@implementation CalculateBrain
+@implementation CalculateBrainOld
 
 - (instancetype) init {
     self = [super init];

@@ -352,7 +352,7 @@
                 c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForBreakevenPrice"];
             }
             
-            float r = [self.brain resultOfTrade];
+            float r = self.brain.result;//[self.brain resultOfTrade];
             if (r < 0) {
                 c.result.textColor =[UIColor greenColor];
             }
@@ -543,11 +543,12 @@
     
 
     //brain calculates.
-    float transfer = [self.brain transferOfTrade];
-    float stamp = [self.brain stampOfTrade];
-    float commission = [self.brain commissionOfTrade];
-    float taxesAndDuties = [self.brain taxesAndDutiesOfTrade];
-    float result = [self.brain resultOfTrade];
+    float transfer = [self.brain transferAsFloat];//[self.brain transferOfTrade];
+
+    float stamp = self.brain.stamp;//[self.brain stampOfTrade];
+    float commission = self.brain.commission;//[self.brain commissionOfTrade];
+    float taxesAndDuties = self.brain.fee;//[self.brain taxesAndDutiesOfTrade];
+    float result = self.brain.result;//[self.brain resultOfTrade];
     if (self.cur.count == 1) {
         [self.cur addObject:[self.all objectAtIndex:1]];
     }

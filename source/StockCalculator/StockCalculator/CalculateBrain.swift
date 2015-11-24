@@ -8,8 +8,8 @@
 
 import Foundation
 
-@objc(CalculateBrain_)
-class CalculateBrain_:NSObject {
+@objc(CalculateBrain)
+class CalculateBrain:NSObject {
     var code:String = ""
     var buy:Trade = Trade()
     var sell:Trade? = nil
@@ -45,6 +45,22 @@ class CalculateBrain_:NSObject {
             return (self.sell != nil)
         }
     }
+    func reset() {
+        self.code = ""
+        self.buy.price = 0.000
+        self.buy.quantity = 0
+        if self.sell != nil {
+            self.sell?.price = 0.000
+            self.sell?.quantity = 0
+        }
+        self.commission = 0.000
+        self.stamp = 0.000
+        if self.transfer != nil {
+            self.transfer = 0.000
+        }
+        self.fee = 0.000
+        self.result = 0.000
+    }
     func commission(amount:Float) -> Float {
         if amount == 0 {
             return 0.000
@@ -66,7 +82,7 @@ class CalculateBrain_:NSObject {
         return amount * (self.rate.stamp / 1000)
     }
     func transfer(quantity:Float) -> Float {
-        if self.transfer == nil {
+        if self.inSZ {
             return 0.000
         }
         var transfer:Float = (quantity % 1000 == 0) ? 0: 1
@@ -75,12 +91,19 @@ class CalculateBrain_:NSObject {
     }
     
     func calculate() {
+        var r = (self.commission, self.stamp, self.transfer, self.fee, self.result)
         if self.sell == nil {
-             (self.commission, self.stamp, self.transfer, self.fee, self.result) = calculateForBreakevenPrice()
+            r = self.calculateForBreakevenPrice()
+            
         }
         else {
-            (self.commission,self.stamp, self.transfer, self.fee, self.result) =  calculateForGainOrLoss()
+            r = self.calculateForGainOrLoss()
         }
+        self.commission = r.0
+        self.stamp = r.1
+        if self.transfer != nil {self.transfer = r.2}
+        self.fee = r.3
+        self.result = r.4
     }
     
     func calculateForBreakevenPrice() -> (Float, Float, Float?, Float, Float) {
@@ -90,7 +113,7 @@ class CalculateBrain_:NSObject {
         repeat {
             let result = calculateForGainOrLoss(sell)
             if result.4 > 0 {
-                return (result.0, result.1, inSZ ? nil : result.2, result.3, sell.price)
+                return (result.0, result.1, result.2, result.3, sell.price)
             }
             sell.price += 0.01
         }while true
@@ -102,11 +125,12 @@ class CalculateBrain_:NSObject {
         }
         let commission = self.commission(self.buy.amount()) + self.commission(s!.amount())
         let stamp = self.stamp(s!.amount())
-        var transfer:Float? = nil
-        if self.transfer != nil {
+        var transfer:Float = 0.000
+        if !self.inSZ {
             transfer = self.transfer(Float(self.buy.quantity)) + self.transfer(Float(s!.quantity))
         }
-        let fee:Float = commission + stamp + (transfer == nil ? 0 : transfer!)
+
+        let fee:Float = commission + stamp + transfer
         let cost:Float = self.buy.amount() + fee
         let income = s!.amount()
         var result:Float = 0.000
@@ -120,6 +144,14 @@ class CalculateBrain_:NSObject {
             result = income - cost
         }
         return (commission, stamp, transfer, fee, result)
+    }
+    func transferAsFloat() -> Float {
+        if self.transfer == nil {
+            return 0.000
+        }
+        else {
+            return self.transfer!
+        }
     }
 
     

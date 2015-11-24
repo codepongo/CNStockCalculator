@@ -20,7 +20,7 @@
 //-(instancetype) initWithPrice:(float)price AndAmount:(float)quantity;
 //@end
 
-@interface CalculateBrain : NSObject
+@interface CalculateBrainOld : NSObject
 @property (nonatomic, copy) NSString* code;
 @property(nonatomic) BOOL inSZ;
 @property (nonatomic, strong) Rate* rate;
