@@ -464,83 +464,90 @@
 }
 
 -(void) calculate:(id)sender{
+    if ([self.brain.code isEqualToString: @""]) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"股票代码不能为空" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+        
+    }
     
-//    if (self.brain.buy.price == 0) {
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//        
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
-//    
-//    if (self.brain.buy.quantity == 0) {
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//        
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
-//    if (self.brain.calculateForGainOrLoss) {
-//        if (self.brain.sell.price == 0) {
-//            
-//            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//            
-//            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//            
-//            [alert addAction:defaultAction];
-//            [self presentViewController:alert animated:YES completion:nil];
-//            
-//            return;
-//        }
-//        
-//        if (self.brain.sell.quantity == 0) {
-//            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//            
-//            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//            
-//            [alert addAction:defaultAction];
-//            [self presentViewController:alert animated:YES completion:nil];
-//            
-//            return;
-//        }
-//    }
-//
-//    if (self.brain.rate.commission == 0) {
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//        
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
-//    
-//    if (self.brain.rate.commission == 0) {
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"印花税率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//        
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
-//    
-//    if (!self.brain.inSZ && self.brain.rate.commission == 0){
-//        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"过户费率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//        
-//        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-//        
-//        [alert addAction:defaultAction];
-//        [self presentViewController:alert animated:YES completion:nil];
-//        return;
-//    }
+    if (self.brain.buy.price == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    
+    if (self.brain.buy.quantity == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"买入数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (self.brain.calculateForGainOrLoss) {
+        if (self.brain.sell.price == 0) {
+            
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出价格不能为0元／股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            return;
+        }
+        
+        if (self.brain.sell.quantity == 0) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"卖出数量不能为0股" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            return;
+        }
+    }
 
+    if (self.brain.rate.commssion == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     
+    if (self.brain.rate.stamp == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"印花税率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     
+    if (!self.brain.inSZ && self.brain.rate.transfer == 0){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"过户费率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
 
     //brain calculates.
     float transfer = [self.brain transferAsFloat];//[self.brain transferOfTrade];

@@ -26,7 +26,7 @@
 -(instancetype)init {
     if (self = [super init]) {
         self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
-/*
+
         {
             NSFileManager *f = [NSFileManager defaultManager];
             BOOL bRet = [f fileExistsAtPath:[self.db getDatabasePath]];
@@ -37,9 +37,9 @@
             self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
             
         }
-*/
+
 //        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT, buy.price FLOAT, buy.quantity FLOAT, sell.price FLOAT, sell.quantity FLOAT, commission FLOAT, stamp FLOAT, transfer FLOAT, taxandduties FLOAT, gainorlost FLOAT, breakevenprice FLOAT, commissionrate FLOAT, stamprate FLOAT, transferrate FLOAT);";
-        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
+        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [buy.price] FLOAT, [buy.quantity] FLOAT, [sell.pirce] FLOAT, [sell.quantity] FLOAT, [commission] FLOAT, [stamp] Float, [transfer] Float, [fee] FLOAT, [gainorloss] FLOAT, [breakevenprice] FLOAT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
         
         NSError *error = [self.db doQuery:sqlSentence];
         
