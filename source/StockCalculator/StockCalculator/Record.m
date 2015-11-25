@@ -39,7 +39,7 @@
         }
 
 //        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT, buy.price FLOAT, buy.quantity FLOAT, sell.price FLOAT, sell.quantity FLOAT, commission FLOAT, stamp FLOAT, transfer FLOAT, taxandduties FLOAT, gainorlost FLOAT, breakevenprice FLOAT, commissionrate FLOAT, stamprate FLOAT, transferrate FLOAT);";
-        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [buy.price] FLOAT, [buy.quantity] FLOAT, [sell.pirce] FLOAT, [sell.quantity] FLOAT, [commission] FLOAT, [stamp] Float, [transfer] Float, [fee] FLOAT, [gainorloss] FLOAT, [breakevenprice] FLOAT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
+        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [buy.price] FLOAT, [buy.quantity] FLOAT, [sell.pirce] FLOAT, [sell.quantity] FLOAT, [rate.commission] FLOAT, [rate.stamp] Float, [rate.transfer] Float,[commission] FLOAT, [stamp] Float, [transfer] Float, [fee] FLOAT, [gainorloss] FLOAT, [breakevenprice] FLOAT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
         
         NSError *error = [self.db doQuery:sqlSentence];
         

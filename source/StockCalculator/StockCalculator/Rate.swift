@@ -28,7 +28,7 @@ class Rate:NSObject {
         }
 
     }
-    var commssion:Float {
+    var commission:Float {
         get {
             return (self.valueForKey(__FUNCTION__) as! Float)
         }

@@ -283,10 +283,12 @@
         InputCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
         c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
         c.input.delegate = self;
-        NSNumber* v = (NSNumber*)[self.brain valueForKeyPath:item[@"value"]];
+
+        id v = [self.brain valueForKeyPath:item[@"value"]];
+        
         if (v != nil && [v floatValue] != 0) {
             if (nil == item[@"unit"]) {
-                c.input.text = v.stringValue;
+                c.input.text = [[v class] isEqual: @"NSNumber"] ? ((NSNumber*)v).stringValue : v;
             }
             else {
                 c.input.text = [NSString stringWithFormat:@"%g %@",[v floatValue], item[@"unit"]];
@@ -464,6 +466,7 @@
 }
 
 -(void) calculate:(id)sender{
+    [self hideKeyBoard];
     if ([self.brain.code isEqualToString: @""]) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"股票代码不能为空" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -519,7 +522,7 @@
         }
     }
 
-    if (self.brain.rate.commssion == 0) {
+    if (self.brain.rate.commission == 0) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"佣金比率不能为0" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
@@ -596,22 +599,25 @@
 }
 
 -(void) save:(id)sender{
-    if (self.brain.code == nil) {
-        self.brain.code = @"";
+    NSMutableDictionary* r = [NSMutableDictionary dictionaryWithDictionary:[self.brain dictionaryWithValuesForKeys:@[@"code", @"buy", @"rate", @"rate", @"result"]]];
+    
+    if ([self.brain calculateForGainOrLoss]) {
+        //r setDictionary:<#(nonnull NSDictionary *)#>
+//    NSDictionary *r = @{@"code":self.brain.code
+//                        ,@"buy.price":[NSNumber numberWithFloat:self.brain.buy.price]
+//                        ,@"buy.quantity":[NSNumber numberWithFloat:self.brain.buy.quantity]
+//                        ,@"sell.price":[NSNumber numberWithFloat:self.brain.sell.price]
+//                        ,@"sell.quantity":[NSNumber numberWithFloat:self.brain.sell.quantity]
+//                        ,@"rate.commssion":[NSNumber numberWithFloat:self.brain.rate.commission]
+//                        ,@"rate.stamp":[NSNumber numberWithFloat:self.brain.rate.stamp]
+//                        ,@"rate.transfer":[NSNumber numberWithFloat:self.brain.rate.transfer]
+//                        ,@"commission":[NSNumber numberWithFloat:self.brain.commission]
+//                        ,@"stamp":[NSNumber numberWithFloat:self.brain.stamp]
+//                        ,@"transfer":[NSNumber numberWithFloat:self.brain.transferAsFloat]
+//                        ,@"fee":[NSNumber numberWithFloat:self.brain.transferAsFloat]
+//                        
+//                       };
     }
-    NSDictionary *r = @{@"code":self.brain.code
-//                       @"buy.price":[NSNumber numberWithFloat:self.brain.buy.price],
-//                       ,@"buy.quantity":[NSNumber numberWithFloat:self.brain.buy.quantity]
-//                       ,@"sell.price":[NSNumber numberWithFloat:self.brain.sell.price]
-//                       ,@"sell.quantity":[NSNumber numberWithFloat:self.brain.sell.quantity]
-//                       ,@"rate.commssion":[NSNumber numberWithFloat:self.brain.rate.commssion]
-//                       ,@"rate.stamp":[NSNumber numberWithFloat:self.brain.rate.stamp]
-//                       ,@"rate.transfer":[NSNumber numberWithFloat:self.brain.rate.transfer]
-//                       
-//                       ,@"commssion":[NSNumber numberWithFloat:self.brain.rate.commssion]
-//                       ,@"stamp":[NSNumber numberWithFloat:self.brain.rate.stamp]
-//                       ,@"transfer":[NSNumber numberWithFloat:self.brain.re]
-                       };
     [[Record sharedRecord] add:r];
     
     // Get the views to animate.
@@ -673,7 +679,8 @@
     if ([self.cur[path.section] count] <= path.row) {
         return;
     }
-    [self.brain setValue:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
+    
+    [self.brain setValue:[self.cur[path.section][path.row][@"value"]  isEqual: @"code"] ? textField.text:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
     NSLog(@"%@", textField.text);
     if (![textField.text  isEqual: @""]) {
         NSString* unit = self.cur[path.section][path.row][@"unit"];

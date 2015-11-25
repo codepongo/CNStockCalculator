@@ -69,7 +69,7 @@ class CalculateBrain:NSObject {
             return 5.000
         }
         
-        return (amount * (self.rate.commssion / 1000))
+        return (amount * (self.rate.commission / 1000))
         
     }
     func stamp(amount:Float) -> Float{
@@ -91,7 +91,7 @@ class CalculateBrain:NSObject {
     }
     
     func calculate() {
-        var r = (self.commission, self.stamp, self.transfer, self.fee, self.result)
+        let r : (Float, Float, Float?, Float, Float)
         if self.sell == nil {
             r = self.calculateForBreakevenPrice()
             
