@@ -552,6 +552,7 @@
         return;
     }
 
+    [self.brain calculate];
     //brain calculates.
     float transfer = [self.brain transferAsFloat];//[self.brain transferOfTrade];
 
@@ -599,25 +600,20 @@
 }
 
 -(void) save:(id)sender{
-    NSMutableDictionary* r = [NSMutableDictionary dictionaryWithDictionary:[self.brain dictionaryWithValuesForKeys:@[@"code", @"buy", @"rate", @"rate", @"result"]]];
-    
-    if ([self.brain calculateForGainOrLoss]) {
-        //r setDictionary:<#(nonnull NSDictionary *)#>
-//    NSDictionary *r = @{@"code":self.brain.code
-//                        ,@"buy.price":[NSNumber numberWithFloat:self.brain.buy.price]
-//                        ,@"buy.quantity":[NSNumber numberWithFloat:self.brain.buy.quantity]
-//                        ,@"sell.price":[NSNumber numberWithFloat:self.brain.sell.price]
-//                        ,@"sell.quantity":[NSNumber numberWithFloat:self.brain.sell.quantity]
-//                        ,@"rate.commssion":[NSNumber numberWithFloat:self.brain.rate.commission]
-//                        ,@"rate.stamp":[NSNumber numberWithFloat:self.brain.rate.stamp]
-//                        ,@"rate.transfer":[NSNumber numberWithFloat:self.brain.rate.transfer]
-//                        ,@"commission":[NSNumber numberWithFloat:self.brain.commission]
-//                        ,@"stamp":[NSNumber numberWithFloat:self.brain.stamp]
-//                        ,@"transfer":[NSNumber numberWithFloat:self.brain.transferAsFloat]
-//                        ,@"fee":[NSNumber numberWithFloat:self.brain.transferAsFloat]
-//                        
-//                       };
-    }
+    NSMutableDictionary* r = [NSMutableDictionary dictionaryWithDictionary:[self.brain dictionaryWithValuesForKeys:@[/*@"code", @"stamp", @"commission", */@"result"]]];
+//    r[@"buy.price"] = [NSNumber numberWithFloat:self.brain.buy.price];
+//    r[@"buy.quantity"] = [NSNumber numberWithInteger:self.brain.buy.quantity];
+//    r[@"rate.commission"] = [NSNumber numberWithFloat:self.brain.rate.commission];
+//    r[@"rate.stamp"] = [NSNumber numberWithFloat:self.brain.rate.stamp];
+//    if (!self.brain.inSZ) {
+//        [r setValuesForKeysWithDictionary:[self.brain dictionaryWithValuesForKeys:@[@"transfer"]]];
+//        r[@"rate.transfer"] = [NSNumber numberWithFloat:self.brain.rate.transfer];
+//    }
+//    
+//    if ([self.brain calculateForGainOrLoss]) {
+//        r[@"sell.price"] = [NSNumber numberWithFloat:self.brain.sell.price];
+//        r[@"sell.quantity"] = [NSNumber numberWithInteger:self.brain.sell.quantity];
+//    }
     [[Record sharedRecord] add:r];
     
     // Get the views to animate.
@@ -647,7 +643,9 @@
             [self.tabBarController.selectedViewController popToRootViewControllerAnimated:NO];
             UITableView* tbl = (UITableView*)[self.tabBarController.selectedViewController topViewController].view;
             //[tbl scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            [tbl selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            if ([tbl numberOfRowsInSection:0] > 0) {
+                [tbl selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            }
         }
     }];
 }

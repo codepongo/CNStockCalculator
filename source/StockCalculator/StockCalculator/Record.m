@@ -56,41 +56,17 @@
 }
 
 -(BOOL)add:(NSDictionary*)record{
-    NSString* code = [record objectForKey:@"code"];
-//    Trade* buy = [[Trade alloc]init];
-//    buy.price = ((NSNumber*)[record objectForKey:@"buy.price"]).floatValue;
-//    buy.quantity = ((NSNumber*)[record objectForKey:@"buy.quantity"]).floatValue;
-//    
-//    Trade* sell = [[Trade alloc]init];
-//    sell.price = ((NSNumber*)[record objectForKey:@"sell.price"]).floatValue;
-//    sell.quantity = ((NSNumber*)[record objectForKey:@"sell.quantity"]).floatValue;
-//    Rate* rate = [[Rate alloc] init];
-//    rate.commission = ((NSNumber*)[record objectForKey:@"rate.commission"]).floatValue;
-//    rate.stamp = ((NSNumber*)[record objectForKey:@"rate.stamp"]).floatValue;
-//    rate.transfer = ((NSNumber*)[record objectForKey:@"rate.transfer"]).floatValue;
-//    
-//    float commission = ((NSNumber*)[record objectForKey:@"commission"]).floatValue;
-//    float stamp = ((NSNumber*)[record objectForKey:@"stamp"]).floatValue;
-//    float transfer = ((NSNumber*)[record objectForKey:@"transfer"]).floatValue;
-//    float taxAndDuties = ((NSNumber*)[record objectForKey:@"taxandduties"]).floatValue;
-//    NSString* gainOrLoss = @"null";
-//    {
-//        NSNumber* result = [record objectForKey:@"gainorlost"];
-//        if (result != nil) {
-//            gainOrLoss = [NSString stringWithFormat:@"'%@'", result.stringValue];
-//            
-//        }
-//    }
-//    NSString* breakevenPrice = @"null";
-//    {
-//        NSNumber* result = [record objectForKey:@"breakevenprice"];
-//        if (result != nil) {
-//            breakevenPrice = [NSString stringWithFormat:@"'%@'", result.stringValue];
-//        }
-//    }
-    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (code) values ('%@');",code];
+
+    NSArray* values = [NSArray arrayWithArray:[record allValues]];
+    for (id v in values) {
+        if ([[v class] isEqual:@"NSString"]) {
+            NSString* value = (NSString*)v;
+            value = [NSString stringWithFormat:@"'%@'", v];
+        }
+    }
     
-//    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (code, buy.price, buy.quantity, sell.price, sell.quantity, rate.commission, rate.stamp, rate.transfer, commission, stamp, transfer, taxandduties, gainorlost, breakevenprice) values ('%@',%f, %f, %f, %f, %f,%f,%f, %f,%f, %f,%f, %@, %@);",code, buy.price, buy.quantity, sell.price, sell.quantity, rate.commission, rate.stamp, rate.transfer, commission, stamp, transfer,taxAndDuties, gainOrLoss, breakevenPrice];
+    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (%@) values (%@);",[[record allKeys] componentsJoinedByString:@","], [values componentsJoinedByString:@","]];
+
     NSError *error = [self.db doQuery:sqlSentence];
     if (error != nil) {
         NSLog(@"Error: %@",[error localizedDescription]);
