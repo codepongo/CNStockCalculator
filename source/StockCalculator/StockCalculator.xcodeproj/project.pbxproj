@@ -20,6 +20,7 @@
 		FA2A9A921BD91FA400FCC8A5 /* InputCellWithUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A901BD91FA400FCC8A5 /* InputCellWithUnit.xib */; };
 		FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */; };
 		FA2A9A971BD9256600FCC8A5 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */; };
+		FA407CE51C073A8F00FA64B6 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA407CE41C073A8F00FA64B6 /* RecordCell.m */; };
 		FA6179EF1BE0E79200E4AFA6 /* InputAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */; };
 		FA6179F21BE0EABC00E4AFA6 /* InputAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */; };
 		FA617A061BE8E9FB00E4AFA6 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA617A051BE8E9FB00E4AFA6 /* Trade.swift */; };
@@ -61,6 +62,8 @@
 		FA2A9A931BD9256600FCC8A5 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		FA407CE31C073A8F00FA64B6 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		FA407CE41C073A8F00FA64B6 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		FA6179EE1BE0E79200E4AFA6 /* InputAccessory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputAccessory.xib; sourceTree = "<group>"; };
 		FA6179F01BE0EABC00E4AFA6 /* InputAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputAccessory.h; sourceTree = "<group>"; };
 		FA6179F11BE0EABC00E4AFA6 /* InputAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputAccessory.m; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
 				04E4429E1BF3546E00943EA5 /* Record.h */,
 				04E4429F1BF3546E00943EA5 /* Record.m */,
+				FA407CE31C073A8F00FA64B6 /* RecordCell.h */,
+				FA407CE41C073A8F00FA64B6 /* RecordCell.m */,
 				FA617A331BEFFB9700E4AFA6 /* SQLiteManger */,
 				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
 				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
@@ -340,6 +345,7 @@
 				FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */,
 				FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */,
 				04E442A01BF3546E00943EA5 /* Record.m in Sources */,
+				FA407CE51C073A8F00FA64B6 /* RecordCell.m in Sources */,
 				FA2323551BDB3CDC004EE7E8 /* SaveFooter.m in Sources */,
 				FA2A9A911BD91FA400FCC8A5 /* InputCellWithUnit.m in Sources */,
 				FACE721B1BCF31110086F0EB /* InputCell.m in Sources */,

@@ -26,7 +26,8 @@
 -(instancetype)init {
     if (self = [super init]) {
         self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
-/*
+
+        /*
         {
             NSFileManager *f = [NSFileManager defaultManager];
             BOOL bRet = [f fileExistsAtPath:[self.db getDatabasePath]];
@@ -37,9 +38,10 @@
             self.db = [[SQLiteManager alloc]initWithDatabaseNamed:@"stockcalc.db"];
             
         }
-*/
+        */
+
 //        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record (code TEXT, buy.price FLOAT, buy.quantity FLOAT, sell.price FLOAT, sell.quantity FLOAT, commission FLOAT, stamp FLOAT, transfer FLOAT, taxandduties FLOAT, gainorlost FLOAT, breakevenprice FLOAT, commissionrate FLOAT, stamprate FLOAT, transferrate FLOAT);";
-        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [buy.price] FLOAT, [buy.quantity] FLOAT, [sell.pirce] FLOAT, [sell.quantity] FLOAT, [rate.commission] FLOAT, [rate.stamp] Float, [rate.transfer] Float,[commission] FLOAT, [stamp] Float, [transfer] Float, [fee] FLOAT, [result] FLOAT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
+        NSString* sqlSentence = @"CREATE TABLE IF NOT EXISTS record ([code] TEXT, [buy.price] FLOAT, [buy.quantity] FLOAT, [sell.price] FLOAT, [sell.quantity] FLOAT, [rate.commission] FLOAT, [rate.stamp] Float, [rate.transfer] Float,[commission] FLOAT, [stamp] Float, [transfer] Float, [fee] FLOAT, [result] FLOAT, [time] TimeStamp NOT NULL DEFAULT (datetime('now','localtime')));";
         
         NSError *error = [self.db doQuery:sqlSentence];
         
@@ -57,15 +59,21 @@
 
 -(BOOL)add:(NSDictionary*)record{
 
+    NSMutableArray* keys = [NSMutableArray arrayWithCapacity:14];
+    for (NSString* k in [record allKeys]) {
+        [keys addObject:[NSString stringWithFormat:@"[%@]", k]];
+    }
     NSArray* values = [NSArray arrayWithArray:[record allValues]];
-//    for (id v in values) {
-//        if ([[v class] isEqual:@"NSString"]) {
-//            NSString* value = (NSString*)v;
-//            value = [NSString stringWithFormat:@"'%@'", v];
-//        }
-//    }
+
+    for (id v in values) {
+        NSLog(@"%@", [v class]);
+        if ([[v class] isEqual:@"NSString"]) {
+            NSString* value = (NSString*)v;
+            value = [NSString stringWithFormat:@"'%@'", v];
+        }
+    }
     
-    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (%@) values (%@);",[[record allKeys] componentsJoinedByString:@","], [values componentsJoinedByString:@","]];
+    NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (%@) values (%@);",[keys componentsJoinedByString:@","], [values componentsJoinedByString:@","]];
     NSLog(@"%@", sqlSentence);
 
     NSError *error = [self.db doQuery:sqlSentence];

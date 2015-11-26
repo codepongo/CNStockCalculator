@@ -8,6 +8,7 @@
 
 #import "RecordViewController.h"
 #import "Record.h"
+#import "RecordCell.h"
 
 @interface RecordViewController ()
 //@property NSMutableDictionary* cache;
@@ -48,34 +49,27 @@
 #pragma mark Table View Delegate Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell* c = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    RecordCell* c = (RecordCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (c == nil) {
-        c =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
+        c =(RecordCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
     }
     c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
-//    NSRange range = {indexPath.row, self.defaultLength};
-//    NSInteger idx = range.location;
-//    NSDictionary* d = [self.cache objectForKey:[NSNumber numberWithInteger:indexPath.row]];
-//    if (nil == d) {
-//        NSArray* records = [[Record sharedRecord] getRecords:range];
-//        for (NSMutableDictionary* r in records) {
-//            [self.cache setObject:[r copy] forKey:[NSNumber numberWithInteger:idx]];
-//            idx++;
-//        }
-//    }
-//    d = [self.cache objectForKey:[NSNumber numberWithInteger:indexPath.row]];
 
-    
-//    if (r[@"sell.price"] != nil) {
-//        c.textLabel.text = [NSString stringWithFormat:@"[%@] %@ %@ %@ %@ (%@) %@", r[@"code"], r[@"buy.price"], r[@"buy.quanlity"], r[@"sell.price"], r[@"sell.quanlity"], @"买卖损益", r[@"result"]];
-//    }
-//    else {
-//        c.textLabel.text = [NSString stringWithFormat:@"[%@] %@ %@ (%@) %@", r[@"code"], r[@"buy.price"], r[@"buy.quanlity"], @"保本价格", r[@"result"]];
-//        
-//    }
-    c.textLabel.text = [NSString stringWithFormat:@"[%@] %@ %@", r[@"code"], r[@"buy.price"], r[@"buy.quanlity"]];
-    c.detailTextLabel.text = r[@"time"];
+    if (r[@"sell.price"] != nil) {
+        
+    }
+    c.trade.text = [NSString stringWithFormat:@"[%@] - %@", r[@"code"], r[@"time"]];
+    if (r[@"result"] < 0) {
+        c.result.textColor = [UIColor greenColor];
+    }
+    else {
+        c.result.textColor = [UIColor redColor];
+    }
+    c.result.text = [NSString stringWithFormat:@"%@ %@ %@", r[@"sell.price"] != nil ? @"损益" : @"保本价",r[@"result"],r[@"sell.price"] != nil ? @"元" : @"元／股"];
+    c.datetime.text = ;
+    //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
+    //c.detailTextLabel.text = r[@"time"];
     
     return c;
 //    NSDictionary* item = self.cur[indexPath.section][indexPath.row];
@@ -183,6 +177,10 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+//    return 160;
+//}
 
 #pragma mark - Segues
 
