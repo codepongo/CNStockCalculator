@@ -43,31 +43,31 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DAI-Js-Qbd">
-                                            <rect key="frame" x="0.0" y="8" width="90" height="59"/>
+                                            <rect key="frame" x="0.0" y="8" width="92" height="59"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ROq-ER-6KK">
                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="59"/>
                                                     <animations/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UYt-7F-JL1">
-                                                    <rect key="frame" x="50" y="0.0" width="40" height="59"/>
+                                                    <rect key="frame" x="50" y="0.0" width="42" height="59"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A97-a1-6sI">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A97-a1-6sI">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
                                                             <animations/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLb-pP-nkp">
-                                                            <rect key="frame" x="0.0" y="21" width="40" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2w-Ie-x23">
+                                                            <rect key="frame" x="0.0" y="21" width="42" height="21"/>
                                                             <animations/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pk3-7L-ApX">
-                                                            <rect key="frame" x="0.0" y="42" width="40" height="17"/>
+                                                            <rect key="frame" x="0.0" y="42" width="42" height="17"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,53 +76,17 @@
                                                     </subviews>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="topMargin" id="0ss-Rp-NVV"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="1yT-sV-GvB"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" id="2ju-TQ-Mjw"/>
-                                                        <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="xLb-pP-nkp" secondAttribute="leading" id="2n4-jg-R4E"/>
-                                                        <constraint firstItem="pk3-7L-ApX" firstAttribute="top" secondItem="xLb-pP-nkp" secondAttribute="bottom" id="44W-MD-rGD"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leadingMargin" id="4PS-DX-5S6"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="6hE-Dt-RJ2"/>
                                                         <constraint firstAttribute="trailing" secondItem="pk3-7L-ApX" secondAttribute="trailing" id="7Pm-lb-hWc"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="top" secondItem="A97-a1-6sI" secondAttribute="bottom" id="8cq-sr-taR"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="B57-ug-LSw"/>
-                                                        <constraint firstItem="pk3-7L-ApX" firstAttribute="centerX" secondItem="A97-a1-6sI" secondAttribute="centerX" id="BXN-pu-u4Q"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" id="C7e-Cs-9Rd"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="ChL-25-NrO"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="DAO-Ej-9qd"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" constant="21" id="ED9-Ws-z2P"/>
-                                                        <constraint firstItem="pk3-7L-ApX" firstAttribute="trailing" secondItem="A97-a1-6sI" secondAttribute="trailing" id="EPf-m8-Sfn"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="centerX" secondItem="UYt-7F-JL1" secondAttribute="centerX" id="Far-Sm-Zyz"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" id="HSl-WZ-bUC"/>
-                                                        <constraint firstAttribute="trailing" secondItem="xLb-pP-nkp" secondAttribute="trailing" id="M2l-wn-hHW"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leadingMargin" id="MOK-Jq-7Tl"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="trailing" secondItem="pk3-7L-ApX" secondAttribute="trailing" id="Njw-Lj-Bv9"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" constant="42" id="Ocy-iS-0mG"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="trailing" secondItem="xLb-pP-nkp" secondAttribute="trailing" id="R5X-cC-Kgt"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="RMh-vj-Ood"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="centerX" secondItem="UYt-7F-JL1" secondAttribute="centerX" id="ReS-uT-2hA"/>
                                                         <constraint firstAttribute="bottom" secondItem="pk3-7L-ApX" secondAttribute="bottom" constant="21" id="UA1-D3-sBH"/>
-                                                        <constraint firstAttribute="trailing" secondItem="xLb-pP-nkp" secondAttribute="trailing" id="VZQ-Zr-tJ7"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="centerX" secondItem="UYt-7F-JL1" secondAttribute="centerX" id="WRQ-it-qgj"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="trailing" secondItem="UYt-7F-JL1" secondAttribute="trailingMargin" id="XJJ-vD-XhJ"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="YFN-aq-faC"/>
-                                                        <constraint firstItem="pk3-7L-ApX" firstAttribute="centerX" secondItem="xLb-pP-nkp" secondAttribute="centerX" id="a5m-sM-toL"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" id="aTy-0Z-xoA"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="aa1-j4-g76"/>
                                                         <constraint firstItem="pk3-7L-ApX" firstAttribute="trailing" secondItem="UYt-7F-JL1" secondAttribute="trailingMargin" id="fLz-mN-tIl"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="fUO-Ek-vu9"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="centerX" secondItem="xLb-pP-nkp" secondAttribute="centerX" id="g7S-iB-bKC"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="trailing" secondItem="UYt-7F-JL1" secondAttribute="trailingMargin" id="gpA-Gb-4Ry"/>
-                                                        <constraint firstAttribute="trailing" secondItem="A97-a1-6sI" secondAttribute="trailing" id="kP7-uR-aQR"/>
-                                                        <constraint firstItem="pk3-7L-ApX" firstAttribute="leading" secondItem="A97-a1-6sI" secondAttribute="leading" id="lmP-j2-pia"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leadingMargin" id="sgJ-zh-VHg"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="top" secondItem="UYt-7F-JL1" secondAttribute="top" constant="21" id="svZ-Gd-mLE"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="uBP-f9-A9L"/>
-                                                        <constraint firstItem="A97-a1-6sI" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="uaf-m1-xRu"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="leading" secondItem="A97-a1-6sI" secondAttribute="leading" id="vAO-Eq-ATI"/>
-                                                        <constraint firstItem="xLb-pP-nkp" firstAttribute="leading" secondItem="UYt-7F-JL1" secondAttribute="leading" id="wBn-Vn-YMJ"/>
                                                         <constraint firstAttribute="trailing" secondItem="pk3-7L-ApX" secondAttribute="trailing" id="wDs-Ps-h5G"/>
-                                                        <constraint firstAttribute="trailing" secondItem="A97-a1-6sI" secondAttribute="trailing" id="woC-Ka-iH6"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -184,7 +148,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="datetime" destination="pk3-7L-ApX" id="osk-bk-4pq"/>
-                                    <outlet property="result" destination="xLb-pP-nkp" id="6DD-Es-QfY"/>
+                                    <outlet property="result" destination="D2w-Ie-x23" id="Ghc-ky-emu"/>
                                     <outlet property="trade" destination="A97-a1-6sI" id="fx5-QL-nsS"/>
                                     <segue destination="8PZ-MJ-BYf" kind="show" id="E62-lq-7BD"/>
                                 </connections>

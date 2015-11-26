@@ -59,7 +59,13 @@
     if (r[@"sell.price"] != nil) {
         
     }
-    c.trade.text = [NSString stringWithFormat:@"[%@] - %@", r[@"code"], r[@"time"]];
+    
+    
+    c.trade.text = [NSString stringWithFormat:@"[%@] - asdfasfd;jk;j\n买入：%2@元／股×%2@股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
+    
+
+    
+    
     if (r[@"result"] < 0) {
         c.result.textColor = [UIColor greenColor];
     }
@@ -67,104 +73,12 @@
         c.result.textColor = [UIColor redColor];
     }
     c.result.text = [NSString stringWithFormat:@"%@ %@ %@", r[@"sell.price"] != nil ? @"损益" : @"保本价",r[@"result"],r[@"sell.price"] != nil ? @"元" : @"元／股"];
-    c.datetime.text = ;
+    c.datetime.text = r[@"time"];
     //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
     //c.detailTextLabel.text = r[@"time"];
     
     return c;
-//    NSDictionary* item = self.cur[indexPath.section][indexPath.row];
-//    NSString* cellId = item[@"cellReuseIdentifier"];
-//    if (cellId == nil) {
-//        return nil;
-//    }
-//    if ([cellId  isEqual: @"InputCell"]) {
-//        InputCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-//        c.input.delegate = self;
-//        NSNumber* v = (NSNumber*)[self.brain valueForKeyPath:item[@"value"]];
-//        if (v != nil && [v floatValue] != 0) {
-//            c.input.text = [NSString stringWithFormat:@"%g %@",[v floatValue], item[@"unit"]];
-//        }
-//        else {
-//            c.input.text = @"";
-//        }
-//        c.input.placeholder = item[@"placeholder"];
-//        c.input.keyboardType = [item[@"inputtype"] integerValue];
-//        
-//        InputAccessory* a = [[[NSBundle mainBundle]loadNibNamed:@"InputAccessory" owner:nil options:nil] objectAtIndex:0];
-//        a.done.action = @selector(hideKeyBoard);
-//        //[a.done addTarget:self action:@selector(hideKeyBoard) forControlEvents:UIControlEventTouchUpInside];
-//        c.input.inputAccessoryView = a;
-//        return c;
-//    }
-//    if ([cellId  isEqual: @"InputCellWithUnit"]) {
-//        InputCellWithUnit* c = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-//        c.input.delegate = self;
-//        c.input.placeholder = [NSString stringWithFormat:@"%@%@", item[@"placeholder"],item[@"unit"]];
-//        c.input.keyboardType = [item[@"inputtype"] integerValue];
-//        c.unit.text = item[@"unit"];
-//        return c;
-//    }
-//    if ([cellId  isEqual: @"ButtonCell"]) {
-//        ButtonCell* c = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        c.title.text = self.cur[indexPath.section][indexPath.row][@"title"];
-//        self.marketOfStock = c.button;
-//        [c.button addTarget:self action:@selector(selectMarketOfStock:) forControlEvents:UIControlEventTouchUpInside];
-//        //        c.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//        [c.button setTitle:self.pickerData[self.selectedIndexInSheet] forState:UIControlStateNormal];
-//        
-//        return c;
-//    }
-//    if ([cellId  isEqual: @"OutputCell"]) {
-//        OutputCell* c = [tableView dequeueReusableCellWithIdentifier:@"OutputCell"];
-//        NSString* title = self.cur[indexPath.section][indexPath.row][@"title"];
-//        if (nil != title) {
-//            c.title.text = title;
-//            
-//            NSString* instruction = self.cur[indexPath.section][indexPath.row][@"instruction"];
-//            if (instruction != nil) {
-//                UIImage* image = [UIImage imageNamed:@"instruction"];
-//                UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32,c.contentView.frame.size.height)];
-//                [b setImage:image forState:UIControlStateNormal];
-//                [b addTarget:self action:@selector(showInstruction:) forControlEvents:UIControlEventTouchUpInside];
-//                
-//                c.accessoryView = b;//[[UIImageView alloc] initWithImage:image];
-//                //c.bounds =
-//                
-//                
-//                //c.accessoryType = UITableViewCellAccessoryDetailButton;
-//            }
-//            else {
-//                UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];
-//                c.accessoryView = v;
-//            }
-//        }
-//        else {
-//            if ([self.brain calculateForGainOrLoss]) {
-//                c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForGainOrLoss"];
-//            }
-//            else {
-//                c.title.text = self.cur[indexPath.section][indexPath.row][@"titleForBreakevenPrice"];
-//            }
-//            
-//            float r = [self.brain resultOfTrade];
-//            if (r < 0) {
-//                c.result.textColor =[UIColor greenColor];
-//            }
-//            else if (r > 0) {
-//                c.result.textColor = [UIColor redColor];
-//            }
-//            else {
-//                c.result.textColor = [UIColor blackColor];
-//            }
-//            UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];
-//            c.accessoryView = v;
-//            
-//        }
-//        c.result.text = self.cur[indexPath.section][indexPath.row][@"value"];
-//        return c;
-//    }
+
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
