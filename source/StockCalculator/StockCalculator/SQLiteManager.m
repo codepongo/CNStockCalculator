@@ -87,19 +87,26 @@
 	if (db == nil) {
 		openError = [self openDatabase];
 	}
+
 	
 	if (openError == nil) {
-		sqlite3_stmt *statement;
-		const char *query = [sql UTF8String];
-		sqlite3_prepare_v2(db, query, -1, &statement, NULL);
-		
-		if (sqlite3_step(statement) == SQLITE_ERROR) {
-			const char *errorMsg = sqlite3_errmsg(db);
-			errorQuery = [self createDBErrorWithDescription:[NSString stringWithCString:errorMsg encoding:NSUTF8StringEncoding]
-													andCode:kDBErrorQuery];
-		}
-		sqlite3_finalize(statement);
-		errorQuery = [self closeDatabase];
+        sqlite3_stmt *statement;
+        const char *query = [sql UTF8String];
+        int r = sqlite3_prepare_v2(db, query, -1, &statement, NULL);
+        if (SQLITE_OK == r) {
+            if (sqlite3_step(statement) == SQLITE_ERROR) {
+                const char *errorMsg = sqlite3_errmsg(db);
+                errorQuery = [self createDBErrorWithDescription:[NSString stringWithCString:errorMsg encoding:NSUTF8StringEncoding]
+                                                        andCode:kDBErrorQuery];
+            }
+            sqlite3_finalize(statement);
+            errorQuery = [self closeDatabase];
+        }
+        else {
+            const char *errorMsg = sqlite3_errmsg(db);
+            errorQuery = [self createDBErrorWithDescription:[NSString stringWithCString:errorMsg encoding:NSUTF8StringEncoding] andCode:kDBErrorQuery];
+            [self closeDatabase];
+        }
 	}
 	else {
 		errorQuery = openError;

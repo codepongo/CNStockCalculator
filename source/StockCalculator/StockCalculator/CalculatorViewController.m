@@ -600,7 +600,7 @@
 }
 
 -(void) save:(id)sender{
-    NSMutableDictionary* r = [NSMutableDictionary dictionaryWithDictionary:[self.brain dictionaryWithValuesForKeys:@[/*@"code", @"stamp", @"commission", */@"result"]]];
+    NSMutableDictionary* r = [NSMutableDictionary dictionaryWithDictionary:[self.brain dictionaryWithValuesForKeys:@[/*@"code",*/ @"stamp", @"commission", @"result"]]];
 //    r[@"buy.price"] = [NSNumber numberWithFloat:self.brain.buy.price];
 //    r[@"buy.quantity"] = [NSNumber numberWithInteger:self.brain.buy.quantity];
 //    r[@"rate.commission"] = [NSNumber numberWithFloat:self.brain.rate.commission];
