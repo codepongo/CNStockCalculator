@@ -74,6 +74,7 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o]增加点击显示record 详细信息页
 [o]new brain
 []database
+[]调整cell高度
 []record cell
 []record cell image
 []record detail 

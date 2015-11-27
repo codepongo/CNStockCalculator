@@ -56,13 +56,11 @@
     c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
 
-    if (r[@"sell.price"] != nil) {
-        
+    
+   c.trade.text = [NSString stringWithFormat: @"[%@] - 以单价%.2f元买入%@股", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
+    if (r[@"sell.price"] != [NSNull null]) {
+        c.trade.text = [NSString stringWithFormat:@"%@，以单价%.2f元卖出%@股", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
     }
-    
-    
-    c.trade.text = [NSString stringWithFormat:@"[%@] - asdfasfd;jk;j\n买入：%2@元／股×%2@股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
-    
 
     
     
@@ -72,7 +70,7 @@
     else {
         c.result.textColor = [UIColor redColor];
     }
-    c.result.text = [NSString stringWithFormat:@"%@ %@ %@", r[@"sell.price"] != nil ? @"损益" : @"保本价",r[@"result"],r[@"sell.price"] != nil ? @"元" : @"元／股"];
+    c.result.text = [NSString stringWithFormat:@"%@ %@ %@", r[@"sell.price"] != [NSNull null] ? @"损益" : @"保本价",r[@"result"],r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
     c.datetime.text = r[@"time"];
     //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
     //c.detailTextLabel.text = r[@"time"];
