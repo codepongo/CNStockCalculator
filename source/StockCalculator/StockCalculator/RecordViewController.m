@@ -9,6 +9,7 @@
 #import "RecordViewController.h"
 #import "Record.h"
 #import "RecordCell.h"
+#import "public.h"
 
 @interface RecordViewController ()
 //@property NSMutableDictionary* cache;
@@ -53,24 +54,31 @@
     if (c == nil) {
         c =(RecordCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
     }
-    c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
 
-    
-   c.trade.text = [NSString stringWithFormat: @"[%@] - 以单价%.2f元买入%@股", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
     if (r[@"sell.price"] != [NSNull null]) {
-        c.trade.text = [NSString stringWithFormat:@"%@，以单价%.2f元卖出%@股", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
+        c.image.image = [UIImage imageNamed:@"gainorlose"];
+    }
+    else {
+        c.image.image = [UIImage imageNamed:@"breakeven"];
+
+    }
+    
+   c.trade.text = [NSString stringWithFormat: @"[%@] - 单价为%.2f元时，买入%@股。", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
+    if (r[@"sell.price"] != [NSNull null]) {
+        c.trade.text = [NSString stringWithFormat:@"%@ 单价为%.2f元时，卖出%@股。", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
     }
 
     
     
-    if (r[@"result"] < 0) {
-        c.result.textColor = [UIColor greenColor];
+    if (((NSNumber*)r[@"result"]).floatValue < 0) {
+        c.result.textColor = DOWN_COLOR;
     }
     else {
-        c.result.textColor = [UIColor redColor];
+        c.result.textColor = UP_COLOR;
     }
-    c.result.text = [NSString stringWithFormat:@"%@ %@ %@", r[@"sell.price"] != [NSNull null] ? @"损益" : @"保本价",r[@"result"],r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
+    c.result.text = [NSString stringWithFormat:@"%@： %.2f %@", r[@"sell.price"] != [NSNull null] ? @"交易损益" : @"保本价格",((NSNumber*)r[@"result"]).floatValue,r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
     c.datetime.text = r[@"time"];
     //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
     //c.detailTextLabel.text = r[@"time"];

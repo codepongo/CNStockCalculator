@@ -18,6 +18,7 @@
 #import "CalculateBrain.h"
 #import "InputAccessory.h"
 #import "Record.h"
+#import "public.h"
 
 @interface CalculatorViewController ()
 @property NSArray* all;
@@ -356,13 +357,10 @@
             
             float r = self.brain.result;//[self.brain resultOfTrade];
             if (r < 0) {
-                c.result.textColor =[UIColor greenColor];
-            }
-            else if (r > 0) {
-                c.result.textColor = [UIColor redColor];
+                c.result.textColor = DOWN_COLOR;
             }
             else {
-                c.result.textColor = [UIColor blackColor];
+                c.result.textColor = UP_COLOR;
             }
             UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];
             c.accessoryView = v;

@@ -12,4 +12,5 @@
 @property IBOutlet UILabel* trade;
 @property IBOutlet UILabel* result;
 @property IBOutlet UILabel* datetime;
+@property IBOutlet UIImageView* image;
 @end
