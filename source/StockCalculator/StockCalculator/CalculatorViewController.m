@@ -340,7 +340,7 @@
                 [c.accessoryView.leadingAnchor constraintEqualToAnchor:c.contentView.trailingAnchor].active = YES;
                 [c.accessoryView.trailingAnchor constraintEqualToAnchor:c.trailingAnchor].active = YES;
                 //[c.accessoryView.widthAnchor constraintEqualToConstant:32].active = YES;
-
+                
             }
             else {
                 UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0,0,32,c.contentView.frame.size.height)];

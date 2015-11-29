@@ -10,6 +10,7 @@
 #import "Record.h"
 #import "RecordCell.h"
 #import "public.h"
+#import "RecordDetail.h"
 
 @interface RecordViewController ()
 //@property NSMutableDictionary* cache;
@@ -19,6 +20,16 @@
 @implementation RecordViewController
 
 -(void)dealloc {
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    //self.navigationItem.title = @"全部纪录";
+    [super viewWillDisappear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    //self.navigationItem.title = @"";
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidLoad {
@@ -105,13 +116,13 @@
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        
-//        UIViewController *controller = (UIViewController *)[[segue destinationViewController] topViewController];
-//        controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:nil];
-//        controller.navigationItem.leftItemsSupplementBackButton = YES;
-//    }
+    if ([[segue identifier] isEqualToString:@"RecordDetail"]) {
+       NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
+        
+        RecordDetail* detail = (RecordDetail *)[segue destinationViewController];
+        detail.data = r;
+    }
 }
 
 
