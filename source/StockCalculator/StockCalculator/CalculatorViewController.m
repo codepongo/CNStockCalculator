@@ -649,6 +649,7 @@
 }
 
 - (IBAction)selectCalculateType:(id)sender {
+    [self hideKeyBoard];
     [self.brain setCalculateForGainOrLoss: ![self.brain calculateForGainOrLoss]];
     if (!self.brain.calculateForGainOrLoss) {
         [self.cur[0] removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4,2)]];
