@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = self.data[@"code"];
     NSArray* keys = @[@"buy.price",@"buy.quantity",@"sell.price",@"sell.quantity", @"commission",@"stamp", @"transfer", @"result"];
     for (NSString* k in keys) {
         UILabel* d = (UILabel*)[self valueForKey:k];
@@ -40,6 +40,7 @@
     
 
 }
+
 - (void)setValue:(id _Nullable)value
           forKey:(NSString * _Nonnull)key {
     if ([key isEqual:@"buy.price"]) {

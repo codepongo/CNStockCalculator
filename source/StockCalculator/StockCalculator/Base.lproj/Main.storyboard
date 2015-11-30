@@ -108,7 +108,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="全部纪录" id="KWf-vW-fjV"/>
+                    <navigationItem key="navigationItem" title="纪录" id="KWf-vW-fjV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
