@@ -83,12 +83,12 @@
 
     
     
-    if (((NSNumber*)r[@"result"]).floatValue < 0) {
-        c.result.textColor = DOWN_COLOR;
-    }
-    else {
-        c.result.textColor = UP_COLOR;
-    }
+//    if (((NSNumber*)r[@"result"]).floatValue < 0) {
+//        c.result.textColor = DOWN_COLOR;
+//    }
+//    else {
+//        c.result.textColor = UP_COLOR;
+//    }
     c.result.text = [NSString stringWithFormat:@"%@： %.2f %@", r[@"sell.price"] != [NSNull null] ? @"交易损益" : @"保本价格",((NSNumber*)r[@"result"]).floatValue,r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
     c.datetime.text = r[@"time"];
     //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
