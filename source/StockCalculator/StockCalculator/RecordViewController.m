@@ -35,8 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    //self.defaultLength = 10;
-    //self.cache = [NSMutableDictionary dictionaryWithCapacity:self.defaultLength];
     [[NSNotificationCenter defaultCenter] addObserver: self.view selector: @selector(reloadData) name: @"recordChanged" object: nil];
 }
 
@@ -54,7 +52,19 @@
 
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return [[Record sharedRecord]count];
+    NSInteger count = [[Record sharedRecord]count];
+    self.edit.enabled = (count != 0);
+    return count;
+}
+
+- (BOOL)tableView:(UITableView * _Nonnull)tableView canEditRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView * _Nonnull)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    [[Record sharedRecord] removeAtIndex:indexPath.row];
+    //[(UITableView*)self.view deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+
 }
 
 #pragma mark -
@@ -109,9 +119,9 @@
     
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    return 160;
-//}
+- (UITableViewCellEditingStyle)tableView:(UITableView * _Nonnull)tableView editingStyleForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
 
 #pragma mark - Segues
 
@@ -125,6 +135,17 @@
     }
 }
 
+#pragma action
 
+-(IBAction)edit:(id)sender {
+    [(UITableView*)self.view setEditing:!((UITableView*)self.view).editing animated:YES];
+    if (((UITableView*)self.view).editing)
+    {
+        self.edit.title = @"完成";
+    }
+    else {
+        self.edit.title = @"编辑";
+    }
+}
 
 @end

@@ -88,7 +88,16 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="纪录" id="KWf-vW-fjV"/>
+                    <navigationItem key="navigationItem" title="纪录" id="KWf-vW-fjV">
+                        <barButtonItem key="rightBarButtonItem" title="编辑" id="zfI-hk-QeH">
+                            <connections>
+                                <action selector="edit:" destination="9pv-A4-QxB" id="gKX-tM-lTy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="edit" destination="zfI-hk-QeH" id="zoa-g8-Xx1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>

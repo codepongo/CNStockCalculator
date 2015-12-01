@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RecordViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
-
-
+@property IBOutlet UIBarButtonItem* edit;
+-(IBAction)edit:(id)sender;
 @end
 

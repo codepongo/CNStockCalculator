@@ -105,14 +105,15 @@
     
 }
 -(void)removeAtIndex:(NSInteger)index {
-    NSString *sqlSentence = [NSString stringWithFormat:@"DELETE record WHERE index=%ld", index];
+    NSString *sqlSentence = [NSString stringWithFormat:@"DELETE FROM record WHERE ROWID=%ld", index+1];
+    NSLog(@"%lu", (unsigned long)[self count]);
     
     NSError *error = [self.db doQuery:sqlSentence];
     if (error != nil) {
         NSLog(@"Error: %@",[error localizedDescription]);
     }
     
-    NSLog(@"%@", [self.db getDatabaseDump]);
+    NSLog(@"%lu", (unsigned long)[self count]);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
     return;
 }
