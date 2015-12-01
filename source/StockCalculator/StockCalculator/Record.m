@@ -93,7 +93,7 @@
 }
 
 -(NSArray*)getRecords:(NSRange)range {
-    NSString* sql = [NSString stringWithFormat:@"SELECT * FROM record ORDER BY ROWID DESC LIMIT %ld OFFSET %ld",  range.length, range.location];
+    NSString* sql = [NSString stringWithFormat:@"SELECT ROWID,* FROM record ORDER BY ROWID DESC LIMIT %ld OFFSET %ld",  range.length, range.location];
     NSArray* r = [self.db getRowsForQuery:sql];
     return r;
 }
@@ -105,7 +105,7 @@
     
 }
 -(void)removeAtIndex:(NSInteger)index {
-    NSString *sqlSentence = [NSString stringWithFormat:@"DELETE FROM record WHERE ROWID=%ld", index+1];
+    NSString *sqlSentence = [NSString stringWithFormat:@"DELETE FROM record WHERE ROWID=%ld", index];
     NSLog(@"%lu", (unsigned long)[self count]);
     
     NSError *error = [self.db doQuery:sqlSentence];
@@ -114,6 +114,8 @@
     }
     
     NSLog(@"%lu", (unsigned long)[self count]);
+
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
     return;
 }

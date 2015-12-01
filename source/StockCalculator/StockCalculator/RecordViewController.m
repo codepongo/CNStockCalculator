@@ -53,7 +53,13 @@
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
     NSInteger count = [[Record sharedRecord]count];
-    self.edit.enabled = (count != 0);
+    if (count == 0) {
+        self.edit.enabled = NO;
+        self.edit.title = @"编辑";
+    }
+    else {
+        self.edit.enabled = YES;
+    }
     return count;
 }
 
@@ -62,9 +68,7 @@
 }
 
 - (void)tableView:(UITableView * _Nonnull)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
-    [[Record sharedRecord] removeAtIndex:indexPath.row];
-    //[(UITableView*)self.view deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
-
+    [[Record sharedRecord] removeAtIndex:[(UITableView*)self.view cellForRowAtIndexPath:indexPath].tag];
 }
 
 #pragma mark -
@@ -103,6 +107,7 @@
     c.datetime.text = r[@"time"];
     //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
     //c.detailTextLabel.text = r[@"time"];
+    c.tag = ((NSNumber*)r[@"rowid"]).intValue;
     
     return c;
 
