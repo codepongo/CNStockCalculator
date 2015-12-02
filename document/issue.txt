@@ -73,18 +73,25 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o]加入navigation controller 至 record tabpage
 [o]增加点击显示record 详细信息页
 [o]new brain
-[]database
-[]调整cell高度
-[]record cell
-[]record cell image
-[]record detail 
+[o]database
+[o]调整cell高度
+[o]record cell
+[o]record cell image
+[o]record删除
 []record查找
-[]record删除
-[]setting 
-[]setting detail
+[]record detail layout
+[]record detail line chart animation
+[]setting image
+[]setting value
+[]setting detail save and cancel
+[]setting detail instruction
 []about
+[]calculate
+[]launch image font style
 [o]图标 保本 损益 app icon
-[]settings 印花税率 佣金比率 过户费率 版本 关于
+[o]settings 印花税率 佣金比率 过户费率 版本 关于
+[]arrange material
+[] 多语言
 
 ## Option ##
 [o] * 批量注释 command+/
@@ -103,14 +110,9 @@ tableTitle.font = [UIFont boldSystemFontOfSize:18];
 tableTitle.text = [curTrail objectForKey:@"Name"];
 self.tableView.tableHeaderView = tableTitle;
 [self.tableView reloadData];
-[] 加入disclosure indicator 
-[] 多语言
+[o] 加入disclosure indicator 
 [ ] 输入代码显示名称 效果参考招商证券买入模块
-[ ] keyboard 完善相关
-[ ] https://github.com/SimonBS/BSKeyboardControls
-[ ]https://github.com/wannabegeek/PickerTableViewCell
-[ ]https://github.com/danielamitay/DAKeyboardControl
-[ ]https://github.com/backslash112/static-cells-uitableview-in-uiviewcontroller
+[o] keyboard 完善相关
 [ ] * NSIndexPath addiction in UIKit实现方式
 [ ] + po indexPath.length = 2
 [ ] + po indexPath indexAtPosition] 
@@ -118,13 +120,9 @@ self.tableView.tableHeaderView = tableTitle;
 
 
 
-求证费用
-1.印花税：成交金额的1‰ 。当前由向双边征收改为向卖方单边征收。投资者在买卖成交后支付给财税部门的税收。上海股票及深圳股票均按实际成交金额的千分之一支付，此税收由券商代扣后由交易所统一代缴。债券与基金交易均免交此项税收。
-　　2.证券监管费（俗称三费）：约为成交金额的0.02%，实际还有尾数，一般省略为0.02%
-　　3.证券交易经手费：A股，按成交额双边收取0.087‰；B股，按成交额双边收取0.0001%；基金，按成交额双边收取0.00975%；权证，按成交额双边收取0.0045%。
-　　4.过户费（仅上海股票收取）：这是指股票成交后，更换户名所需支付的费用。由于我国两家交易所不同的运作方式，上海股票采取的是”中央登记、统一托管“，所以此费用只在投资者进行上海股票、基金交易中才支付此费用，深股交易时无此费用。此费用按成交面额（每股一元，等同于成交股数）的0.3‰收取。
-　　5.券商交易佣金：最高为成交金额的3‰，最低5元起，单笔交易佣金不满5元按5元收取。
-
-
+[o]求证费用
+印花税：成交金额的1‰ 。当前由向双边征收改为向卖方单边征收。投资者在买卖成交后支付给财税部门的税收。上海股票及深圳股票均按实际成交金额的千分之一支付，此税收由券商代扣后由交易所统一代缴。债券与基金交易均免交此项税收。
+过户费（仅上海股票收取）：这是指股票成交后，更换户名所需支付的费用。由于我国两家交易所不同的运作方式，上海股票采取的是”中央登记、统一托管“，所以此费用只在投资者进行上海股票、基金交易中才支付此费用，深股交易时无此费用。此费用按成交面额（每股一元，等同于成交股数）的0.3‰收取。
+券商交易佣金：最高为成交金额的3‰，最低5元起，单笔交易佣金不满5元按5元收取。
 
 计息起点 储蓄存款利息计算时， 本金以“元”为起息点， 元以下的角、 分不计息， 利息的金额算至分位， 分位以下四舍五入。

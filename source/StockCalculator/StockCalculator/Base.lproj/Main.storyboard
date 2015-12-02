@@ -316,7 +316,6 @@
         <!--Collection View Controller-->
         <scene sceneID="qMu-0S-y36">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nXq-Ow-6ph" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="Qbe-sn-zPw" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="kzy-GV-CL9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -400,6 +399,7 @@
                         </connections>
                     </collectionView>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXq-Ow-6ph" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2781" y="-260"/>
         </scene>
