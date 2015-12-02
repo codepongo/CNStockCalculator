@@ -15,6 +15,7 @@
 @interface RecordViewController ()
 //@property NSMutableDictionary* cache;
 //@property NSUInteger defaultLength;
+@property NSMutableArray* result;
 @end
 
 @implementation RecordViewController
@@ -36,6 +37,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [[NSNotificationCenter defaultCenter] addObserver: self.view selector: @selector(reloadData) name: @"recordChanged" object: nil];
+    
+    //((UITableView*)self.view).tableHeaderView = nil;//self.searchbar;
+    //((UITableView*)self.view).tableHeaderView.hidden = YES;
+    
+    self.searcher = [[UISearchController alloc] initWithSearchResultsController:nil];
+    
+    self.searcher.searchResultsUpdater = self;
+    
+    self.searcher.dimsBackgroundDuringPresentation = YES;
+    
+    self.searcher.hidesNavigationBarDuringPresentation = YES;
+    self.searcher.searchBar.delegate = self;
+    self.searcher.searchBar.scopeButtonTitles = @[@"代码", @"时间", @"买入价格", @"买入数量"];
+    
+    //self.tableView.tableHeaderView = self.searchController.searchBar;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,15 +69,21 @@
 
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
-    NSInteger count = [[Record sharedRecord]count];
-    if (count == 0) {
-        self.edit.enabled = NO;
-        self.edit.title = @"编辑";
+    if (self.searcher.active) {
+        return self.result.count;
     }
     else {
-        self.edit.enabled = YES;
+        NSInteger count = [[Record sharedRecord]count];
+        if (count == 0) {
+            self.navigationItem.rightBarButtonItem = nil;
+            self.navigationItem.leftBarButtonItem = nil;
+        }
+        else {
+            self.navigationItem.rightBarButtonItem = self.edit;
+            self.navigationItem.leftBarButtonItem = self.search;
+        }
+        return count;
     }
-    return count;
 }
 
 - (BOOL)tableView:(UITableView * _Nonnull)tableView canEditRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
@@ -75,41 +98,50 @@
 #pragma mark Table View Delegate Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    RecordCell* c = (RecordCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (c == nil) {
-        c =(RecordCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
-    }
-    //c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
-
-    if (r[@"sell.price"] != [NSNull null]) {
-        c.image.image = [UIImage imageNamed:@"gainorloss"];
+    if (self.searcher.active) {
+        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell==nil) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        return cell;
+        
     }
     else {
-        c.image.image = [UIImage imageNamed:@"breakeven"];
-
+        RecordCell* c = (RecordCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        if (c == nil) {
+            c =(RecordCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
+        }
+        
+        //c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
+        
+        if (r[@"sell.price"] != [NSNull null]) {
+            c.image.image = [UIImage imageNamed:@"gainorloss"];
+        }
+        else {
+            c.image.image = [UIImage imageNamed:@"breakeven"];
+            
+        }
+        
+        c.trade.text = [NSString stringWithFormat: @"[%@] - 单价为%.2f元时，买入%@股。", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
+        if (r[@"sell.price"] != [NSNull null]) {
+            c.trade.text = [NSString stringWithFormat:@"%@ 单价为%.2f元时，卖出%@股。", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
+        }
+        
+        if (((NSNumber*)r[@"result"]).floatValue < 0) {
+            c.result.textColor = DOWN_COLOR;
+        }
+        else {
+            c.result.textColor = UP_COLOR;
+        }
+        
+        c.result.text = [NSString stringWithFormat:@"%@： %.2f %@", r[@"sell.price"] != [NSNull null] ? @"交易损益" : @"保本价格",((NSNumber*)r[@"result"]).floatValue,r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
+        c.datetime.text = r[@"time"];
+        //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
+        //c.detailTextLabel.text = r[@"time"];
+        c.tag = ((NSNumber*)r[@"rowid"]).intValue;
+        return c;
     }
-    
-   c.trade.text = [NSString stringWithFormat: @"[%@] - 单价为%.2f元时，买入%@股。", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
-    if (r[@"sell.price"] != [NSNull null]) {
-        c.trade.text = [NSString stringWithFormat:@"%@ 单价为%.2f元时，卖出%@股。", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
-    }
-    
-    if (((NSNumber*)r[@"result"]).floatValue < 0) {
-        c.result.textColor = DOWN_COLOR;
-    }
-    else {
-        c.result.textColor = UP_COLOR;
-    }
-    
-    c.result.text = [NSString stringWithFormat:@"%@： %.2f %@", r[@"sell.price"] != [NSNull null] ? @"交易损益" : @"保本价格",((NSNumber*)r[@"result"]).floatValue,r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
-    c.datetime.text = r[@"time"];
-    //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
-    //c.detailTextLabel.text = r[@"time"];
-    c.tag = ((NSNumber*)r[@"rowid"]).intValue;
-    
-    return c;
-
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
@@ -139,7 +171,7 @@
     }
 }
 
-#pragma action
+#pragma mark - action
 
 -(IBAction)edit:(id)sender {
     [(UITableView*)self.view setEditing:!((UITableView*)self.view).editing animated:YES];
@@ -152,4 +184,44 @@
     }
 }
 
+-(IBAction) select:(id)sender {
+    if (((UITableView*)self.view).tableHeaderView == nil) {
+        ((UITableView*)self.view).tableHeaderView = self.searcher.searchBar;
+    //if (((UITableView*)self.view).tableHeaderView.hidden) {
+        //((UITableView*)self.view).tableHeaderView.hidden = NO;
+        self.edit.customView.hidden = YES;
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+        [self.searcher.searchBar becomeFirstResponder];
+    }
+    
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar * _Nonnull)searchBar {
+    self.navigationItem.leftBarButtonItem = self.search;
+    self.navigationItem.rightBarButtonItem = self.edit;
+    ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
+
+    
+}
+
+#pragma mark - UISearchResultsUpdating
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *where = [self.searcher.searchBar text];
+    NSLog(@"%@", where);
+//    
+//    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", searchString];
+//    
+//    if (self.searchList!= nil) {
+//        [self.searchList removeAllObjects];
+//    }
+//    //过滤数据
+//    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
+//    //刷新表格
+//    
+    [self.tableView reloadData];
+}
 @end

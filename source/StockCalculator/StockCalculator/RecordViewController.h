@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>
+@interface RecordViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchResultsUpdating>
 @property IBOutlet UIBarButtonItem* edit;
 -(IBAction)edit:(id)sender;
+
+//@property IBOutlet UISearchBar* searchbar;
+
+@property IBOutlet UIBarButtonItem* search;
+
+-(IBAction)select:(id)sender;
+
+@property (nonatomic, strong) UISearchController *searcher;
+
 @end
 

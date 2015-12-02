@@ -89,6 +89,11 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="纪录" id="KWf-vW-fjV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="MQ3-pw-F4Y">
+                            <connections>
+                                <action selector="select:" destination="9pv-A4-QxB" id="Jx1-L5-8x3"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="编辑" id="zfI-hk-QeH">
                             <connections>
                                 <action selector="edit:" destination="9pv-A4-QxB" id="gKX-tM-lTy"/>
@@ -97,9 +102,24 @@
                     </navigationItem>
                     <connections>
                         <outlet property="edit" destination="zfI-hk-QeH" id="zoa-g8-Xx1"/>
+                        <outlet property="search" destination="MQ3-pw-F4Y" id="L60-e9-OcE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" showsCancelButton="YES" showsScopeBar="YES" id="APO-36-6Pm">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>代码</string>
+                        <string>时间</string>
+                        <string>买入</string>
+                    </scopeButtonTitles>
+                    <connections>
+                        <outlet property="delegate" destination="9pv-A4-QxB" id="yyp-oX-iqM"/>
+                    </connections>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="1066" y="-286"/>
         </scene>
