@@ -502,7 +502,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="佣金比率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vby-Lk-Qgb">
-                                                    <rect key="frame" x="56" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="80" y="12" width="64" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -518,7 +518,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="commission" id="ZKP-TC-XaA">
-                                                    <rect key="frame" x="15" y="8" width="26" height="26"/>
+                                                    <rect key="frame" x="15" y="6" width="50" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </imageView>
@@ -538,7 +538,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="印花税率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FVp-vX-LIX">
-                                                    <rect key="frame" x="56" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="80" y="12" width="64" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -554,7 +554,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="stamp" id="c3x-RK-Ad7">
-                                                    <rect key="frame" x="15" y="8" width="26" height="26"/>
+                                                    <rect key="frame" x="15" y="6" width="50" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </imageView>
@@ -571,7 +571,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="过户费率" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iBZ-J7-Nlb">
-                                                    <rect key="frame" x="58" y="12" width="64" height="20"/>
+                                                    <rect key="frame" x="80" y="12" width="64" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -587,7 +587,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="transfer" id="uzz-mp-HT7">
-                                                    <rect key="frame" x="15" y="8" width="28" height="26"/>
+                                                    <rect key="frame" x="15" y="6" width="50" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </imageView>
@@ -608,7 +608,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="版本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v4K-lN-9Au">
-                                                    <rect key="frame" x="56" y="12" width="32" height="20"/>
+                                                    <rect key="frame" x="80" y="12" width="32" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -616,7 +616,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="version" id="MI7-I3-m4V">
-                                                    <rect key="frame" x="15" y="8" width="26" height="26"/>
+                                                    <rect key="frame" x="15" y="6" width="50" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </imageView>
@@ -644,7 +644,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="关于" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FW3-Ct-dyI">
-                                                    <rect key="frame" x="56" y="0.0" width="509" height="43"/>
+                                                    <rect key="frame" x="80" y="0.0" width="485" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -652,7 +652,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="about" id="5J0-Re-NIa">
-                                                    <rect key="frame" x="15" y="9" width="26" height="24"/>
+                                                    <rect key="frame" x="15" y="6" width="50" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </imageView>
@@ -917,13 +917,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="about" width="26" height="24"/>
-        <image name="commission" width="26" height="26"/>
+        <image name="about" width="50" height="30"/>
+        <image name="commission" width="50" height="30"/>
         <image name="list" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>
-        <image name="stamp" width="26" height="26"/>
+        <image name="stamp" width="50" height="30"/>
         <image name="stock" width="30" height="30"/>
-        <image name="transfer" width="28" height="26"/>
-        <image name="version" width="26" height="26"/>
+        <image name="transfer" width="50" height="30"/>
+        <image name="version" width="50" height="30"/>
     </resources>
 </document>
