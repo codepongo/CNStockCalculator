@@ -15,4 +15,11 @@ imageresizer -i version100x60.png -s 50x30 -png version50x30.png
 imageresizer -i transfer100x60.png -s 75x45 -png transfer75x45.png 
 imageresizer -i transfer100x60.png -s 50x30 -png transfer50x30.png 
 
+imageresizer -i gainorloss.png -s 60x60 -png gainorlossx60.png 
+imageresizer -i gainorloss.png -s 45x45 -png gainorlossx45.png 
+imageresizer -i gainorloss.png -s 30x30 -png gainorlossx30.png 
+imageresizer -i breakeven.png -s 60x60 -png breakevenx60.png 
+imageresizer -i breakeven.png -s 45x45 -png breakevenx45.png 
+imageresizer -i breakeven.png -s 30x30 -png breakevenx30.png 
+
 
