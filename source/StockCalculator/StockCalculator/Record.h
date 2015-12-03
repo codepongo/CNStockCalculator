@@ -16,5 +16,6 @@
 - (NSUInteger)count;
 -(NSDictionary*)recordForIndexPath:(NSInteger)indexPath;
 - (void)removeAtIndex:(NSInteger)index;
+-(NSArray*)recordsAtTime:(NSString*)time;
 @end
 static Record* instance;

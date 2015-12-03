@@ -120,4 +120,10 @@
     return;
 }
 
+-(NSArray*)recordsAtTime:(NSString*) time {
+    NSString* sql = [NSString stringWithFormat:@"SELECT ROWID,* FROM record WHERE datetime(time) like '%%%@%%' ORDER BY ROWID DESC ", time];
+    NSArray* r = [self.db getRowsForQuery:sql];
+    return r;
+}
+
 @end

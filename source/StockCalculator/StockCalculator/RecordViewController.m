@@ -11,6 +11,7 @@
 #import "RecordCell.h"
 #import "public.h"
 #import "RecordDetail.h"
+#import "ResearchRecordViewController.h"
 
 @interface RecordViewController ()
 //@property NSMutableDictionary* cache;
@@ -38,10 +39,14 @@
     // Do any additional setup after loading the view, typically from a nib.
     [[NSNotificationCenter defaultCenter] addObserver: self.view selector: @selector(reloadData) name: @"recordChanged" object: nil];
     
+     [(UITableView*)self.view registerNib:[UINib nibWithNibName:@"RecordCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
     //((UITableView*)self.view).tableHeaderView = nil;//self.searchbar;
     //((UITableView*)self.view).tableHeaderView.hidden = YES;
     
-    self.searcher = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searcher = [[UISearchController alloc] initWithSearchResultsController:[[ResearchRecordViewController alloc] init ] ];
+    
+    self.searcher.delegate = self;
     
     self.searcher.searchResultsUpdater = self;
     
@@ -103,6 +108,7 @@
         if (cell==nil) {
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
+        cell.textLabel.text = self.result[indexPath.row][@"time"];
         return cell;
         
     }
@@ -159,6 +165,11 @@
     return UITableViewCellEditingStyleDelete;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%s", __FUNCTION__);
+    
+}
+
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -199,13 +210,19 @@
 
 #pragma mark - UISearchBarDelegate
 
-- (void)searchBarCancelButtonClicked:(UISearchBar * _Nonnull)searchBar {
-    self.navigationItem.leftBarButtonItem = self.search;
-    self.navigationItem.rightBarButtonItem = self.edit;
-    ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
-
-    
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"%s", __FUNCTION__);
+    self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsAtTime:self.searcher.searchBar.text]];
+    [self.tableView reloadData];
 }
+//
+//- (void)searchBarCancelButtonClicked:(UISearchBar * _Nonnull)searchBar {
+//    self.navigationItem.leftBarButtonItem = self.search;
+//    self.navigationItem.rightBarButtonItem = self.edit;
+//    ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
+//
+//    
+//}
 
 #pragma mark - UISearchResultsUpdating
 
@@ -214,7 +231,7 @@
     NSLog(@"%@", where);
 //    
 //    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", searchString];
-//    
+//
 //    if (self.searchList!= nil) {
 //        [self.searchList removeAllObjects];
 //    }
@@ -224,4 +241,15 @@
 //    
     [self.tableView reloadData];
 }
+
+#pragma mark - UISearchControllerDelegate
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    //self.navigationItem.leftBarButtonItem = self.search;
+    //self.navigationItem.rightBarButtonItem = self.edit;
+    //((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
+
+}
+
+
 @end
