@@ -424,6 +424,9 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="1cH-FH-OqA" kind="show" identifier="SetStamp" id="tyL-JB-PjO"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="iBZ-J7-Nlb" detailTextLabel="k4d-xO-QlN" imageView="uzz-mp-HT7" style="IBUITableViewCellStyleValue1" id="NLY-aq-qvk">
                                         <rect key="frame" x="0.0" y="187" width="600" height="44"/>
@@ -457,16 +460,19 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="1cH-FH-OqA" kind="show" identifier="SetTransfer" id="bB5-o3-Taa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="eFx-qO-nF6">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="v4K-lN-9Au" detailTextLabel="dgt-Sw-kSV" imageView="MI7-I3-m4V" style="IBUITableViewCellStyleValue1" id="QSv-jZ-fWp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="v4K-lN-9Au" detailTextLabel="dgt-Sw-kSV" imageView="MI7-I3-m4V" style="IBUITableViewCellStyleValue1" id="QSv-jZ-fWp">
                                         <rect key="frame" x="0.0" y="267" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QSv-jZ-fWp" id="HZu-Ig-BKL">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="版本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v4K-lN-9Au">
@@ -483,7 +489,7 @@
                                                     <animations/>
                                                 </imageView>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dgt-Sw-kSV">
-                                                    <rect key="frame" x="523" y="12" width="42" height="20"/>
+                                                    <rect key="frame" x="543" y="12" width="42" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -494,9 +500,6 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
-                                        <connections>
-                                            <segue destination="EsQ-qc-GHD" kind="show" id="11d-mG-QDG"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FW3-Ct-dyI" imageView="5J0-Re-NIa" style="IBUITableViewCellStyleDefault" id="P6U-mc-9cA">
                                         <rect key="frame" x="0.0" y="311" width="600" height="44"/>
@@ -522,6 +525,9 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="EsQ-qc-GHD" kind="show" id="GdB-4H-vEc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -788,4 +794,7 @@
         <image name="transfer" width="50" height="30"/>
         <image name="version" width="50" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bB5-o3-Taa"/>
+    </inferredMetricsTieBreakers>
 </document>
