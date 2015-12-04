@@ -13,10 +13,49 @@
 #import "RecordDetail.h"
 #import "ResearchRecordViewController.h"
 
+@interface Searcher : UITableViewController<UITableViewDataSource, UISearchResultsUpdating>
+
+@property NSMutableArray* result;
+
+@end
+
+@implementation Searcher
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [(UITableView*)self.view registerNib:[UINib nibWithNibName:@"RecordCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+
+}
+
+#pragma mark - UISearchResultsUpdating
+
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsAtTime:searchController.searchBar.text]];
+
+    [self.tableView reloadData];
+}
+
+#pragma mark -
+#pragma mark Table View Data Source Methods
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView * _Nonnull)tableView
+ numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"%s", __FUNCTION__);
+    return self.result.count;
+}
+
+@end
+
 @interface RecordViewController ()
 //@property NSMutableDictionary* cache;
 //@property NSUInteger defaultLength;
-@property NSMutableArray* result;
+
+@property Searcher* sr;
 @end
 
 @implementation RecordViewController
@@ -41,20 +80,21 @@
     
      [(UITableView*)self.view registerNib:[UINib nibWithNibName:@"RecordCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
-    //((UITableView*)self.view).tableHeaderView = nil;//self.searchbar;
-    //((UITableView*)self.view).tableHeaderView.hidden = YES;
-    
-    self.searcher = [[UISearchController alloc] initWithSearchResultsController:[[ResearchRecordViewController alloc] init ] ];
+    self.sr = [[Searcher alloc] init ];
+    self.sr.tableView.delegate = self;
+    self.sr.tableView.dataSource = self;
+    self.searcher = [[UISearchController alloc] initWithSearchResultsController:self.sr];
     
     self.searcher.delegate = self;
     
-    self.searcher.searchResultsUpdater = self;
+    self.searcher.searchResultsUpdater = self.sr;
     
     self.searcher.dimsBackgroundDuringPresentation = YES;
     
     self.searcher.hidesNavigationBarDuringPresentation = YES;
     self.searcher.searchBar.delegate = self;
     self.searcher.searchBar.scopeButtonTitles = @[@"代码", @"时间", @"买入价格", @"买入数量"];
+    self.definesPresentationContext = YES;
     
     //self.tableView.tableHeaderView = self.searchController.searchBar;
     
@@ -74,21 +114,20 @@
 
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
-    if (self.searcher.active) {
-        return self.result.count;
+    if (tableView != self.tableView) {
+        return self.sr.result.count;
+    }
+    
+    NSInteger count = [[Record sharedRecord]count];
+    if (count == 0) {
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
     }
     else {
-        NSInteger count = [[Record sharedRecord]count];
-        if (count == 0) {
-            self.navigationItem.rightBarButtonItem = nil;
-            self.navigationItem.leftBarButtonItem = nil;
-        }
-        else {
-            self.navigationItem.rightBarButtonItem = self.edit;
-            self.navigationItem.leftBarButtonItem = self.search;
-        }
-        return count;
+        self.navigationItem.rightBarButtonItem = self.edit;
+        self.navigationItem.leftBarButtonItem = self.search;
     }
+    return count;
 }
 
 - (BOOL)tableView:(UITableView * _Nonnull)tableView canEditRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
@@ -103,51 +142,43 @@
 #pragma mark Table View Delegate Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.searcher.active) {
-        UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-        if (cell==nil) {
-            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        }
-        cell.textLabel.text = self.result[indexPath.row][@"time"];
-        return cell;
-        
+    RecordCell* c = (RecordCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (c == nil) {
+        c =(RecordCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
+    }
+    NSDictionary* r = nil;
+    if (tableView != self.tableView) {
+         r = self.sr.result[indexPath.row];
     }
     else {
-        RecordCell* c = (RecordCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
-        if (c == nil) {
-            c =(RecordCell*)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:@"Cell"];
-        }
-        
-        //c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
-        
-        if (r[@"sell.price"] != [NSNull null]) {
-            c.image.image = [UIImage imageNamed:@"gainorloss"];
-        }
-        else {
-            c.image.image = [UIImage imageNamed:@"breakeven"];
-            
-        }
-        
-        c.trade.text = [NSString stringWithFormat: @"[%@] - 单价为%.2f元时，买入%@股。", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
-        if (r[@"sell.price"] != [NSNull null]) {
-            c.trade.text = [NSString stringWithFormat:@"%@ 单价为%.2f元时，卖出%@股。", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
-        }
-        
-        if (((NSNumber*)r[@"result"]).floatValue < 0) {
-            c.result.textColor = DOWN_COLOR;
-        }
-        else {
-            c.result.textColor = UP_COLOR;
-        }
-        
-        c.result.text = [NSString stringWithFormat:@"%@： %.2f %@", r[@"sell.price"] != [NSNull null] ? @"交易损益" : @"保本价格",((NSNumber*)r[@"result"]).floatValue,r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
-        c.datetime.text = r[@"time"];
-        //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
-        //c.detailTextLabel.text = r[@"time"];
-        c.tag = ((NSNumber*)r[@"rowid"]).intValue;
-        return c;
+        r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
     }
+    if (r[@"sell.price"] != [NSNull null]) {
+        c.image.image = [UIImage imageNamed:@"gainorloss"];
+    }
+    else {
+        c.image.image = [UIImage imageNamed:@"breakeven"];
+        
+    }
+    
+    c.trade.text = [NSString stringWithFormat: @"[%@] - 单价为%.2f元时，买入%@股。", r[@"code"],((NSNumber*)r[@"buy.price"]).floatValue, r[@"buy.quantity"]];
+    if (r[@"sell.price"] != [NSNull null]) {
+        c.trade.text = [NSString stringWithFormat:@"%@ 单价为%.2f元时，卖出%@股。", c.trade.text, ((NSNumber*)r[@"sell.price"]).floatValue, r[@"sell.quantity"]];
+    }
+    
+    if (((NSNumber*)r[@"result"]).floatValue < 0) {
+        c.result.textColor = DOWN_COLOR;
+    }
+    else {
+        c.result.textColor = UP_COLOR;
+    }
+    
+    c.result.text = [NSString stringWithFormat:@"%@： %.2f %@", r[@"sell.price"] != [NSNull null] ? @"交易损益" : @"保本价格",((NSNumber*)r[@"result"]).floatValue,r[@"sell.price"] != [NSNull null] ? @"元" : @"元／股"];
+    c.datetime.text = r[@"time"];
+    //c.textLabel.text = [NSString stringWithFormat:@"[%@] 买入 %@ 元／股 × %@ 股", r[@"code"], r[@"buy.price"], r[@"buy.quantity"]];
+    //c.detailTextLabel.text = r[@"time"];
+    c.tag = ((NSNumber*)r[@"rowid"]).intValue;
+    return c;
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
@@ -166,7 +197,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    
+    
+    RecordDetail *d = [self.storyboard instantiateViewControllerWithIdentifier: tableView == self.tableView ? @"detail" : @"detailv2"];
+    NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
+    if (tableView == self.tableView) {
+        d.data = r;
+    }
+    
+    [self.navigationController pushViewController:d animated:YES];
+
     
 }
 
@@ -174,11 +214,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"RecordDetail"]) {
-       NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
-        
-        RecordDetail* detail = (RecordDetail *)[segue destinationViewController];
-        detail.data = r;
+
     }
 }
 
@@ -211,35 +247,13 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"%s", __FUNCTION__);
-    self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsAtTime:self.searcher.searchBar.text]];
     [self.tableView reloadData];
 }
-//
-//- (void)searchBarCancelButtonClicked:(UISearchBar * _Nonnull)searchBar {
-//    self.navigationItem.leftBarButtonItem = self.search;
-//    self.navigationItem.rightBarButtonItem = self.edit;
-//    ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
-//
-//    
-//}
 
-#pragma mark - UISearchResultsUpdating
-
--(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString *where = [self.searcher.searchBar text];
-    NSLog(@"%@", where);
-//    
-//    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c] %@", searchString];
-//
-//    if (self.searchList!= nil) {
-//        [self.searchList removeAllObjects];
-//    }
-//    //过滤数据
-//    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
-//    //刷新表格
-//    
-    [self.tableView reloadData];
+- (void)searchBarCancelButtonClicked:(UISearchBar * _Nonnull)searchBar {
+    self.navigationItem.leftBarButtonItem = self.search;
+    self.navigationItem.rightBarButtonItem = self.edit;
+    ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
 }
 
 #pragma mark - UISearchControllerDelegate
@@ -247,8 +261,7 @@
 - (void)didDismissSearchController:(UISearchController *)searchController {
     //self.navigationItem.leftBarButtonItem = self.search;
     //self.navigationItem.rightBarButtonItem = self.edit;
-    //((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
-
+    ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
 }
 
 

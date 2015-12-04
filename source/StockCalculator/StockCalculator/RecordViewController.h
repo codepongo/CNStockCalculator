@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate,UISearchResultsUpdating, UISearchControllerDelegate>
+@interface RecordViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate>
 @property IBOutlet UIBarButtonItem* edit;
 -(IBAction)edit:(id)sender;
 
