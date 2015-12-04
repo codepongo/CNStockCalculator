@@ -11,13 +11,9 @@
 #import "RecordCell.h"
 #import "public.h"
 #import "RecordDetail.h"
-#import "ResearchRecordViewController.h"
 
-@interface Searcher : UITableViewController<UITableViewDataSource, UISearchResultsUpdating>
 
-@property NSMutableArray* result;
-
-@end
+#pragma mark -
 
 @implementation Searcher
 - (void)viewDidLoad {
@@ -28,24 +24,42 @@
 
 }
 
-#pragma mark - UISearchResultsUpdating
+#pragma mark UISearchResultsUpdating
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsAtTime:searchController.searchBar.text]];
+    
+    switch (searchController.searchBar.selectedScopeButtonIndex) {
+        case 1: {
+            self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsAtTime:searchController.searchBar.text]];
+            break;
+        }
+//        case 2: {
+//            self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsForPrice:searchController.searchBar.text]];
+//            break;
+//            
+//        }
+//        case 3: {
+//            self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsForQuantity:searchController.searchBar.text]];
+//            break;
+//            
+//        }
+        default:
+            self.result = [NSMutableArray arrayWithArray:[[Record sharedRecord] recordsForCode:searchController.searchBar.text]];
+            break;
+    }
 
     [self.tableView reloadData];
 }
 
 #pragma mark -
 #pragma mark Table View Data Source Methods
-
+	
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView
  numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%s", __FUNCTION__);
     return self.result.count;
 }
 
@@ -81,6 +95,7 @@
      [(UITableView*)self.view registerNib:[UINib nibWithNibName:@"RecordCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     
     self.sr = [[Searcher alloc] init ];
+    self.sr.tableView.rowHeight = self.tableView.rowHeight;
     self.sr.tableView.delegate = self;
     self.sr.tableView.dataSource = self;
     self.searcher = [[UISearchController alloc] initWithSearchResultsController:self.sr];
@@ -93,7 +108,7 @@
     
     self.searcher.hidesNavigationBarDuringPresentation = YES;
     self.searcher.searchBar.delegate = self;
-    self.searcher.searchBar.scopeButtonTitles = @[@"代码", @"时间", @"买入价格", @"买入数量"];
+    self.searcher.searchBar.scopeButtonTitles = @[@"代码", @"时间"];//, @"买入价格", @"买入数量"];
     self.definesPresentationContext = YES;
     
     //self.tableView.tableHeaderView = self.searchController.searchBar;
@@ -254,6 +269,11 @@
     self.navigationItem.leftBarButtonItem = self.search;
     self.navigationItem.rightBarButtonItem = self.edit;
     ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar
+selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
+    [self.sr updateSearchResultsForSearchController:self.searcher];
 }
 
 #pragma mark - UISearchControllerDelegate

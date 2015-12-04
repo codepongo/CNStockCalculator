@@ -678,7 +678,6 @@
     }
     
     [self.brain setValue:[self.cur[path.section][path.row][@"value"]  isEqual: @"code"] ? textField.text:[NSNumber numberWithFloat:textField.text.floatValue] forKeyPath:self.cur[path.section][path.row][@"value"]];
-    NSLog(@"%@", textField.text);
     if (![textField.text  isEqual: @""]) {
         NSString* unit = self.cur[path.section][path.row][@"unit"];
         if (unit != nil) {

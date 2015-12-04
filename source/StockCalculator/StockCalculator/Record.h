@@ -19,7 +19,7 @@
 -(NSArray*)recordsForCondition:(NSString*)condition like:(NSString*)v;
 -(NSArray*)recordsAtTime:(NSString*)time;
 -(NSArray*)recordsForCode:(NSString*)code;
--(NSArray*)recordsForPrice:(NSString*)price;
--(NSArray*)recordsForQuantity:(NSString*)quantity;
+//-(NSArray*)recordsForPrice:(NSString*)price;
+//-(NSArray*)recordsForQuantity:(NSString*)quantity;
 @end
 static Record* instance;

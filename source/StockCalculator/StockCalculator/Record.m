@@ -129,15 +129,15 @@
     return [self recordsForCondition:@"code" like:v];
 }
 
--(NSArray*)recordsForPrice:(NSString*) v {
-    return [[self recordsForCondition:@"buying.price" like:v] arrayByAddingObjectsFromArray:[self recordsForCondition:@"selling.price" like:v]];
-}
+//-(NSArray*)recordsForPrice:(NSString*) v {
+//    return [[self recordsForCondition:@"[buy.price]" like:v] arrayByAddingObjectsFromArray:[self recordsForCondition:@"[sell.price]" like:v]];
+//}
+//
+//-(NSArray*)recordsForQuantity:(NSString*) v {
+//    return [[self recordsForCondition:@"[buy.quantity]" like:v] arrayByAddingObjectsFromArray:[self recordsForCondition:@"[sell.quantity]" like:v]];
+//}
 
--(NSArray*)recordsForQuantity:(NSString*) v {
-    return [[self recordsForCondition:@"buying.quantity" like:v] arrayByAddingObjectsFromArray:[self recordsForCondition:@"selling.quantity" like:v]];
-}
-
--(NSArray*)recordsForTime:(NSString*) v {
-    return [self recordsForCondition:@"code" like:v];
+-(NSArray*)recordsAtTime:(NSString*) v {
+    return [self recordsForCondition:@"time" like:v];
 }
 @end

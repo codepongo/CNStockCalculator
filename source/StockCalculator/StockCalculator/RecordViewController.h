@@ -22,3 +22,9 @@
 
 @end
 
+@interface Searcher : UITableViewController<UITableViewDataSource, UISearchResultsUpdating>
+
+@property NSMutableArray* result;
+
+@end
+
