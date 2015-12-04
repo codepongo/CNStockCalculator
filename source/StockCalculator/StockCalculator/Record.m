@@ -120,10 +120,24 @@
     return;
 }
 
--(NSArray*)recordsAtTime:(NSString*) time {
-    NSString* sql = [NSString stringWithFormat:@"SELECT ROWID,* FROM record WHERE datetime(time) like '%%%@%%' ORDER BY ROWID DESC ", time];
-    NSArray* r = [self.db getRowsForQuery:sql];
-    return r;
+-(NSArray*)recordsForCondition:(NSString *)condition like:(NSString *)v {
+    NSString* sql = [NSString stringWithFormat:@"SELECT ROWID,* FROM record WHERE %@ like '%%%@%%' ORDER BY ROWID DESC ", condition, v];
+    return [self.db getRowsForQuery:sql];
 }
 
+-(NSArray*)recordsForCode:(NSString*) v {
+    return [self recordsForCondition:@"code" like:v];
+}
+
+-(NSArray*)recordsForPrice:(NSString*) v {
+    return [[self recordsForCondition:@"buying.price" like:v] arrayByAddingObjectsFromArray:[self recordsForCondition:@"selling.price" like:v]];
+}
+
+-(NSArray*)recordsForQuantity:(NSString*) v {
+    return [[self recordsForCondition:@"buying.quantity" like:v] arrayByAddingObjectsFromArray:[self recordsForCondition:@"selling.quantity" like:v]];
+}
+
+-(NSArray*)recordsForTime:(NSString*) v {
+    return [self recordsForCondition:@"code" like:v];
+}
 @end
