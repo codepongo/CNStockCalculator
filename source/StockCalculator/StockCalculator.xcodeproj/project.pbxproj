@@ -112,6 +112,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0401730C1C114A7B0082F6D7 /* RecordCell */ = {
+			isa = PBXGroup;
+			children = (
+				040173041C10617E0082F6D7 /* RecordCell.xib */,
+				FA407CE31C073A8F00FA64B6 /* RecordCell.h */,
+				FA407CE41C073A8F00FA64B6 /* RecordCell.m */,
+			);
+			name = RecordCell;
+			sourceTree = "<group>";
+		};
 		FA2323501BDB3C7C004EE7E8 /* OutputCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +242,7 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				0401730C1C114A7B0082F6D7 /* RecordCell */,
 				FA407CE71C0A6A3300FA64B6 /* RecordDetail.h */,
 				FA407CE81C0A6A3300FA64B6 /* RecordDetail.m */,
 				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
@@ -240,9 +251,6 @@
 				040172FE1C105EC30082F6D7 /* ResearchRecordViewController.m */,
 				04E4429E1BF3546E00943EA5 /* Record.h */,
 				04E4429F1BF3546E00943EA5 /* Record.m */,
-				040173041C10617E0082F6D7 /* RecordCell.xib */,
-				FA407CE31C073A8F00FA64B6 /* RecordCell.h */,
-				FA407CE41C073A8F00FA64B6 /* RecordCell.m */,
 				FA617A331BEFFB9700E4AFA6 /* SQLiteManger */,
 				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
 				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
