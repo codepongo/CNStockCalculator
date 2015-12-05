@@ -389,7 +389,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="1cH-FH-OqA" kind="show" id="Udn-Pf-gmA"/>
+                                            <segue destination="1cH-FH-OqA" kind="show" identifier="PushSettingDetail" id="Udn-Pf-gmA"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FVp-vX-LIX" detailTextLabel="nvB-Yl-i12" imageView="c3x-RK-Ad7" style="IBUITableViewCellStyleValue1" id="tyY-yt-yqQ">
@@ -425,7 +425,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="1cH-FH-OqA" kind="show" identifier="SetStamp" id="tyL-JB-PjO"/>
+                                            <segue destination="1cH-FH-OqA" kind="show" identifier="PushSettingDetail" id="tyL-JB-PjO"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="iBZ-J7-Nlb" detailTextLabel="k4d-xO-QlN" imageView="uzz-mp-HT7" style="IBUITableViewCellStyleValue1" id="NLY-aq-qvk">
@@ -461,7 +461,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="1cH-FH-OqA" kind="show" identifier="SetTransfer" id="bB5-o3-Taa"/>
+                                            <segue destination="1cH-FH-OqA" kind="show" identifier="PushSettingDetail" id="bB5-o3-Taa"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -548,10 +548,10 @@
             </objects>
             <point key="canvasLocation" x="1084" y="1083"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting Detail Controller-->
         <scene sceneID="ELu-c4-im5">
             <objects>
-                <viewController id="1cH-FH-OqA" sceneMemberID="viewController">
+                <viewController id="1cH-FH-OqA" customClass="SettingDetailController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xc5-Wd-PzZ"/>
                         <viewControllerLayoutGuide type="bottom" id="cHz-rD-SgB"/>
@@ -592,12 +592,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wB5-2q-rJP">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="EAa-EQ-LNc"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="EAa-EQ-LNc">
+                            <connections>
+                                <action selector="save:" destination="1cH-FH-OqA" id="3al-zQ-vy0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="edit" destination="n9t-ou-0E4" id="4Om-t8-Zph"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbG-4r-v9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="895"/>
+            <point key="canvasLocation" x="1958" y="1083"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WGX-XG-6Fd">
@@ -623,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bq-x5-RXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="1559"/>
+            <point key="canvasLocation" x="1958" y="1923"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

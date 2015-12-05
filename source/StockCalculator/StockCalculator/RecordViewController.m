@@ -77,16 +77,6 @@
 -(void)dealloc {
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    //self.navigationItem.title = @"全部纪录";
-    [super viewWillDisappear:animated];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    //self.navigationItem.title = @"";
-    [super viewWillDisappear:animated];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -219,18 +209,15 @@
     if (tableView == self.tableView) {
         d.data = r;
     }
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem
+                                              alloc]
+                                             initWithTitle:@"返回"
+                                             style:UIBarButtonItemStylePlain
+                                             target:nil
+                                             action:nil];
     [self.navigationController pushViewController:d animated:YES];
 
     
-}
-
-#pragma mark - Segues
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"RecordDetail"]) {
-
-    }
 }
 
 #pragma mark - action
