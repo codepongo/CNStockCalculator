@@ -12,4 +12,5 @@
 @property IBOutlet UILabel* commission;
 @property IBOutlet UILabel* stamp;
 @property IBOutlet UILabel* transfer;
+@property IBOutlet UILabel* version;
 @end

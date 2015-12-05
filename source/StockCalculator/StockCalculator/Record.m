@@ -50,8 +50,6 @@
             return nil;
         }
         
-        //NSLog(@"%@", [self.db getDatabaseDump]);
-        
         return self;
     }
     return nil;
@@ -66,7 +64,6 @@
     NSArray* values = [NSArray arrayWithArray:[record allValues]];
 
     for (id v in values) {
-        NSLog(@"%@", [v class]);
         if ([[v class] isEqual:@"NSString"]) {
             NSString* value = (NSString*)v;
             value = [NSString stringWithFormat:@"'%@'", v];
@@ -74,14 +71,12 @@
     }
     
     NSString *sqlSentence = [NSString stringWithFormat:@"INSERT INTO record (%@) values (%@);",[keys componentsJoinedByString:@","], [values componentsJoinedByString:@","]];
-    NSLog(@"%@", sqlSentence);
 
     NSError *error = [self.db doQuery:sqlSentence];
     if (error != nil) {
         NSLog(@"Error: %@",[error localizedDescription]);
     }
     
-    NSLog(@"%@", [self.db getDatabaseDump]);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
     return YES;
     
@@ -106,15 +101,11 @@
 }
 -(void)removeAtIndex:(NSInteger)index {
     NSString *sqlSentence = [NSString stringWithFormat:@"DELETE FROM record WHERE ROWID=%ld", index];
-    NSLog(@"%lu", (unsigned long)[self count]);
     
     NSError *error = [self.db doQuery:sqlSentence];
     if (error != nil) {
         NSLog(@"Error: %@",[error localizedDescription]);
     }
-    
-    NSLog(@"%lu", (unsigned long)[self count]);
-
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
     return;

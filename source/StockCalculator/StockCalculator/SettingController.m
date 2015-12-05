@@ -19,7 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.rate = [[Rate alloc] init];
-    NSLog(@"%@", self.rate);
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+    self.version.text = [NSString stringWithFormat:@"%@b%@", [info objectForKey:@"CFBundleShortVersionString"], [info objectForKey:@"CFBundleVersion"]];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -38,7 +40,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     for (unsigned int i = 0; i < count; i++) {
         NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
-        if ([key isEqual:@"rate"]) {
+        if ([key isEqual:@"rate"] || [key isEqual:@"version"]) {
             break;
         }
         UILabel* lb = [self valueForKey:key];

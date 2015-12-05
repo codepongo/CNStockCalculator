@@ -12,7 +12,6 @@
 
 @implementation SimulateActionSheet
 +(instancetype)styleDefault{
-    NSLog(@"%g", UIScreen.mainScreen.bounds.size.width);
         SimulateActionSheet* sheet = [[SimulateActionSheet alloc]initWithFrame:CGRectMake(0,0,UIScreen.mainScreen.bounds.size.width,UIScreen.mainScreen.bounds.size.height)];
     //SimulateActionSheet* sheet = [[[NSBundle mainBundle]loadNibNamed:@"PickerSheet" owner:nil options:nil] objectAtIndex:0];
     
@@ -53,7 +52,6 @@
                                       self.toolBar.frame.size.height)];
 }
 -(void)show:(UIViewController *)controller{
-    NSLog(@"%s", __FUNCTION__);
     [self setupInitPostion:controller];
     
     CGFloat toolBarYposition = UIScreen.mainScreen.bounds.size.height -
