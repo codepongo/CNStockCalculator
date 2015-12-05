@@ -607,10 +607,10 @@
             </objects>
             <point key="canvasLocation" x="1958" y="1083"/>
         </scene>
-        <!--View Controller-->
+        <!--About Controller-->
         <scene sceneID="WGX-XG-6Fd">
             <objects>
-                <viewController id="EsQ-qc-GHD" sceneMemberID="viewController">
+                <viewController id="EsQ-qc-GHD" customClass="AboutController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yW4-77-MNl"/>
                         <viewControllerLayoutGuide type="bottom" id="h1A-or-ckF"/>
@@ -619,15 +619,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2d7-sM-8iN">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2d7-sM-8iN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uVQ-Qm-l2J">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2d7-sM-8iN" firstAttribute="top" secondItem="QgZ-53-Tfe" secondAttribute="topMargin" id="HfZ-q7-1Cg"/>
+                            <constraint firstItem="uVQ-Qm-l2J" firstAttribute="centerX" secondItem="2d7-sM-8iN" secondAttribute="centerX" id="J5V-lB-Oc6"/>
+                            <constraint firstAttribute="trailing" secondItem="2d7-sM-8iN" secondAttribute="trailing" id="Wb3-fh-T1O"/>
+                            <constraint firstAttribute="bottom" secondItem="2d7-sM-8iN" secondAttribute="bottom" id="eI8-Hc-RY3"/>
+                            <constraint firstItem="2d7-sM-8iN" firstAttribute="leading" secondItem="QgZ-53-Tfe" secondAttribute="leading" id="eWE-cy-bdL"/>
+                            <constraint firstItem="uVQ-Qm-l2J" firstAttribute="centerY" secondItem="2d7-sM-8iN" secondAttribute="centerY" id="ypr-r2-eCt"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="indicator" destination="uVQ-Qm-l2J" id="rEQ-0E-J7E"/>
+                        <outlet property="webView" destination="2d7-sM-8iN" id="cXN-cl-xyn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bq-x5-RXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
