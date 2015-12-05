@@ -7,6 +7,7 @@
 //
 
 #import "CalculatorViewController.h"
+#import "StockCalculator-Swift.h"
 #import "InputCell.h"
 #import "InputCellWithUnit.h"
 #import "OutputCell.h"
@@ -15,7 +16,6 @@
 #import "SimulateActionSheet.h"
 #import "SaveFooter.h"
 #import "SimulateActionSheet.h"
-#import "CalculateBrain.h"
 #import "InputAccessory.h"
 #import "Record.h"
 #import "public.h"

@@ -347,7 +347,7 @@
         <!--设置-->
         <scene sceneID="ogG-bc-5mk">
             <objects>
-                <tableViewController id="FLZ-Ec-7qr" sceneMemberID="viewController">
+                <tableViewController id="FLZ-Ec-7qr" customClass="SettingController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ml5-IH-6rM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -538,6 +538,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="设置" id="n2R-dw-USL"/>
+                    <connections>
+                        <outlet property="commission" destination="2f9-l4-92F" id="88m-jX-NNJ"/>
+                        <outlet property="stamp" destination="nvB-Yl-i12" id="WSo-aC-5zG"/>
+                        <outlet property="transfer" destination="k4d-xO-QlN" id="pp5-Tu-wYi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkD-a3-bZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

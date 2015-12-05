@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040173051C10617E0082F6D7 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040173041C10617E0082F6D7 /* RecordCell.xib */; };
 		04E442A01BF3546E00943EA5 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4429F1BF3546E00943EA5 /* Record.m */; };
+		FA107FA11C124ECC00482E37 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA107FA01C124ECC00482E37 /* SettingController.m */; };
 		FA2323551BDB3CDC004EE7E8 /* SaveFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2323531BDB3CDC004EE7E8 /* SaveFooter.m */; };
 		FA2323561BDB3CDC004EE7E8 /* SaveFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2323541BDB3CDC004EE7E8 /* SaveFooter.xib */; };
 		FA23235B1BDB402C004EE7E8 /* SimulateActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2323591BDB402C004EE7E8 /* SimulateActionSheet.m */; };
@@ -17,8 +18,6 @@
 		FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A851BD3DE4700FCC8A5 /* CalculateFooter.m */; };
 		FA2A9A8C1BD91B4700FCC8A5 /* OutputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A8A1BD91B4700FCC8A5 /* OutputCell.m */; };
 		FA2A9A8D1BD91B4700FCC8A5 /* OutputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A8B1BD91B4700FCC8A5 /* OutputCell.xib */; };
-		FA2A9A911BD91FA400FCC8A5 /* InputCellWithUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A8F1BD91FA400FCC8A5 /* InputCellWithUnit.m */; };
-		FA2A9A921BD91FA400FCC8A5 /* InputCellWithUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A901BD91FA400FCC8A5 /* InputCellWithUnit.xib */; };
 		FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */; };
 		FA2A9A971BD9256600FCC8A5 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */; };
 		FA407CE51C073A8F00FA64B6 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA407CE41C073A8F00FA64B6 /* RecordCell.m */; };
@@ -45,6 +44,8 @@
 		040173041C10617E0082F6D7 /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
 		04E4429E1BF3546E00943EA5 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		04E4429F1BF3546E00943EA5 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		FA107F9F1C124ECC00482E37 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		FA107FA01C124ECC00482E37 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		FA2323521BDB3CDC004EE7E8 /* SaveFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveFooter.h; sourceTree = "<group>"; };
 		FA2323531BDB3CDC004EE7E8 /* SaveFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveFooter.m; sourceTree = "<group>"; };
 		FA2323541BDB3CDC004EE7E8 /* SaveFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaveFooter.xib; sourceTree = "<group>"; };
@@ -59,9 +60,6 @@
 		FA2A9A891BD91B4700FCC8A5 /* OutputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputCell.h; sourceTree = "<group>"; };
 		FA2A9A8A1BD91B4700FCC8A5 /* OutputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputCell.m; sourceTree = "<group>"; };
 		FA2A9A8B1BD91B4700FCC8A5 /* OutputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutputCell.xib; sourceTree = "<group>"; };
-		FA2A9A8E1BD91FA400FCC8A5 /* InputCellWithUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputCellWithUnit.h; sourceTree = "<group>"; };
-		FA2A9A8F1BD91FA400FCC8A5 /* InputCellWithUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputCellWithUnit.m; sourceTree = "<group>"; };
-		FA2A9A901BD91FA400FCC8A5 /* InputCellWithUnit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCellWithUnit.xib; sourceTree = "<group>"; };
 		FA2A9A931BD9256600FCC8A5 /* ButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonCell.h; sourceTree = "<group>"; };
 		FA2A9A941BD9256600FCC8A5 /* ButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonCell.m; sourceTree = "<group>"; };
 		FA2A9A951BD9256600FCC8A5 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
@@ -119,6 +117,37 @@
 			name = RecordCell;
 			sourceTree = "<group>";
 		};
+		FA107F9D1C124CF300482E37 /* record */ = {
+			isa = PBXGroup;
+			children = (
+				04E4429E1BF3546E00943EA5 /* Record.h */,
+				04E4429F1BF3546E00943EA5 /* Record.m */,
+				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
+				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
+				FA407CE81C0A6A3300FA64B6 /* RecordDetail.m */,
+				FA407CE71C0A6A3300FA64B6 /* RecordDetail.h */,
+				0401730C1C114A7B0082F6D7 /* RecordCell */,
+			);
+			name = record;
+			sourceTree = "<group>";
+		};
+		FA107F9E1C124D3000482E37 /* calculator */ = {
+			isa = PBXGroup;
+			children = (
+				FA2323661BDD1D19004EE7E8 /* InputCell */,
+				FA2A9A981BD9898D00FCC8A5 /* ButtonCell */,
+				FA2323501BDB3C7C004EE7E8 /* OutputCell */,
+				FA2323571BDB3CE3004EE7E8 /* SaveFooter */,
+				FA617A071BE8F61100E4AFA6 /* CalculateFooter */,
+				FA23235C1BDB4031004EE7E8 /* SimulateActionSheet */,
+				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
+				FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */,
+				FA6179F31BE1060100E4AFA6 /* InputAccessory */,
+				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
+			);
+			name = calculator;
+			sourceTree = "<group>";
+		};
 		FA2323501BDB3C7C004EE7E8 /* OutputCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,16 +156,6 @@
 				FA2A9A8B1BD91B4700FCC8A5 /* OutputCell.xib */,
 			);
 			name = OutputCell;
-			sourceTree = "<group>";
-		};
-		FA2323511BDB3C9B004EE7E8 /* InputCellWithUnit */ = {
-			isa = PBXGroup;
-			children = (
-				FA2A9A8E1BD91FA400FCC8A5 /* InputCellWithUnit.h */,
-				FA2A9A8F1BD91FA400FCC8A5 /* InputCellWithUnit.m */,
-				FA2A9A901BD91FA400FCC8A5 /* InputCellWithUnit.xib */,
-			);
-			name = InputCellWithUnit;
 			sourceTree = "<group>";
 		};
 		FA2323571BDB3CE3004EE7E8 /* SaveFooter */ = {
@@ -239,27 +258,13 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				0401730C1C114A7B0082F6D7 /* RecordCell */,
-				FA407CE71C0A6A3300FA64B6 /* RecordDetail.h */,
-				FA407CE81C0A6A3300FA64B6 /* RecordDetail.m */,
-				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
-				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
-				04E4429E1BF3546E00943EA5 /* Record.h */,
-				04E4429F1BF3546E00943EA5 /* Record.m */,
+				FA107F9E1C124D3000482E37 /* calculator */,
+				FA107F9D1C124CF300482E37 /* record */,
 				FA617A331BEFFB9700E4AFA6 /* SQLiteManger */,
-				FA2323651BDCB24F004EE7E8 /* CalculateBrain */,
-				FACE71FC1BCEA7D20086F0EB /* CalculatorViewController.h */,
-				FACE71FD1BCEA7D20086F0EB /* CalculatorViewController.m */,
-				FA6179F31BE1060100E4AFA6 /* InputAccessory */,
-				FA23235C1BDB4031004EE7E8 /* SimulateActionSheet */,
-				FA617A071BE8F61100E4AFA6 /* CalculateFooter */,
-				FA2323571BDB3CE3004EE7E8 /* SaveFooter */,
-				FA2323661BDD1D19004EE7E8 /* InputCell */,
-				FA2A9A981BD9898D00FCC8A5 /* ButtonCell */,
-				FA2323511BDB3C9B004EE7E8 /* InputCellWithUnit */,
-				FA2323501BDB3C7C004EE7E8 /* OutputCell */,
 				FACE720E1BCEA7F40086F0EB /* LaunchScreen.storyboard */,
 				FACE72101BCEA7F40086F0EB /* Main.storyboard */,
+				FA107F9F1C124ECC00482E37 /* SettingController.h */,
+				FA107FA01C124ECC00482E37 /* SettingController.m */,
 				FACE71F81BCEA7D20086F0EB /* AppDelegate.h */,
 				FACE71F91BCEA7D20086F0EB /* AppDelegate.m */,
 				FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */,
@@ -332,7 +337,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA2A9A921BD91FA400FCC8A5 /* InputCellWithUnit.xib in Resources */,
 				FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */,
 				FA2323561BDB3CDC004EE7E8 /* SaveFooter.xib in Resources */,
 				FACE72131BCEA7F40086F0EB /* Main.storyboard in Resources */,
@@ -365,9 +369,9 @@
 				FA2A9A861BD3DE4700FCC8A5 /* CalculateFooter.m in Sources */,
 				FA2A9A961BD9256600FCC8A5 /* ButtonCell.m in Sources */,
 				04E442A01BF3546E00943EA5 /* Record.m in Sources */,
+				FA107FA11C124ECC00482E37 /* SettingController.m in Sources */,
 				FA407CE51C073A8F00FA64B6 /* RecordCell.m in Sources */,
 				FA2323551BDB3CDC004EE7E8 /* SaveFooter.m in Sources */,
-				FA2A9A911BD91FA400FCC8A5 /* InputCellWithUnit.m in Sources */,
 				FACE721B1BCF31110086F0EB /* InputCell.m in Sources */,
 				FACE72051BCEA7D20086F0EB /* AppDelegate.m in Sources */,
 				FA6179F21BE0EABC00E4AFA6 /* InputAccessory.m in Sources */,
