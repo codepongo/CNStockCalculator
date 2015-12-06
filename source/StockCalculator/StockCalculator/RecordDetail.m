@@ -22,10 +22,10 @@
         }
         else {
             if ([k isEqual:@"sell.price"]) {
-                self.result.text = @"保本价格：%.2f 元／股";
+                self.type.text = @"保本价格";
+                self.result.text = @"%.2f 元／股";
             }
-            NSUInteger index = [keys indexOfObject:k];
-            self.layout.arrangedSubviews[index].hidden = YES;
+            self.transferContainer.hidden = YES;
         }
     }
     UIColor* color = UP_COLOR;

@@ -146,8 +146,8 @@
 				04E4429F1BF3546E00943EA5 /* Record.m */,
 				FACE72031BCEA7D20086F0EB /* RecordViewController.h */,
 				FACE72041BCEA7D20086F0EB /* RecordViewController.m */,
-				FA407CE81C0A6A3300FA64B6 /* RecordDetail.m */,
 				FA407CE71C0A6A3300FA64B6 /* RecordDetail.h */,
+				FA407CE81C0A6A3300FA64B6 /* RecordDetail.m */,
 				0401730C1C114A7B0082F6D7 /* RecordCell */,
 			);
 			name = record;
@@ -173,6 +173,7 @@
 		FA107FBD1C13468900482E37 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				FA107FB11C1340A300482E37 /* btn_donate_LG.gif */,
 				FA107FA71C130D1500482E37 /* AboutController.h */,
 				FA107FA81C130D1500482E37 /* AboutController.m */,
 				FA107FA51C130C7100482E37 /* about.html */,
@@ -296,11 +297,10 @@
 		FACE71DD1BCEA75C0086F0EB /* StockCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				FACE72101BCEA7F40086F0EB /* Main.storyboard */,
 				FA107FBD1C13468900482E37 /* About */,
 				FA107F9E1C124D3000482E37 /* calculator */,
 				FA107F9D1C124CF300482E37 /* record */,
-				FA617A331BEFFB9700E4AFA6 /* SQLiteManger */,
-				FACE72101BCEA7F40086F0EB /* Main.storyboard */,
 				FA107FA21C12C99000482E37 /* SettingDetailController.h */,
 				FA107FA31C12C99000482E37 /* SettingDetailController.m */,
 				FA107F9F1C124ECC00482E37 /* SettingController.h */,
@@ -314,8 +314,8 @@
 				FA2A9A821BD3D79F00FCC8A5 /* TabBarController.m */,
 				FA407CE61C09213A00FA64B6 /* public.h */,
 				FA617A041BE8E9FA00E4AFA6 /* StockCalculator-Bridging-Header.h */,
-				FA107FB11C1340A300482E37 /* btn_donate_LG.gif */,
 				FACE720E1BCEA7F40086F0EB /* LaunchScreen.storyboard */,
+				FA617A331BEFFB9700E4AFA6 /* SQLiteManger */,
 			);
 			path = StockCalculator;
 			sourceTree = "<group>";
