@@ -562,10 +562,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNu-35-KKx">
-                                <rect key="frame" x="0.0" y="72" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="38"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="n9t-ou-0E4">
-                                        <rect key="frame" x="8" y="0.0" width="584" height="30"/>
+                                        <rect key="frame" x="8" y="8" width="584" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="3Hd-nz-Ugt"/>
@@ -578,7 +578,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="n9t-ou-0E4" secondAttribute="bottom" id="Bhj-xd-nOo"/>
-                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="top" secondItem="rNu-35-KKx" secondAttribute="top" id="HFK-zh-T0Y"/>
+                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="top" secondItem="rNu-35-KKx" secondAttribute="topMargin" id="HFK-zh-T0Y"/>
                                     <constraint firstItem="n9t-ou-0E4" firstAttribute="trailing" secondItem="rNu-35-KKx" secondAttribute="trailingMargin" id="HzV-hM-xWy"/>
                                     <constraint firstItem="n9t-ou-0E4" firstAttribute="leading" secondItem="rNu-35-KKx" secondAttribute="leadingMargin" id="YbS-K6-hw1"/>
                                 </constraints>

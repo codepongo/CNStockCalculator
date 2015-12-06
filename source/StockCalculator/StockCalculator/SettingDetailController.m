@@ -17,15 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.rate = [[Rate alloc] init];
-    self.edit.keyboardType = UIKeyboardTypeNumberPad;
     // Do any additional setup after loading the view.
+    //self.edit.text = [NSString stringWithFormat:@"%.2f", ((NSNumber*)[self.rate valueForKey:self.k]).floatValue];
+    //[self.edit becomeFirstResponder];
+
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    self.edit.text = [NSString stringWithFormat:@"%.2f", ((NSNumber*)[self.rate valueForKey:self.k]).floatValue];
-    [self.edit becomeFirstResponder];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

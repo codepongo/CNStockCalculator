@@ -52,9 +52,10 @@
 
 - (void)webView:(UIWebView * _Nonnull)webView
 didFailLoadWithError:(NSError * _Nullable)error {
-    self.indicator.hidden = YES;
-    self.indicator.hidden = NO;
-    [self openLocalURL];
+    return;
+    //self.indicator.hidden = YES;
+    //self.indicator.hidden = NO;
+    //[self openLocalURL];
     
 }
 
