@@ -561,35 +561,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNu-35-KKx">
-                                <rect key="frame" x="0.0" y="72" width="600" height="38"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ayl-ow-ZtQ">
+                                <rect key="frame" x="0.0" y="72" width="600" height="30"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="n9t-ou-0E4">
-                                        <rect key="frame" x="8" y="8" width="584" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="n9t-ou-0E4">
+                                        <rect key="frame" x="8" y="0.0" width="584" height="30"/>
                                         <animations/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="3Hd-nz-Ugt"/>
+                                            <constraint firstAttribute="height" constant="30" id="NMr-m3-ccQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="n9t-ou-0E4" secondAttribute="bottom" id="Bhj-xd-nOo"/>
-                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="top" secondItem="rNu-35-KKx" secondAttribute="topMargin" id="HFK-zh-T0Y"/>
-                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="trailing" secondItem="rNu-35-KKx" secondAttribute="trailingMargin" id="HzV-hM-xWy"/>
-                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="leading" secondItem="rNu-35-KKx" secondAttribute="leadingMargin" id="YbS-K6-hw1"/>
+                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="top" secondItem="Ayl-ow-ZtQ" secondAttribute="top" id="G0g-Sa-gHD"/>
+                                    <constraint firstAttribute="bottom" secondItem="n9t-ou-0E4" secondAttribute="bottom" id="Oqu-zg-nAZ"/>
+                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="leading" secondItem="Ayl-ow-ZtQ" secondAttribute="leadingMargin" id="eBj-I7-Tmb"/>
+                                    <constraint firstItem="n9t-ou-0E4" firstAttribute="trailing" secondItem="Ayl-ow-ZtQ" secondAttribute="trailingMargin" id="he4-cD-HHT"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rNu-35-KKx" firstAttribute="top" secondItem="xc5-Wd-PzZ" secondAttribute="bottom" constant="8" symbolic="YES" id="9TV-O8-O0l"/>
-                            <constraint firstAttribute="trailing" secondItem="rNu-35-KKx" secondAttribute="trailing" id="SEb-iI-e5j"/>
-                            <constraint firstItem="rNu-35-KKx" firstAttribute="leading" secondItem="ORU-zN-Axe" secondAttribute="leading" id="TSa-zs-yxx"/>
+                            <constraint firstItem="Ayl-ow-ZtQ" firstAttribute="top" secondItem="xc5-Wd-PzZ" secondAttribute="bottom" constant="8" symbolic="YES" id="YDa-qF-KU4"/>
+                            <constraint firstAttribute="trailing" secondItem="Ayl-ow-ZtQ" secondAttribute="trailing" id="fdy-MQ-abd"/>
+                            <constraint firstItem="Ayl-ow-ZtQ" firstAttribute="leading" secondItem="ORU-zN-Axe" secondAttribute="leading" id="toD-m6-cjO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wB5-2q-rJP">

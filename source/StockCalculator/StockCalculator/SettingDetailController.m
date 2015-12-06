@@ -17,9 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.rate = [[Rate alloc] init];
+    //iOS BUG:when UITextBorderStyleNone, UITextField' text dismiss after app resign active.
+    //this is a dirt fix for the bug above
+    self.edit.borderStyle = UITextBorderStyleLine;
+    self.edit.layer.cornerRadius= 0;
+    self.edit.layer.masksToBounds = YES;
+    self.edit.layer.borderColor = self.edit.superview.backgroundColor.CGColor;
+    self.edit.layer.borderWidth = 1.0f;
+    
     // Do any additional setup after loading the view.
-    //self.edit.text = [NSString stringWithFormat:@"%.2f", ((NSNumber*)[self.rate valueForKey:self.k]).floatValue];
-    //[self.edit becomeFirstResponder];
+    self.edit.text = [NSString stringWithFormat:@"%.2f", ((NSNumber*)[self.rate valueForKey:self.k]).floatValue];
+    [self.edit becomeFirstResponder];
 
 }
 
