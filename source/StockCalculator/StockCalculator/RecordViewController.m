@@ -75,7 +75,9 @@
 @implementation RecordViewController
 
 -(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.view name:@"recordChanged" object:nil];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

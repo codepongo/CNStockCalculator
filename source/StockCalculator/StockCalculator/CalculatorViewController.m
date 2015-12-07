@@ -35,10 +35,12 @@
 @synthesize sheet;
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.view name:@"rateChanged" object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self.layout selector:@selector(reloadData) name:@"rateChanged" object:nil];
     self.selectedIndexInSheet = 1;
     self.brain = [[CalculateBrain alloc] init];
     [self.brain setCalculateForGainOrLoss:YES];

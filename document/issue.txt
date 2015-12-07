@@ -82,16 +82,19 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 []record detail layout
 [x]record detail line chart animation
 [o]setting image
-[]setting value
-[]setting detail save and cancel
+[o]setting value
+[o]setting detail save and cancel
 []setting detail instruction
-[]about
+[o]about
 []calculate
 [o]launch image font style
 [o]图标 保本 损益 app icon
 [o]settings 印花税率 佣金比率 过户费率 版本 关于
 [o]arrange material
 [] 多语言
+[] after configing the rate in settings, the rate doesn't change in the
+calculator
+[o] stock mark is ShangHai, the app crashes when saving.
 
 ## 1.1 ##
 [ ]record search by price and quantity

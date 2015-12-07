@@ -39,7 +39,9 @@
 
 - (IBAction)save:(id)sender {
     [self.rate setValue:[NSNumber numberWithFloat:self.edit.text.floatValue ] forKey:self.k];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"rateChanged" object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
 @end
