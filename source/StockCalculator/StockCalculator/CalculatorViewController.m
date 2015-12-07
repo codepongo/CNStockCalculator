@@ -604,7 +604,7 @@
     r[@"rate.commission"] = [NSNumber numberWithFloat:self.brain.rate.commission];
     r[@"rate.stamp"] = [NSNumber numberWithFloat:self.brain.rate.stamp];
     if (!self.brain.inSZ) {
-        [r setValuesForKeysWithDictionary:[self.brain dictionaryWithValuesForKeys:@[@"transfer"]]];
+        r[@"transfer"] = [NSNumber numberWithFloat:[self.brain transferAsFloat]];
         r[@"rate.transfer"] = [NSNumber numberWithFloat:self.brain.rate.transfer];
     }
 
