@@ -170,7 +170,7 @@
 			name = calculator;
 			sourceTree = "<group>";
 		};
-		FA107FBD1C13468900482E37 /* About */ = {
+		FA107FBD1C13468900482E37 /* about */ = {
 			isa = PBXGroup;
 			children = (
 				FA107FB11C1340A300482E37 /* btn_donate_LG.gif */,
@@ -184,7 +184,18 @@
 				FA107FB61C13427700482E37 /* paypal.png */,
 				FA107FB71C13427700482E37 /* author.png */,
 			);
-			name = About;
+			name = about;
+			sourceTree = "<group>";
+		};
+		FA107FBE1C15BD7C00482E37 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				FA107FA21C12C99000482E37 /* SettingDetailController.h */,
+				FA107FA31C12C99000482E37 /* SettingDetailController.m */,
+				FA107F9F1C124ECC00482E37 /* SettingController.h */,
+				FA107FA01C124ECC00482E37 /* SettingController.m */,
+			);
+			name = setting;
 			sourceTree = "<group>";
 		};
 		FA2323501BDB3C7C004EE7E8 /* OutputCell */ = {
@@ -298,13 +309,10 @@
 			isa = PBXGroup;
 			children = (
 				FACE72101BCEA7F40086F0EB /* Main.storyboard */,
-				FA107FBD1C13468900482E37 /* About */,
+				FA107FBD1C13468900482E37 /* about */,
 				FA107F9E1C124D3000482E37 /* calculator */,
+				FA107FBE1C15BD7C00482E37 /* setting */,
 				FA107F9D1C124CF300482E37 /* record */,
-				FA107FA21C12C99000482E37 /* SettingDetailController.h */,
-				FA107FA31C12C99000482E37 /* SettingDetailController.m */,
-				FA107F9F1C124ECC00482E37 /* SettingController.h */,
-				FA107FA01C124ECC00482E37 /* SettingController.m */,
 				FACE71F81BCEA7D20086F0EB /* AppDelegate.h */,
 				FACE71F91BCEA7D20086F0EB /* AppDelegate.m */,
 				FACE71FA1BCEA7D20086F0EB /* Assets.xcassets */,
