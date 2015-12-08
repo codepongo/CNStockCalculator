@@ -262,31 +262,6 @@
             </objects>
             <point key="canvasLocation" x="2136" y="-263"/>
         </scene>
-        <!--Collection View Controller-->
-        <scene sceneID="qMu-0S-y36">
-            <objects>
-                <collectionViewController storyboardIdentifier="detailv2" id="Qbe-sn-zPw" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="kzy-GV-CL9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="GXM-lb-qPb">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="Qbe-sn-zPw" id="czu-FN-Rem"/>
-                            <outlet property="delegate" destination="Qbe-sn-zPw" id="qOx-jZ-soV"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nXq-Ow-6ph" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2781" y="-260"/>
-        </scene>
         <!--计算-->
         <scene sceneID="wg7-f3-ORb">
             <objects>

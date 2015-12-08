@@ -206,7 +206,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    RecordDetail *d = [self.storyboard instantiateViewControllerWithIdentifier: tableView == self.tableView ? @"detail" : @"detailv2"];
+    RecordDetail *d = [self.storyboard instantiateViewControllerWithIdentifier: @"detail"];
     NSDictionary* r = [[Record sharedRecord] recordForIndexPath:indexPath.row];
     if (tableView == self.tableView) {
         d.data = r;
