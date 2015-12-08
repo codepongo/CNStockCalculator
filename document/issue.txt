@@ -79,7 +79,7 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 [o]record cell image
 [o]record删除
 [o]record查找
-[]record detail layout
+[o]record detail layout
 [x]record detail line chart animation
 [o]setting image
 [o]setting value
@@ -87,17 +87,23 @@ http://stackoverflow.com/questions/25545982/is-there-any-way-to-add-uipickerview
 []setting detail instruction
 [o]about
 []calculate
+[ ] 精度
+[ ] 大数 准确以及显示
 [o]launch image font style
 [o]图标 保本 损益 app icon
 [o]settings 印花税率 佣金比率 过户费率 版本 关于
 [o]arrange material
-[] 多语言
-[] after configing the rate in settings, the rate doesn't change in the
+[o] after configing the rate in settings, the rate doesn't change in the
 calculator
 [o] stock mark is ShangHai, the app crashes when saving.
-
+[ ] in record detail, the record to save breakeven price hidden the sell.
+[ ] source code url address
+[ ] screen shot
+[ ] icon 1024
+[ ] setting image in iPhone 6plus
 ## 1.1 ##
 [ ]record search by price and quantity
+[ ] 多语言
 
 ## Option ##
 [o] * 批量注释 command+/
