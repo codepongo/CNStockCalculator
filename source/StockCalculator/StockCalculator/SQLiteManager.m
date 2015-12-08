@@ -155,8 +155,8 @@
                     sqlite3_bind_int(statement, count, [param intValue]);
                 else if (!strcmp([param objCType], @encode(BOOL)))
                     sqlite3_bind_int(statement, count, [param intValue]);
-                else
-                    NSLog(@"Error:unknown NSNumber");
+                //else
+                    //NSLog(@"Error:unknown NSNumber");
             }
             if ([param isKindOfClass:[NSDate class]]) {
                sqlite3_bind_double(statement, count, [param timeIntervalSince1970]);
@@ -235,10 +235,7 @@
 	int returnCode = sqlite3_prepare_v2(db, query, -1, &statement, NULL);
 	
 	if (returnCode == SQLITE_ERROR) {
-		const char *errorMsg = sqlite3_errmsg(db);
-		NSError *errorQuery = [self createDBErrorWithDescription:[NSString stringWithCString:errorMsg encoding:NSUTF8StringEncoding]
-                                                         andCode:kDBErrorQuery];
-		NSLog(@"Error:%@", errorQuery);
+        //NSLog(@"Error:%@", [self createDBErrorWithDescription:[NSString stringWithCString:sqlite3_errmsg(db) encoding:NSUTF8StringEncoding] andCode:kDBErrorQuery]);
 	}
 	
 	while (sqlite3_step(statement) == SQLITE_ROW) {

@@ -30,7 +30,6 @@
 - (void)openLocalURL {
     self.webView.scalesPageToFit = NO;
     NSString* path = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
-    NSLog(@"%@", path);
     self.url = [NSURL fileURLWithPath:path];
     NSURLRequest* request = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:request];

@@ -12,7 +12,7 @@
 @interface Record : NSObject
 @property SQLiteManager* db;
 + (instancetype) sharedRecord;
-- (bool)add:(NSDictionary*)record;
+- (BOOL)add:(NSDictionary*)record;
 - (NSUInteger)count;
 -(NSDictionary*)recordForIndexPath:(NSInteger)indexPath;
 - (void)removeAtIndex:(NSInteger)index;

@@ -46,7 +46,7 @@
         NSError *error = [self.db doQuery:sqlSentence];
         
         if (error != nil) {
-            NSLog(@"Error: %@",[error localizedDescription]);
+            //NSLog(@"Error: %@",[error localizedDescription]);
             return nil;
         }
         
@@ -74,7 +74,8 @@
 
     NSError *error = [self.db doQuery:sqlSentence];
     if (error != nil) {
-        NSLog(@"Error: %@",[error localizedDescription]);
+        //NSLog(@"Error: %@",[error localizedDescription]);
+        return NO;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
@@ -88,7 +89,7 @@
 }
 
 -(NSArray*)getRecords:(NSRange)range {
-    NSString* sql = [NSString stringWithFormat:@"SELECT ROWID,* FROM record ORDER BY ROWID DESC LIMIT %ld OFFSET %ld",  range.length, range.location];
+    NSString* sql = [NSString stringWithFormat:@"SELECT ROWID,* FROM record ORDER BY ROWID DESC LIMIT %lu OFFSET %lu",  (unsigned long)range.length, (unsigned long)range.location];
     NSArray* r = [self.db getRowsForQuery:sql];
     return r;
 }
@@ -100,11 +101,11 @@
     
 }
 -(void)removeAtIndex:(NSInteger)index {
-    NSString *sqlSentence = [NSString stringWithFormat:@"DELETE FROM record WHERE ROWID=%ld", index];
+    NSString *sqlSentence = [NSString stringWithFormat:@"DELETE FROM record WHERE ROWID=%ld", (long)index];
     
     NSError *error = [self.db doQuery:sqlSentence];
     if (error != nil) {
-        NSLog(@"Error: %@",[error localizedDescription]);
+        //NSLog(@"Error: %@",[error localizedDescription]);
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"recordChanged" object:nil];
