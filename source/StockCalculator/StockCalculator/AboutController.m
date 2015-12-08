@@ -59,4 +59,11 @@ didFailLoadWithError:(NSError * _Nullable)error {
     
 }
 
+-(BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = request.URL;
+    if ([url.scheme isEqualToString:@"http"] && navigationType == UIWebViewNavigationTypeLinkClicked) {
+        return ![[UIApplication sharedApplication] openURL: url];
+    }
+    return YES;
+}
 @end
