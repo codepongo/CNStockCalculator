@@ -100,7 +100,7 @@ calculator
 [ ] source code url address
 [ ] screen shot
 [ ] icon 1024
-[ ] setting image in iPhone 6plus
+[o] setting image in iPhone 6plus
 ## 1.1 ##
 [ ]record search by price and quantity
 [ ] 多语言
