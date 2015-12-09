@@ -162,7 +162,7 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 元／股" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4g-PO-ODt">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 元／股" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4g-PO-ODt">
                                                 <rect key="frame" x="70" y="0.0" width="490" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -182,7 +182,7 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 股" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OG1-z3-em1">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 股" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OG1-z3-em1">
                                                 <rect key="frame" x="70" y="0.0" width="490" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -195,14 +195,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="71E-ga-nNE">
                                         <rect key="frame" x="0.0" y="177" width="560" height="18"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卖出价格" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTH-Jq-0l6">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卖出价格" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTH-Jq-0l6">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 元／股" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mms-gA-VxA">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 元／股" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mms-gA-VxA">
                                                 <rect key="frame" x="70" y="0.0" width="490" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -222,7 +222,7 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 股" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-Dc-oL8">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="%.2f 股" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVa-Dc-oL8">
                                                 <rect key="frame" x="70" y="0.0" width="490" height="18"/>
                                                 <animations/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -250,6 +250,8 @@
                         <outlet property="commission" destination="qUv-Or-bn3" id="lFe-FP-JSB"/>
                         <outlet property="layout" destination="ZcU-xv-HD8" id="l9M-rM-K3N"/>
                         <outlet property="result" destination="bye-NM-oSP" id="Adu-4f-Yge"/>
+                        <outlet property="sellPriceLayout" destination="71E-ga-nNE" id="vro-gR-Epu"/>
+                        <outlet property="sellQuantityLayout" destination="nPl-fE-kRU" id="5HJ-Uc-fKy"/>
                         <outlet property="sellprice" destination="mms-gA-VxA" id="NYz-2m-vg4"/>
                         <outlet property="sellquantity" destination="rVa-Dc-oL8" id="4D0-mW-pXe"/>
                         <outlet property="stamp" destination="iUT-C2-Y8S" id="yBA-Zh-7Bt"/>

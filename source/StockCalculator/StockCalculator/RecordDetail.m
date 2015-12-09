@@ -14,6 +14,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.data[@"code"];
+    self.sellQuantityLayout.hidden = NO;
+    self.sellPriceLayout.hidden = NO;
+    self.transferContainer.hidden = NO;
+
     NSArray* keys = @[@"buy.price",@"buy.quantity",@"sell.price",@"sell.quantity", @"commission",@"stamp", @"transfer", @"result"];
     for (NSString* k in keys) {
         UILabel* d = (UILabel*)[self valueForKey:k];
@@ -24,8 +28,12 @@
             if ([k isEqual:@"sell.price"]) {
                 self.type.text = @"保本价格";
                 self.result.text = @"%.2f 元／股";
+                self.sellPriceLayout.hidden = YES;
+                self.sellQuantityLayout.hidden = YES;
             }
-            self.transferContainer.hidden = YES;
+            if ([k isEqual:@"transfer"]) {
+                self.transferContainer.hidden = YES;
+            }
         }
     }
     UIColor* color = UP_COLOR;
