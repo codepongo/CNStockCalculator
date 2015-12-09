@@ -84,7 +84,7 @@
                          ,@"title":@"买入数量"
                          ,@"placeholder":@"0 股"
                          ,@"unit":@"股"
-                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeNumberPad]
                          ,@"value":@"buy.quantity"
                          }
                      ,@{
@@ -100,7 +100,7 @@
                          ,@"title":@"卖出数量"
                          ,@"placeholder":@"0 股"
                          ,@"unit":@"股"
-                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeDecimalPad]
+                         ,@"inputtype":[NSNumber numberWithInt:UIKeyboardTypeNumberPad]
                          ,@"value":@"sell.quantity"
                          }
                      ,@{
