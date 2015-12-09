@@ -98,7 +98,7 @@ calculator
 [o] stock mark is ShangHai, the app crashes when saving.
 [ ] in record detail, the record to save breakeven price hidden the sell.
 [ ] source code url address
-[ ] screen shot
+[o] screen shot
 [ ] icon 1024
 [o] setting image in iPhone 6plus
 ## 1.1 ##
