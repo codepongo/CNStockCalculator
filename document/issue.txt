@@ -99,7 +99,7 @@ calculator
 [ ] in record detail, the record to save breakeven price hidden the sell.
 [ ] source code url address
 [o] screen shot
-[ ] icon 1024
+[o] icon 1024
 [o] setting image in iPhone 6plus
 ## 1.1 ##
 [ ]record search by price and quantity
