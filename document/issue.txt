@@ -97,6 +97,7 @@ calculator
 [o] screen shot
 [o] icon 1024
 [o] setting image in iPhone 6plus
+[ ] quantity textfield keyboard type
 ## 1.0.4 ##
 [] order source code
 []calculate
