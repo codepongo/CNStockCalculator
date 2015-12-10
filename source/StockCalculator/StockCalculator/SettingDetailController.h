@@ -14,4 +14,5 @@
 @property NSString* k;
 @property Rate* rate;
 -(IBAction)save:(id)sender;
+@property IBOutlet UILabel* instruction;
 @end

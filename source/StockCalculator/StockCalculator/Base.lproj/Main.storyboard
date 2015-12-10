@@ -563,10 +563,21 @@
                                     <constraint firstItem="n9t-ou-0E4" firstAttribute="trailing" secondItem="Ayl-ow-ZtQ" secondAttribute="trailingMargin" id="he4-cD-HHT"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugV-Ro-4MZ">
+                                <rect key="frame" x="20" y="110" width="560" height="0.0"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ugV-Ro-4MZ" firstAttribute="centerX" secondItem="Ayl-ow-ZtQ" secondAttribute="centerX" id="1g1-Ne-7mO"/>
+                            <constraint firstItem="ugV-Ro-4MZ" firstAttribute="leading" secondItem="ORU-zN-Axe" secondAttribute="leadingMargin" id="FKS-XG-VGi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ugV-Ro-4MZ" secondAttribute="trailing" id="HSH-Ku-RlE"/>
+                            <constraint firstItem="ugV-Ro-4MZ" firstAttribute="top" secondItem="Ayl-ow-ZtQ" secondAttribute="bottom" constant="8" symbolic="YES" id="QYJ-E5-C9o"/>
                             <constraint firstItem="Ayl-ow-ZtQ" firstAttribute="top" secondItem="xc5-Wd-PzZ" secondAttribute="bottom" constant="8" symbolic="YES" id="YDa-qF-KU4"/>
                             <constraint firstAttribute="trailing" secondItem="Ayl-ow-ZtQ" secondAttribute="trailing" id="fdy-MQ-abd"/>
                             <constraint firstItem="Ayl-ow-ZtQ" firstAttribute="leading" secondItem="ORU-zN-Axe" secondAttribute="leading" id="toD-m6-cjO"/>
@@ -581,6 +592,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="edit" destination="n9t-ou-0E4" id="4Om-t8-Zph"/>
+                        <outlet property="instruction" destination="ugV-Ro-4MZ" id="Awt-eP-74C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbG-4r-v9r" userLabel="First Responder" sceneMemberID="firstResponder"/>

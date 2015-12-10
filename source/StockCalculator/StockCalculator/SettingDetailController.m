@@ -28,7 +28,9 @@
     // Do any additional setup after loading the view.
     self.edit.text = [NSString stringWithFormat:@"%.2f", ((NSNumber*)[self.rate valueForKey:self.k]).floatValue];
     [self.edit becomeFirstResponder];
-
+    
+    NSMutableDictionary *descriptions = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"RateDescription" ofType:@"plist"]];
+    self.instruction.text = descriptions[self.k];
 }
 
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040173051C10617E0082F6D7 /* RecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040173041C10617E0082F6D7 /* RecordCell.xib */; };
 		04E442A01BF3546E00943EA5 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E4429F1BF3546E00943EA5 /* Record.m */; };
+		FA0896911C19B4A100C90C60 /* RateDescription.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA0896901C19B4A100C90C60 /* RateDescription.plist */; };
 		FA107FA11C124ECC00482E37 /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA107FA01C124ECC00482E37 /* SettingController.m */; };
 		FA107FA41C12C99000482E37 /* SettingDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA107FA31C12C99000482E37 /* SettingDetailController.m */; };
 		FA107FA61C130C7100482E37 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = FA107FA51C130C7100482E37 /* about.html */; };
@@ -53,6 +54,7 @@
 		040173041C10617E0082F6D7 /* RecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordCell.xib; sourceTree = "<group>"; };
 		04E4429E1BF3546E00943EA5 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		04E4429F1BF3546E00943EA5 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		FA0896901C19B4A100C90C60 /* RateDescription.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RateDescription.plist; sourceTree = "<group>"; };
 		FA107F9F1C124ECC00482E37 /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		FA107FA01C124ECC00482E37 /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		FA107FA21C12C99000482E37 /* SettingDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingDetailController.h; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				FA107FA31C12C99000482E37 /* SettingDetailController.m */,
 				FA107F9F1C124ECC00482E37 /* SettingController.h */,
 				FA107FA01C124ECC00482E37 /* SettingController.m */,
+				FA0896901C19B4A100C90C60 /* RateDescription.plist */,
 			);
 			name = setting;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA107FB91C13427700482E37 /* material.png in Resources */,
+				FA0896911C19B4A100C90C60 /* RateDescription.plist in Resources */,
 				FA107FBC1C13427700482E37 /* author.png in Resources */,
 				FACE72061BCEA7D20086F0EB /* Assets.xcassets in Resources */,
 				FA2323561BDB3CDC004EE7E8 /* SaveFooter.xib in Resources */,
