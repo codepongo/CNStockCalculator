@@ -292,7 +292,7 @@
                                 <animations/>
                             </containerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="xr7-Ew-KwC">
-                                <rect key="frame" x="0.0" y="58" width="600" height="493"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <sections/>
@@ -310,7 +310,7 @@
                             <constraint firstItem="xr7-Ew-KwC" firstAttribute="bottom" secondItem="kZm-Xx-pin" secondAttribute="top" id="QMF-H3-sZH"/>
                             <constraint firstItem="bon-TR-Apk" firstAttribute="top" secondItem="iEd-90-BVg" secondAttribute="bottom" constant="8" symbolic="YES" id="RSH-cB-yHB"/>
                             <constraint firstItem="bon-TR-Apk" firstAttribute="centerX" secondItem="xr7-Ew-KwC" secondAttribute="centerX" id="hV1-Mh-DAl"/>
-                            <constraint firstItem="xr7-Ew-KwC" firstAttribute="top" secondItem="bon-TR-Apk" secondAttribute="bottom" constant="2" id="tAC-Xp-6js"/>
+                            <constraint firstItem="xr7-Ew-KwC" firstAttribute="top" secondItem="bon-TR-Apk" secondAttribute="bottom" constant="8" symbolic="YES" id="tAC-Xp-6js"/>
                             <constraint firstItem="bon-TR-Apk" firstAttribute="trailing" secondItem="Ho5-rs-mnP" secondAttribute="trailingMargin" id="wDz-fY-3e0"/>
                         </constraints>
                     </view>
