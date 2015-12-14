@@ -96,6 +96,7 @@ calculator
 [o] icon 1024
 [o] setting image in iPhone 6plus
 [o] quantity textfield keyboard type
+[o] calculate the breakeven price is error
 ## 1.0.4 ##
 [] order source code
 []calculate

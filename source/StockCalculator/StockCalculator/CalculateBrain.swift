@@ -112,7 +112,7 @@ class CalculateBrain:NSObject {
         sell.price = self.buy.price
         repeat {
             let result = calculateForGainOrLoss(sell)
-            if result.4 > 0 {
+            if result.4 >= 0 {
                 return (result.0, result.1, result.2, result.3, sell.price)
             }
             sell.price += 0.01
@@ -133,16 +133,8 @@ class CalculateBrain:NSObject {
         let fee:Float = commission + stamp + transfer
         let cost:Float = self.buy.amount() + fee
         let income = s!.amount()
-        var result:Float = 0.000
-        if self.sell == nil {
-            if self.buy.quantity != 0 {
-                result = cost/Float(self.buy.quantity)
-            }
-            
-        }
-        else {
-            result = income - cost
-        }
+        let result = income - cost
+
         return (commission, stamp, transfer, fee, result)
     }
     func transferAsFloat() -> Float {
