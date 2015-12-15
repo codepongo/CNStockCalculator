@@ -98,6 +98,8 @@ calculator
 [o] quantity textfield keyboard type
 [o] calculate the breakeven price is error
 ## 1.0.4 ##
+[] 朋友圈分享
+[] 基金类型计算
 [] order source code
 []calculate
 [ ] 精度
