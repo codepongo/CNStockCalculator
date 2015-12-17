@@ -268,8 +268,8 @@ selectedScopeButtonIndexDidChange:(NSInteger)selectedScope {
 #pragma mark - UISearchControllerDelegate
 
 - (void)didDismissSearchController:(UISearchController *)searchController {
-    //self.navigationItem.leftBarButtonItem = self.search;
-    //self.navigationItem.rightBarButtonItem = self.edit;
+    self.navigationItem.leftBarButtonItem = self.search;
+    self.navigationItem.rightBarButtonItem = self.edit;
     ((UITableView*)self.view).tableHeaderView = nil;//.hidden = YES;
 }
 
