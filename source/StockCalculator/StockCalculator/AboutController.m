@@ -42,6 +42,10 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView * _Nonnull)webView {
+    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
+    NSString* version = [NSString stringWithFormat:@"v%@.%@", [info objectForKey:@"CFBundleShortVersionString"], [info objectForKey:@"CFBundleVersion"]];
+
+    [self.webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"version('%@');", version]];
     self.indicator.hidden = YES;
     if (self.url.fileURL) {
         self.webView.scalesPageToFit = YES;

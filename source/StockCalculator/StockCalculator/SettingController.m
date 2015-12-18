@@ -19,8 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.rate = [[Rate alloc] init];
-    NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
-    self.version.text = [NSString stringWithFormat:@"%@b%@", [info objectForKey:@"CFBundleShortVersionString"], [info objectForKey:@"CFBundleVersion"]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
