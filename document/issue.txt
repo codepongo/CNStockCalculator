@@ -1,5 +1,15 @@
 ## Require ##
-1.0.3
+### 1.0.4 ###
+[ ] source code url address:改为StockCalculator
+[] 朋友圈分享
+[] 基金类型计算
+[] order source code
+[]calculate
+[ ] 精度
+[ ] 大数 准确以及显示
+[ ]record search by price and quantity
+[ ] 多语言:develop language 改为英文
+### 1.0.3 ###
 [o] 搜索点击列表 导航栏按钮消失
 [o] visible effect in iPhone 4s
 [o]setting detail instruction
@@ -100,16 +110,6 @@ calculator
 [o] setting image in iPhone 6plus
 [o] quantity textfield keyboard type
 [o] calculate the breakeven price is error
-## 1.0.4 ##
-[] 朋友圈分享
-[] 基金类型计算
-[] order source code
-[]calculate
-[ ] 精度
-[ ] 大数 准确以及显示
-[ ]record search by price and quantity
-[ ] 多语言:develop language 改为英文
-[ ] source code url address:改为StockCalculator
 ## Option ##
 [o] * 批量注释 command+/
 [o] * 代码缩进 control + i http://blog.csdn.net/mars2639/article/details/7587824
